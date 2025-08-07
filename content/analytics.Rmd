@@ -1,0 +1,398 @@
+---
+title: "Research Analytics"
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.width = 12, fig.height = 7)
+
+# Load required libraries
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(DT)
+library(stringr)
+library(lubridate)
+library(tidyr)
+
+# Load the statistics
+if(file.exists("../website_stats.rds")) {
+  stats <- readRDS("../website_stats.rds")
+} else {
+  source("../R/generate_website_stats.R")
+  stats <- readRDS("../website_stats.rds")
+}
+
+all_data <- stats$pub_data
+```
+
+# Research Analytics Dashboard
+
+Comprehensive analysis of research trends, collaboration patterns, and impact metrics for the School of Earth and Sustainability.
+
+---
+
+## Research Output Trends
+
+```{r combined-trends}
+# Combined faculty and student trends
+yearly_combined <- all_data %>%
+  filter(Year >= 2009) %>%
+  group_by(Year) %>%
+  summarise(
+    Total_Publications = n(),
+    Faculty_Only = sum(SES_Faculty != "" & SES_Grad_Students == "", na.rm = TRUE),
+    With_Students = sum(SES_Faculty != "" & SES_Grad_Students != "", na.rm = TRUE),
+    Student_Only = sum(SES_Faculty == "" & SES_Grad_Students != "", na.rm = TRUE),
+    Total_Citations = sum(Citations, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  pivot_longer(
+    cols = c(Faculty_Only, With_Students, Student_Only),
+    names_to = "Publication_Type",
+    values_to = "Count"
+  ) %>%
+  mutate(
+    Publication_Type = case_when(
+      Publication_Type == "Faculty_Only" ~ "Faculty Only",
+      Publication_Type == "With_Students" ~ "Faculty + Students",
+      Publication_Type == "Student_Only" ~ "Students Only"
+    )
+  )
+
+p1 <- ggplot(yearly_combined, aes(x = Year, y = Count, fill = Publication_Type)) +
+  geom_area(alpha = 0.8) +
+  scale_fill_manual(values = c("#1f77b4", "#ff7f0e", "#2ca02c")) +
+  labs(
+    title = "Publication Trends by Author Type",
+    subtitle = "Stacked area chart showing collaboration patterns over time",
+    x = "Year",
+    y = "Number of Publications",
+    fill = "Author Type"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "bottom"
+  )
+
+ggplotly(p1, tooltip = c("x", "y", "fill")) %>%
+  layout(
+    xaxis = list(fixedrange = FALSE),
+    yaxis = list(fixedrange = FALSE)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+```
+
+---
+
+## Research Impact Over Time
+
+```{r impact-analysis}
+# Calculate cumulative metrics
+impact_data <- all_data %>%
+  filter(Year >= 2009, SES_Faculty != "") %>%
+  arrange(Year) %>%
+  mutate(
+    Cumulative_Pubs = cumsum(!duplicated(paste(Title, Authors))),
+    Cumulative_Citations = cumsum(Citations)
+  ) %>%
+  group_by(Year) %>%
+  summarise(
+    Annual_Pubs = n(),
+    Annual_Citations = sum(Citations),
+    Cumulative_Pubs = max(Cumulative_Pubs),
+    Cumulative_Citations = max(Cumulative_Citations),
+    .groups = 'drop'
+  )
+
+# Create dual-axis plot
+p2 <- plot_ly(impact_data, x = ~Year) %>%
+  add_bars(y = ~Annual_Pubs, name = "Annual Publications", 
+           marker = list(color = "#1f77b4"), yaxis = "y") %>%
+  add_lines(y = ~Cumulative_Citations/100, name = "Cumulative Citations (÷100)", 
+            line = list(color = "#ff7f0e", width = 3), yaxis = "y2") %>%
+  layout(
+    title = list(text = "Research Output vs. Cumulative Impact", font = list(size = 16)),
+    xaxis = list(title = "Year", fixedrange = FALSE),
+    yaxis = list(title = "Annual Publications", side = "left", fixedrange = FALSE),
+    yaxis2 = list(title = "Cumulative Citations (÷100)", side = "right", overlaying = "y", fixedrange = FALSE),
+    legend = list(x = 0.1, y = 0.9)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+
+p2
+```
+
+---
+
+## Faculty Collaboration Network
+
+```{r collaboration-analysis}
+# Analyze multi-faculty collaborations
+collab_pubs <- all_data %>%
+  filter(SES_Faculty != "", str_count(SES_Faculty, ",") >= 1) %>%  # Multi-faculty papers
+  mutate(faculty_list = strsplit(SES_Faculty, ", ")) %>%
+  select(Title, Year, Citations, faculty_list)
+
+# Count collaborations
+faculty_collabs <- collab_pubs %>%
+  mutate(num_faculty = lengths(faculty_list)) %>%
+  group_by(num_faculty) %>%
+  summarise(
+    Publications = n(),
+    Avg_Citations = round(mean(Citations, na.rm = TRUE), 1),
+    Total_Citations = sum(Citations, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  mutate(Faculty_Group = paste(num_faculty, "Faculty"))
+
+p3 <- ggplot(faculty_collabs, aes(x = reorder(Faculty_Group, num_faculty), y = Publications)) +
+  geom_col(fill = "#9467bd", alpha = 0.8) +
+  geom_text(aes(label = Publications), vjust = -0.5, size = 4, fontface = "bold") +
+  labs(
+    title = "Multi-Faculty Collaborative Publications",
+    subtitle = "Publications with multiple SES faculty co-authors",
+    x = "Number of SES Faculty Co-Authors",
+    y = "Number of Publications"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    axis.text = element_text(size = 11)
+  )
+
+ggplotly(p3, tooltip = c("x", "y")) %>%
+  layout(
+    xaxis = list(fixedrange = FALSE),
+    yaxis = list(fixedrange = FALSE)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+```
+
+---
+
+## Citation Distribution Analysis
+
+```{r citation-distribution}
+# Citation distribution
+citation_bins <- all_data %>%
+  filter(SES_Faculty != "", Citations > 0) %>%
+  mutate(
+    Citation_Range = case_when(
+      Citations <= 5 ~ "1-5",
+      Citations <= 10 ~ "6-10", 
+      Citations <= 25 ~ "11-25",
+      Citations <= 50 ~ "26-50",
+      Citations <= 100 ~ "51-100",
+      Citations <= 200 ~ "101-200",
+      TRUE ~ "200+"
+    )
+  ) %>%
+  count(Citation_Range) %>%
+  mutate(
+    Citation_Range = factor(Citation_Range, levels = c("1-5", "6-10", "11-25", "26-50", "51-100", "101-200", "200+"))
+  )
+
+p4 <- ggplot(citation_bins, aes(x = Citation_Range, y = n)) +
+  geom_col(fill = "#2ca02c", alpha = 0.8) +
+  geom_text(aes(label = n), vjust = -0.5, size = 4, fontface = "bold") +
+  labs(
+    title = "Distribution of Publication Citations",
+    subtitle = "Number of publications in each citation range",
+    x = "Citation Range",
+    y = "Number of Publications"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    axis.text = element_text(size = 11)
+  )
+
+ggplotly(p4, tooltip = c("x", "y")) %>%
+  layout(
+    xaxis = list(fixedrange = FALSE),
+    yaxis = list(fixedrange = FALSE)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+```
+
+---
+
+## Student Mentorship Impact
+
+```{r student-mentorship}
+# Analyze publications with both faculty and students
+mentorship_data <- all_data %>%
+  filter(SES_Faculty != "", SES_Grad_Students != "") %>%
+  group_by(Year) %>%
+  summarise(
+    Mentorship_Pubs = n(),
+    Avg_Citations = round(mean(Citations, na.rm = TRUE), 1),
+    Total_Students = length(unique(unlist(strsplit(paste(SES_Grad_Students, collapse = ", "), ", ")))),
+    .groups = 'drop'
+  )
+
+p5 <- plot_ly(mentorship_data, x = ~Year) %>%
+  add_bars(y = ~Mentorship_Pubs, name = "Publications with Students", 
+           marker = list(color = "#ff7f0e")) %>%
+  add_lines(y = ~Total_Students, name = "Unique Students", 
+            line = list(color = "#d62728", width = 3), yaxis = "y2") %>%
+  layout(
+    title = list(text = "Faculty-Student Collaborative Publications", font = list(size = 16)),
+    xaxis = list(title = "Year", fixedrange = FALSE),
+    yaxis = list(title = "Publications with Students", side = "left", fixedrange = FALSE),
+    yaxis2 = list(title = "Unique Students Publishing", side = "right", overlaying = "y", fixedrange = FALSE),
+    legend = list(x = 0.1, y = 0.9)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+
+p5
+```
+
+---
+
+## Top Research Keywords
+
+```{r keyword-analysis}
+# Extract keywords from titles (simple approach)
+# This is a basic implementation - could be enhanced with proper NLP
+common_words <- c("the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by", "from", "as", "is", "are", "was", "were", "been", "be", "have", "has", "had", "do", "does", "did", "will", "would", "could", "should", "may", "might", "can", "must")
+
+keywords <- all_data %>%
+  filter(SES_Faculty != "", !is.na(Title)) %>%
+  mutate(
+    # Extract potential keywords from titles
+    title_words = str_split(tolower(Title), "[^a-zA-Z]+")
+  ) %>%
+  select(Year, title_words) %>%
+  tidyr::unnest(title_words) %>%
+  filter(
+    !title_words %in% common_words,
+    nchar(title_words) > 3,
+    !str_detect(title_words, "^[0-9]+$")
+  ) %>%
+  count(title_words, sort = TRUE) %>%
+  top_n(20, n) %>%
+  mutate(title_words = str_to_title(title_words))
+
+p6 <- ggplot(keywords, aes(x = reorder(title_words, n), y = n)) +
+  geom_col(fill = "#17becf", alpha = 0.8) +
+  coord_flip() +
+  labs(
+    title = "Most Common Words in Publication Titles",
+    subtitle = "Top 20 research-related terms (simplified analysis)",
+    x = "Term",
+    y = "Frequency"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    axis.text = element_text(size = 10)
+  )
+
+ggplotly(p6, tooltip = c("x", "y")) %>%
+  layout(
+    xaxis = list(fixedrange = FALSE),
+    yaxis = list(fixedrange = FALSE)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+```
+
+---
+
+## Department Performance Metrics
+
+```{r performance-dashboard}
+# Calculate key performance indicators
+current_year <- year(Sys.Date())
+recent_years <- (current_year-5):current_year
+
+kpi_data <- all_data %>%
+  filter(SES_Faculty != "") %>%
+  summarise(
+    Total_Pubs = n(),
+    Recent_Pubs = sum(Year %in% recent_years, na.rm = TRUE),
+    Total_Citations = sum(Citations, na.rm = TRUE),
+    Avg_Citations_Per_Pub = round(mean(Citations, na.rm = TRUE), 1),
+    High_Impact = sum(Citations >= 50, na.rm = TRUE),
+    Collaboration_Rate = round(100 * mean(str_count(SES_Faculty, ",") > 0, na.rm = TRUE), 1),
+    Student_Mentorship_Rate = round(100 * mean(SES_Grad_Students != "", na.rm = TRUE), 1),
+    Active_Faculty = stats$actively_publishing_count
+  )
+
+# Create a summary table
+kpi_table <- data.frame(
+  Metric = c(
+    "Total Publications (2009+)",
+    "Publications (Last 5 Years)", 
+    "Total Citations",
+    "Average Citations per Publication",
+    "High-Impact Publications (50+ citations)",
+    "Multi-Faculty Collaboration Rate (%)",
+    "Student Co-authorship  Rate (%)",
+    "Actively Publishing Faculty (since 2023)",
+    "Department H-Index"
+  ),
+  Value = c(
+    format(kpi_data$Total_Pubs, big.mark = ","),
+    format(kpi_data$Recent_Pubs, big.mark = ","),
+    format(kpi_data$Total_Citations, big.mark = ","),
+    kpi_data$Avg_Citations_Per_Pub,
+    format(kpi_data$High_Impact, big.mark = ","),
+    paste0(kpi_data$Collaboration_Rate, "%"),
+    paste0(kpi_data$Student_Mentorship_Rate, "%"),
+    kpi_data$Active_Faculty,
+    stats$h_index
+  )
+)
+
+knitr::kable(
+  kpi_table,
+  format = "html",
+  caption = "Key Performance Indicators - SES Research Output",
+  col.names = c("Metric", "Value"),
+  align = c("l", "r"),
+  escape = FALSE,
+  table.attr = 'class="table table-striped table-hover" style="font-size: 13px; margin-left: auto; margin-right: auto;"'
+)
+```
+
+---
+
+## Annual Research Highlights
+
+```{r yearly-highlights}
+# Generate highlights for each recent year
+highlights <- all_data %>%
+  filter(SES_Faculty != "", Year >= (current_year - 4), Year <= current_year) %>%
+  group_by(Year) %>%
+  summarise(
+    Publications = n(),
+    Total_Citations = sum(Citations, na.rm = TRUE),
+    Top_Citation = max(Citations, na.rm = TRUE),
+    Student_Collaborations = sum(SES_Grad_Students != "", na.rm = TRUE),
+    Faculty_Count = length(unique(unlist(strsplit(paste(SES_Faculty, collapse = ", "), ", ")))),
+    Top_Journal = names(sort(table(Journal), decreasing = TRUE))[1],
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Year))
+
+knitr::kable(
+  highlights,
+  format = "html", 
+  caption = "Annual Research Highlights (Last 5 Years)",
+  col.names = c('Year', 'Publications', 'Total Citations', 'Highest Citation', 'Student Collaborations', 'Active Faculty', 'Top Journal'),
+  align = c("c", "r", "r", "r", "r", "r", "l"),
+  escape = FALSE,
+  table.attr = 'class="table table-striped table-hover" style="font-size: 12px; margin-left: auto; margin-right: auto;"'
+)
+```
+
+---
+
+*Analytics generated from `r format(nrow(all_data), big.mark = ",")` publications spanning `r min(all_data$Year)` to `r max(all_data$Year)`. Last updated: `r format(Sys.time(), "%B %d, %Y")`*

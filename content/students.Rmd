@@ -1,0 +1,306 @@
+---
+title: "Student Publications"
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.width = 12, fig.height = 7)
+
+# Load required libraries
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(DT)
+library(stringr)
+library(lubridate)
+library(tidyr)
+
+# Load the statistics
+if(file.exists("../website_stats.rds")) {
+  stats <- readRDS("../website_stats.rds")
+} else {
+  source("../R/generate_website_stats.R")
+  stats <- readRDS("../website_stats.rds")
+}
+
+student_data <- stats$grad_pubs
+```
+
+# Student Publications Dashboard
+
+Since 2009, **`r stats$total_grad_students`** SES graduate students have published **`r format(nrow(student_data), big.mark = ",")`** peer-reviewed articles, accumulating **`r format(sum(student_data$Citations, na.rm = TRUE), big.mark = ",")`** total citations.
+
+---
+
+## Graduate Student Publishing Trends
+
+```{r student-pubs-by-year}
+# Publications by year with student counts
+yearly_student_pubs <- student_data %>%
+  filter(Year >= 2009) %>%
+  group_by(Year) %>%
+  summarise(
+    Publications = n(),
+    Citations = sum(Citations, na.rm = TRUE),
+    # Count unique students per year
+    Student_Authors = length(unique(unlist(strsplit(paste(SES_Grad_Students, collapse = ", "), ", ")))),
+    .groups = 'drop'
+  )
+
+p1 <- ggplot(yearly_student_pubs, aes(x = Year)) +
+  geom_col(aes(y = Publications), fill = "#1f77b4", alpha = 0.8) +
+  geom_line(aes(y = Student_Authors), color = "#ff7f0e", size = 1.5) +
+  geom_point(aes(y = Student_Authors), color = "#ff7f0e", size = 3) +
+  labs(
+    title = "Graduate Student Publications by Year",
+    subtitle = "Blue bars: Publications | Orange line: Number of students publishing",
+    x = "Year",
+    y = "Count"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    axis.title = element_text(size = 12, face = "bold")
+  )
+
+ggplotly(p1, tooltip = c("x", "y")) %>%
+  layout(
+    xaxis = list(fixedrange = FALSE),
+    yaxis = list(fixedrange = FALSE)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+```
+
+---
+
+## Student Publication Impact
+
+```{r student-citations}
+p2 <- ggplot(yearly_student_pubs, aes(x = Year, y = Citations)) +
+  geom_col(fill = "#2ca02c", alpha = 0.8) +
+  labs(
+    title = "Graduate Student Publication Citations by Year",
+    subtitle = "Total citations for publications with graduate student authors",
+    x = "Year",
+    y = "Total Citations"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    axis.title = element_text(size = 12, face = "bold")
+  )
+
+ggplotly(p2, tooltip = c("x", "y")) %>%
+  layout(
+    xaxis = list(fixedrange = FALSE),
+    yaxis = list(fixedrange = FALSE)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+```
+
+---
+
+## Most Productive Graduate Students
+
+```{r student-productivity}
+# Count publications per student
+student_productivity <- student_data %>%
+  filter(SES_Grad_Students != "") %>%
+  # Split student names and count
+  mutate(student_list = strsplit(SES_Grad_Students, ", ")) %>%
+  unnest(student_list) %>%
+  group_by(student_list) %>%
+  summarise(
+    Publications = n(),
+    Total_Citations = sum(Citations, na.rm = TRUE),
+    Avg_Citations = round(mean(Citations, na.rm = TRUE), 1),
+    Years_Active = paste(sort(unique(Year)), collapse = ", "),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Publications)) %>%
+  top_n(20, Publications)  # Top 20 most productive
+
+p3 <- ggplot(student_productivity, aes(x = reorder(student_list, Publications), y = Publications)) +
+  geom_col(fill = "#9467bd", alpha = 0.8) +
+  coord_flip() +
+  labs(
+    title = "Top 20 Most Productive Graduate Students (2009+)",
+    subtitle = "Number of publications per student",
+    x = "Graduate Student",
+    y = "Number of Publications"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    axis.text.y = element_text(size = 9),
+    axis.text.x = element_text(size = 10),
+    axis.title = element_text(size = 12, face = "bold")
+  )
+
+ggplotly(p3, tooltip = c("x", "y")) %>%
+  layout(
+    xaxis = list(fixedrange = FALSE),
+    yaxis = list(fixedrange = FALSE)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+```
+
+---
+
+## Most Cited Publications with Graduate Student Co-Authors
+
+```{r top-cited-student-pubs}
+# Top cited publications with graduate student co-authors
+top_cited_students <- student_data %>%
+  filter(SES_Grad_Students != "", !is.na(Citations), Citations > 0) %>%
+  arrange(desc(Citations)) %>%
+  select(Title, Authors, Journal, Year, Citations, SES_Grad_Students) %>%
+  head(20)
+
+# Found data - proceeding with table
+
+if(nrow(top_cited_students) > 0) {
+  # Clean up long titles and author lists and rename column
+  top_cited_students_clean <- top_cited_students %>%
+    mutate(
+      Title = ifelse(is.na(Title), "Unknown Title", Title),
+      Authors = ifelse(is.na(Authors), "Unknown Authors", Authors),
+      Journal = ifelse(is.na(Journal), "Unknown Journal", Journal),
+      Title = ifelse(nchar(Title) > 80, paste0(substr(Title, 1, 77), "..."), Title),
+      Authors = ifelse(nchar(Authors) > 100, paste0(substr(Authors, 1, 97), "..."), Authors),
+      Journal = ifelse(nchar(Journal) > 40, paste0(substr(Journal, 1, 37), "..."), Journal)
+    ) %>%
+    rename(Student = SES_Grad_Students)  # Rename column header as requested
+  
+  # Create a simple HTML table that will definitely work
+  top_cited_students_clean %>%
+    knitr::kable(
+      format = "html",
+      caption = "Top 20 Most Cited Publications with Graduate Student Co-Authors",
+      col.names = c("Title", "Authors", "Journal", "Year", "Citations", "Student"),
+      align = c("l", "l", "l", "c", "r", "l"),
+      escape = FALSE,
+      table.attr = 'class="table table-striped table-hover" style="font-size: 12px; margin-left: auto; margin-right: auto;"'
+    )
+} else {
+  cat("No citation data available for student publications.")
+}
+```
+
+---
+
+## Student Publication Journals
+
+```{r student-journals}
+# Top journals for student publications
+student_journal_counts <- student_data %>%
+  filter(!is.na(Journal), Journal != "") %>%
+  count(Journal, sort = TRUE) %>%
+  top_n(15, n)
+
+p4 <- ggplot(student_journal_counts, aes(x = reorder(Journal, n), y = n)) +
+  geom_col(fill = "#17becf", alpha = 0.8) +
+  coord_flip() +
+  labs(
+    title = "Top 15 Journals for Graduate Student Publications",
+    subtitle = "Number of publications per journal (with grad student co-authors)",
+    x = "Journal",
+    y = "Number of Publications"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    axis.title = element_text(size = 12, face = "bold")
+  )
+
+ggplotly(p4, tooltip = c("x", "y")) %>%
+  layout(
+    xaxis = list(fixedrange = FALSE),
+    yaxis = list(fixedrange = FALSE)
+  ) %>%
+  config(displayModeBar = TRUE, displaylogo = FALSE)
+```
+
+---
+
+## All Graduate Student Publications
+
+```{r all-student-pubs-table}
+# Table of all student publications
+all_student_pubs <- student_data %>%
+  arrange(desc(Year), desc(Citations)) %>%
+  select(Title, Authors, Journal, Year, Citations, SES_Grad_Students) %>%
+  mutate(
+    Title = ifelse(nchar(Title) > 70, paste0(substr(Title, 1, 67), "..."), Title),
+    Authors = ifelse(nchar(Authors) > 80, paste0(substr(Authors, 1, 77), "..."), Authors),
+    Journal = ifelse(nchar(Journal) > 35, paste0(substr(Journal, 1, 32), "..."), Journal)
+  )
+
+datatable(
+  all_student_pubs,
+  caption = "All Publications with Graduate Student Co-Authors",
+  options = list(
+    pageLength = 15,
+    scrollX = TRUE,
+    order = list(list(3, 'desc'), list(4, 'desc')),  # Sort by year, then citations
+    columnDefs = list(
+      list(width = '250px', targets = 0),  # Title
+      list(width = '180px', targets = 1),  # Authors
+      list(width = '130px', targets = 2),  # Journal
+      list(width = '60px', targets = 3),   # Year
+      list(width = '80px', targets = 4),   # Citations
+      list(width = '100px', targets = 5)   # SES Students
+    )
+  ),
+  rownames = FALSE,
+  filter = 'top'
+) %>%
+  formatStyle(
+    'Year',
+    backgroundColor = styleInterval(c(2015, 2020), c('#fee2e2', '#fef3c7', '#dcfce7'))
+  ) %>%
+  formatStyle(
+    'Citations',
+    background = styleColorBar(range(all_student_pubs$Citations, na.rm = TRUE), '#e0f2fe'),
+    backgroundSize = '100% 90%',
+    backgroundRepeat = 'no-repeat',
+    backgroundPosition = 'center'
+  )
+```
+
+---
+
+## Summary Statistics
+
+::: {.grid}
+::: {.g-col-3}
+**Student Publications**  
+`r format(nrow(student_data), big.mark = ",")`
+:::
+
+::: {.g-col-3}
+**Total Citations**  
+`r format(sum(student_data$Citations, na.rm = TRUE), big.mark = ",")`
+:::
+
+::: {.g-col-3}
+**Publishing Students**  
+`r stats$total_grad_students`
+:::
+
+::: {.g-col-3}
+**Avg Citations/Paper**  
+`r round(mean(student_data$Citations, na.rm = TRUE), 1)`
+:::
+:::
+
+---
+
+*Data includes publications from `r min(student_data$Year)` to `r max(student_data$Year)`. Last updated: `r format(Sys.time(), "%B %d, %Y")`*

@@ -1,6 +1,10 @@
 # Helper function to load student data
 # This is sourced by update_database.R
 
+library(googlesheets4)
+library(dplyr)
+library(stringr)
+
 load_students <- function(students_sheet_id = "1FuWlVun83yUZKl49r1o71MsZSKaD5Mw14n-ssmEpLVE") {
   
   # Load alumni

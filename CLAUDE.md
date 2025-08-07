@@ -34,9 +34,11 @@ The publications database includes:
 3. **Updates citation counts** for all existing publications
 4. **Identifies NEW publications** from 2025 or later only (avoids duplicates)
 5. **Enhanced faculty matching** using first initials from `facultygooglescholarids.csv`
-6. **Student detection** for graduate students in new publications
-7. **Preserves verified records** except for citation updates
-8. **Uploads clean results** to Google Sheets
+6. **Improved student detection** with enhanced pattern matching (handles "EJ Baransky" patterns)
+7. **Filters non-peer-reviewed publications** based on journal keywords (meeting, conference, abstract, rxiv, preprint, nsf award, etc.)
+8. **Full author list retrieval** (prevents truncation with "...")
+9. **Preserves verified records** except for citation updates
+10. **Uploads clean results** to Google Sheets
 
 ### Faculty Data Format
 `facultygooglescholarids.csv` contains:
@@ -47,6 +49,7 @@ The publications database includes:
 
 ### Helper Scripts
 - **`R/load_students.R`**: Loads student data with exclusions (McKay, Thompson)
+- **`update_citations_only.R`**: Separate process to update all citation counts
 - **`reading google scholar.R`**: Original exploration script (reference only)
 
 ## Update Strategy

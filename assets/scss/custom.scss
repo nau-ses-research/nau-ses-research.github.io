@@ -1,0 +1,343 @@
+/* Custom styling for SES Publications Dashboard - NAU Brand Colors */
+
+/* NAU Brand Color Variables */
+:root {
+  --nau-blue: #003466;
+  --nau-blue-light: #0056a6;
+  --nau-blue-dark: #002444;
+  --nau-gold: #FFD200;
+  --nau-gold-light: #fff250;
+  --nau-gold-dark: #d4b000;
+  --nau-aspen: #FBB040;
+  --nau-aspen-light: #ffc470;
+  --nau-aspen-dark: #e8950d;
+}
+
+/* Wider content area for better chart visibility */
+.container, .container-fluid {
+  max-width: 1400px !important;
+}
+
+.article-container {
+  max-width: 1200px !important;
+  width: 95% !important;
+  margin: 0 auto;
+}
+
+/* Main content area styling */
+main {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Ensure plotly charts use full available width */
+.plotly {
+  width: 100% !important;
+  margin: 1.5rem 0;
+}
+
+/* Make tables use more width */
+.dataTables_wrapper {
+  width: 100% !important;
+  margin-top: 1rem;
+}
+
+/* Hero section styling */
+.hero {
+  background: linear-gradient(135deg, var(--nau-blue) 0%, var(--nau-blue-dark) 100%);
+  color: white;
+  padding: 4rem 2rem;
+  margin: -2rem -2rem 3rem -2rem;
+  text-align: center;
+  border-radius: 0 0 15px 15px;
+  
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  h2 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 0.3rem;
+    opacity: 0.9;
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.95;
+  }
+}
+
+/* Pull quote styling */
+.pullquote {
+  background: linear-gradient(45deg, #f8fafc, #e2e8f0);
+  border-left: 6px solid var(--nau-gold);
+  padding: 2rem 2.5rem;
+  margin: 3rem 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.7;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  
+  strong {
+    color: var(--nau-blue);
+    font-weight: 700;
+  }
+}
+
+/* Grid layout for cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.g-col-3, .g-col-4 {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  h3 {
+    color: var(--nau-blue);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  a {
+    color: var(--nau-blue);
+    text-decoration: none;
+    font-weight: 600;
+    
+    &:hover {
+      color: var(--nau-blue-light);
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Statistics boxes */
+.stats-box {
+  text-align: center;
+  
+  h4 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--nau-blue);
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Page headers */
+h1 {
+  color: var(--nau-blue);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  color: var(--nau-blue);
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--nau-gold);
+  padding-bottom: 0.5rem;
+}
+
+/* Plot containers */
+.plotly {
+  margin: 1.5rem 0;
+}
+
+/* DataTables styling */
+.dataTables_wrapper {
+  margin-top: 1rem;
+  
+  .dataTables_filter input {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.5rem;
+  }
+  
+  .dataTables_length select {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.25rem;
+  }
+}
+
+/* NAU-themed button styling */
+.btn-primary, .btn-outline-primary {
+  background-color: var(--nau-blue);
+  border-color: var(--nau-blue);
+  color: white;
+  
+  &:hover {
+    background-color: var(--nau-blue-light);
+    border-color: var(--nau-blue-light);
+  }
+  
+  &:focus, &:active {
+    background-color: var(--nau-blue-dark);
+    border-color: var(--nau-blue-dark);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--nau-gold);
+  border-color: var(--nau-gold);
+  color: var(--nau-blue);
+  font-weight: 600;
+  
+  &:hover {
+    background-color: var(--nau-gold-dark);
+    border-color: var(--nau-gold-dark);
+    color: white;
+  }
+}
+
+/* Navigation bar styling */
+.navbar {
+  background-color: var(--nau-blue) !important;
+  
+  .navbar-brand, .nav-link {
+    color: white !important;
+    
+    &:hover {
+      color: var(--nau-gold) !important;
+    }
+  }
+}
+
+/* Link styling throughout the site */
+a:not(.btn):not(.nav-link) {
+  color: var(--nau-blue);
+  
+  &:hover {
+    color: var(--nau-blue-light);
+  }
+}
+
+/* Card hover effects with NAU colors */
+.card {
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
+  
+  &:hover {
+    border-color: var(--nau-gold);
+    box-shadow: 0 8px 25px rgba(0, 52, 102, 0.1);
+  }
+}
+
+/* Table styling */
+.table {
+  th {
+    background-color: var(--nau-blue);
+    color: white;
+    border-color: var(--nau-blue-dark);
+  }
+  
+  tbody tr:hover {
+    background-color: rgba(255, 210, 0, 0.1);
+  }
+}
+
+/* Form inputs */
+.form-control:focus {
+  border-color: var(--nau-gold);
+  box-shadow: 0 0 0 0.2rem rgba(255, 210, 0, 0.25);
+}
+
+/* Accent elements */
+.border-primary {
+  border-color: var(--nau-blue) !important;
+}
+
+.text-primary {
+  color: var(--nau-blue) !important;
+}
+
+.bg-primary {
+  background-color: var(--nau-blue) !important;
+}
+
+.text-secondary {
+  color: var(--nau-gold) !important;
+}
+
+.bg-secondary {
+  background-color: var(--nau-gold) !important;
+  color: var(--nau-blue) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1rem;
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .pullquote {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    margin: 2rem 0;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .g-col-3, .g-col-4 {
+    padding: 1.5rem;
+  }
+}

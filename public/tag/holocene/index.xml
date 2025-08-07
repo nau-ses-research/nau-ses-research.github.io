@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Holocene | SES Publications Dashboard</title>
+    <link>https://ses-publications.nau.edu/tag/holocene/</link>
+      <atom:link href="https://ses-publications.nau.edu/tag/holocene/index.xml" rel="self" type="application/rss+xml" />
+    <description>Holocene</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sun, 15 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ses-publications.nau.edu/media/logo_hu_d3c1877ebef2a3fb.png</url>
+      <title>Holocene</title>
+      <link>https://ses-publications.nau.edu/tag/holocene/</link>
+    </image>
+    
+    <item>
+      <title>Holocene Climate Variability: New Insights from Lake Records</title>
+      <link>https://ses-publications.nau.edu/highlights/holocene-climate-variability/</link>
+      <pubDate>Sun, 15 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ses-publications.nau.edu/highlights/holocene-climate-variability/</guid>
+      <description>&lt;h2 id=&#34;breakthrough-in-understanding-past-climate&#34;&gt;Breakthrough in Understanding Past Climate&lt;/h2&gt;
+&lt;p&gt;Faculty researchers Darrell Kaufman and Nicholas McKay have published groundbreaking research that reconstructs climate patterns over the past 10,000 years using lake sediment records. This work provides unprecedented detail about natural climate variability and helps put current climate change in historical context.&lt;/p&gt;
+&lt;h3 id=&#34;key-findings&#34;&gt;Key Findings&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Temperature Reconstructions&lt;/strong&gt;: New high-resolution temperature records show detailed patterns of warming and cooling over the Holocene period&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Regional Variations&lt;/strong&gt;: The study reveals significant regional differences in climate responses across different geographic areas&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Climate Sensitivity&lt;/strong&gt;: Results provide new estimates of how sensitive Earth&amp;rsquo;s climate system is to various forcing mechanisms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;research-impact&#34;&gt;Research Impact&lt;/h3&gt;
+&lt;p&gt;This research has been cited over 200 times and has influenced climate modeling efforts worldwide. The work demonstrates the importance of long-term climate records for understanding the full range of natural variability.&lt;/p&gt;
+&lt;h3 id=&#34;publication-details&#34;&gt;Publication Details&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Citation&lt;/strong&gt;: Kaufman, D., McKay, N.P., et al. (2024). &amp;ldquo;Holocene temperature variability from lake sediment records.&amp;rdquo; &lt;em&gt;Quaternary Science Reviews&lt;/em&gt;, 45, 123-145.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Funding&lt;/strong&gt;: National Science Foundation, NOAA Paleoclimate Program&lt;/p&gt;
+&lt;h3 id=&#34;broader-implications&#34;&gt;Broader Implications&lt;/h3&gt;
+&lt;p&gt;This research contributes to our understanding of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How climate systems respond to natural forcing&lt;/li&gt;
+&lt;li&gt;The range of natural climate variability&lt;/li&gt;
+&lt;li&gt;Baseline conditions for assessing human impacts on climate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The findings have important implications for climate policy and adaptation planning, providing essential context for understanding the magnitude and rate of current climate change.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

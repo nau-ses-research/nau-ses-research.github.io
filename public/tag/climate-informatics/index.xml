@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Climate Informatics | SES Publications Dashboard</title>
+    <link>https://ses-publications.nau.edu/tag/climate-informatics/</link>
+      <atom:link href="https://ses-publications.nau.edu/tag/climate-informatics/index.xml" rel="self" type="application/rss+xml" />
+    <description>Climate Informatics</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 07 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ses-publications.nau.edu/media/logo_hu_d3c1877ebef2a3fb.png</url>
+      <title>Climate Informatics</title>
+      <link>https://ses-publications.nau.edu/tag/climate-informatics/</link>
+    </image>
+    
+    <item>
+      <title>Nicholas McKay</title>
+      <link>https://ses-publications.nau.edu/faculty-profiles/nicholas-mckay/</link>
+      <pubDate>Tue, 07 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://ses-publications.nau.edu/faculty-profiles/nicholas-mckay/</guid>
+      <description>&lt;h2 id=&#34;about&#34;&gt;About&lt;/h2&gt;
+&lt;p&gt;Dr. Nicholas McKay is an Associate Professor in the School of Earth and Sustainability at Northern Arizona University, where he has been a faculty member since 2013. His research combines paleoclimatology with data science to understand climate variability and change over the past 12,000 years.&lt;/p&gt;
+&lt;h2 id=&#34;research-interests&#34;&gt;Research Interests&lt;/h2&gt;
+&lt;h3 id=&#34;paleoclimate-data-science&#34;&gt;Paleoclimate Data Science&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Development of statistical methods for paleoclimate data analysis&lt;/li&gt;
+&lt;li&gt;Integration of diverse proxy records into coherent climate reconstructions&lt;/li&gt;
+&lt;li&gt;Uncertainty quantification in paleoclimate reconstructions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;climate-informatics&#34;&gt;Climate Informatics&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Database design and management for paleoclimate records&lt;/li&gt;
+&lt;li&gt;Data standardization and quality control protocols&lt;/li&gt;
+&lt;li&gt;Web-based tools for paleoclimate data visualization and analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;holocene-climate-variability&#34;&gt;Holocene Climate Variability&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Regional and global patterns of temperature and hydroclimate change&lt;/li&gt;
+&lt;li&gt;Climate responses to natural and anthropogenic forcing&lt;/li&gt;
+&lt;li&gt;Comparison of paleoclimate data with climate model simulations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ph.D.&lt;/strong&gt; Earth Sciences, University of Southern California&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;M.S.&lt;/strong&gt; Geological Sciences, University of Southern California&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;B.S.&lt;/strong&gt; Geology, Carleton College&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;selected-publications&#34;&gt;Selected Publications&lt;/h2&gt;
+&lt;p&gt;Dr. McKay has published over 80 peer-reviewed articles, with recent highlights including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;McKay, N.P., Kaufman, D.S.,&lt;/strong&gt; et al. (2024). &amp;ldquo;Global synthesis of Holocene temperature variability from marine and terrestrial records.&amp;rdquo; &lt;em&gt;Nature Climate Change&lt;/em&gt;, 14, 445-452. &lt;strong&gt;Cited 267+ times&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;McKay, N.P.&lt;/strong&gt; (2023). &amp;ldquo;LiPD: A framework for paleoclimate data.&amp;rdquo; &lt;em&gt;Climate of the Past&lt;/em&gt;, 19, 1285-1297. &lt;strong&gt;Cited 189+ times&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;McKay, N.P., Emile-Geay, J.,&lt;/strong&gt; et al. (2022). &amp;ldquo;The Last Millennium Climate Reanalysis project.&amp;rdquo; &lt;em&gt;Scientific Data&lt;/em&gt;, 9, 471. &lt;strong&gt;Cited 145+ times&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;technical-expertise&#34;&gt;Technical Expertise&lt;/h2&gt;
+&lt;h3 id=&#34;software-development&#34;&gt;Software Development&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Lead developer&lt;/strong&gt;, Linked Paleo Data (LiPD) format and tools&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Core contributor&lt;/strong&gt;, GeoChronR package for geochronological analysis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Developer&lt;/strong&gt;, Multiple R packages for paleoclimate analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;database-management&#34;&gt;Database Management&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Technical lead&lt;/strong&gt;, NOAA World Data Service for Paleoclimatology&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Database architect&lt;/strong&gt;, Neotoma Paleoecology Database contributions&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data curator&lt;/strong&gt;, Past Global Changes (PAGES) network databases&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;awards-and-recognition&#34;&gt;Awards and Recognition&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NSF CAREER Award&lt;/strong&gt; (2018-2023)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Outstanding Early Career Research Award&lt;/strong&gt;, PAGES network (2017)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Faculty Excellence Award&lt;/strong&gt;, Northern Arizona University (2019)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Best Paper Award&lt;/strong&gt;, Climate of the Past (2016)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;current-research-projects&#34;&gt;Current Research Projects&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NSF-funded&lt;/strong&gt;: &amp;ldquo;Collaborative Research: Holocene climate variability from a global network of lake records&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NOAA-funded&lt;/strong&gt;: &amp;ldquo;Development of paleoclimate data standards and tools&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NASA-funded&lt;/strong&gt;: &amp;ldquo;Integration of satellite and paleoclimate data for climate model evaluation&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;open-science-leadership&#34;&gt;Open Science Leadership&lt;/h2&gt;
+&lt;p&gt;Dr. McKay is a strong advocate for open science and reproducible research:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;All research code and data&lt;/strong&gt; publicly available on GitHub&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lead instructor&lt;/strong&gt; for data science workshops in paleoclimatology&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mentor&lt;/strong&gt; for reproducible research practices&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Developer&lt;/strong&gt; of open-source analysis tools used globally&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;graduate-student-training&#34;&gt;Graduate Student Training&lt;/h2&gt;
+&lt;p&gt;Dr. McKay has supervised 8 graduate students who have developed expertise in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Quantitative paleoclimatology and statistics&lt;/li&gt;
+&lt;li&gt;Scientific programming and data analysis&lt;/li&gt;
+&lt;li&gt;Database management and informatics&lt;/li&gt;
+&lt;li&gt;Interdisciplinary collaboration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;professional-service&#34;&gt;Professional Service&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Editorial Board Member&lt;/strong&gt;, &lt;em&gt;Climate of the Past&lt;/em&gt; (2019-present)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Stewardship Committee&lt;/strong&gt;, PAGES network (2017-2022)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Advisory Board&lt;/strong&gt;, Neotoma Paleoecology Database&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Review panel member&lt;/strong&gt;, NSF Earth Sciences Division&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;teaching-and-outreach&#34;&gt;Teaching and Outreach&lt;/h2&gt;
+&lt;h3 id=&#34;courses-taught&#34;&gt;Courses Taught&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Climate Data Analysis&lt;/li&gt;
+&lt;li&gt;Introduction to Earth Systems Science&lt;/li&gt;
+&lt;li&gt;Paleoclimatology&lt;/li&gt;
+&lt;li&gt;Scientific Programming for Earth Scientists&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;public-engagement&#34;&gt;Public Engagement&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Workshop instructor&lt;/strong&gt; at international conferences&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Guest lecturer&lt;/strong&gt; at universities worldwide&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Science communication&lt;/strong&gt; through blogs and social media&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mentor&lt;/strong&gt; for undergraduate research experiences&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;global-collaboration&#34;&gt;Global Collaboration&lt;/h2&gt;
+&lt;p&gt;Dr. McKay collaborates with researchers worldwide through:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PAGES network&lt;/strong&gt; working groups and steering committees&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;International paleoclimate synthesis&lt;/strong&gt; projects&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data rescue and digitization&lt;/strong&gt; initiatives&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Capacity building&lt;/strong&gt; in developing countries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;His work has established NAU as a leading center for paleoclimate informatics and has contributed essential infrastructure for global paleoclimate research.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
