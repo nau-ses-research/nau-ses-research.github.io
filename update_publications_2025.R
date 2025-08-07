@@ -31,9 +31,9 @@ cat(sprintf("✓ Downloaded %d publications\n", nrow(current_db)))
 verified_count <- sum(current_db$Verified == TRUE, na.rm = TRUE)
 cat(sprintf("✓ %d verified records will be preserved\n", verified_count))
 
-# Create timestamped backup
-backup_file <- sprintf("backup_%s.csv", format(Sys.time(), "%Y%m%d_%H%M%S"))
-write.csv(current_db, backup_file, row.names = FALSE)
+# Create timestamped backup (safe format)
+backup_file <- sprintf("backup_%s.rds", format(Sys.time(), "%Y%m%d_%H%M%S"))
+saveRDS(current_db, backup_file)
 cat(sprintf("✓ Backup saved: %s\n", backup_file))
 
 # Step 2: Load faculty data with first initials
@@ -94,21 +94,25 @@ cat(sprintf("✓ Collected %d total publications from Google Scholar\n", nrow(al
 cat("\nSTEP 4: Updating citation counts...\n")
 citation_updates <- 0
 
-# Create lookup table for faster matching
+# Create lookup table for faster matching (using ALL publications, not just recent)
 citation_lookup <- all_scholar_pubs %>%
   group_by(simpleTitle) %>%
   summarise(max_citations = max(cites, na.rm = TRUE), .groups = 'drop')
+
+cat(sprintf("Created citation lookup with %d unique titles\n", nrow(citation_lookup)))
 
 # Update citations
 for(i in 1:nrow(current_db)) {
   if(i %% 200 == 0) cat(".")
   
-  if(!is.na(current_db$simpleTitle[i])) {
+  if(!is.na(current_db$simpleTitle[i]) && current_db$simpleTitle[i] != "") {
     lookup_result <- citation_lookup[citation_lookup$simpleTitle == current_db$simpleTitle[i], ]
     
-    if(nrow(lookup_result) > 0 && !is.na(lookup_result$max_citations[1])) {
+    if(nrow(lookup_result) > 0 && !is.na(lookup_result$max_citations[1]) && lookup_result$max_citations[1] >= 0) {
       new_citations <- lookup_result$max_citations[1]
-      if(new_citations != current_db$Citations[i]) {
+      old_citations <- ifelse(is.na(current_db$Citations[i]), 0, current_db$Citations[i])
+      
+      if(new_citations != old_citations) {
         current_db$Citations[i] <- new_citations
         citation_updates <- citation_updates + 1
       }
@@ -124,6 +128,22 @@ recent_pubs <- all_scholar_pubs %>%
   filter(year >= 2025)
 
 cat(sprintf("Found %d publications from 2025+\n", nrow(recent_pubs)))
+
+# Function to filter non-peer-reviewed publications
+is_excluded_publication <- function(journal_name) {
+  if(is.na(journal_name) || journal_name == "") return(FALSE)
+  
+  exclusion_patterns <- c(
+    # Conference abstracts and proceedings
+    "meeting", "abstracts", "conference", "joint", "abstract", "symposium",
+    "proceedings", "workshop", "congress", "summit",
+    # Preprints and non-peer-reviewed
+    "rxiv", "preprint", "nsf award"
+  )
+  
+  journal_lower <- tolower(journal_name)
+  return(any(sapply(exclusion_patterns, function(p) str_detect(journal_lower, p))))
+}
 
 # First, deduplicate within the new publications (same paper from multiple faculty)
 if(nrow(recent_pubs) > 0) {
@@ -159,7 +179,16 @@ if(nrow(recent_pubs) > 0) {
   
   external_dups_filtered <- nrow(deduplicated_recent) - nrow(genuinely_new)
   cat(sprintf("✓ Filtered %d publications that already exist in database\n", external_dups_filtered))
-  cat(sprintf("✓ %d are genuinely new publications to add\n", nrow(genuinely_new)))
+  
+  # Filter out non-peer-reviewed publications
+  if(nrow(genuinely_new) > 0) {
+    pre_filter_count <- nrow(genuinely_new)
+    genuinely_new <- genuinely_new[!sapply(genuinely_new$journal, is_excluded_publication), ]
+    excluded_count <- pre_filter_count - nrow(genuinely_new)
+    cat(sprintf("✓ Filtered out %d non-peer-reviewed publications (conference abstracts, preprints, etc.)\n", excluded_count))
+  }
+  
+  cat(sprintf("✓ %d final publications to add\n", nrow(genuinely_new)))
 } else {
   genuinely_new <- data.frame()
 }
@@ -203,11 +232,12 @@ if(nrow(genuinely_new) > 0) {
     return(paste(unique(faculty_matches), collapse = ", "))
   }
   
-  # Graduate student matching function
+  # Enhanced graduate student matching function
   match_grad_students <- function(authors, pub_year) {
-    if(is.na(authors)) return("")
+    if(is.na(authors) || authors == "") return("")
     
-    authors_lower <- tolower(str_replace_all(authors, "[^a-zA-Z, ]", ""))
+    authors_clean <- str_replace_all(authors, "[^a-zA-Z, ]", "")
+    authors_lower <- tolower(authors_clean)
     matches <- c()
     
     for(k in 1:nrow(all_students)) {
@@ -218,16 +248,19 @@ if(nrow(genuinely_new) > 0) {
       if(nchar(first) < 2 || nchar(last) < 3) next
       if(!str_detect(authors_lower, paste0("\\b", last, "\\b"))) next
       
-      # Check for full name or first initial match
       first_initial <- substr(first, 1, 1)
+      
+      # Enhanced patterns including middle initials (fixes Eva Baransky issue)
       patterns <- c(
-        paste0("\\b", first, "\\s+", last, "\\b"),           # Full name
-        paste0("\\b", first_initial, "\\.?\\s*", last, "\\b"), # Initial
-        paste0("\\b", last, "\\s*,\\s*", first_initial, "\\b")  # Last, F
+        paste0("\\b", first, "\\s+", last, "\\b"),                    # "Eva Baransky"
+        paste0("\\b", first_initial, "\\s+", last, "\\b"),            # "E Baransky"
+        paste0("\\b", first_initial, "[a-z]\\s+", last, "\\b"),       # "EJ Baransky"
+        paste0("\\b", first_initial, "[a-z]+\\s+", last, "\\b"),      # "Eva Baransky" (full first)
+        paste0("\\b", last, "\\s*,\\s*", first_initial, "\\b"),       # "Baransky, E"
+        paste0("\\b", last, "\\s*,\\s*", first_initial, "[a-z]\\b")   # "Baransky, EJ"
       )
       
       if(any(sapply(patterns, function(p) str_detect(authors_lower, p)))) {
-        # Check timeline if available
         timeline_ok <- is.na(student$start_year) || is.na(pub_year) || pub_year >= student$start_year
         if(timeline_ok) {
           proper_name <- paste(str_to_title(student$First), str_to_title(student$Last))
@@ -256,11 +289,12 @@ if(nrow(genuinely_new) > 0) {
       Include_In_Reports = TRUE,
       PubID = pubid,
       Scholar_ID_Source = source_id,
+      Date_Added = format(Sys.Date(), "%Y-%m-%d"),  # Add current date
       simpleTitle = simpleTitle
     ) %>%
     select(Title, Authors, Journal, Number, Year, Citations, SES_Faculty, 
            SES_Grad_Students, SES_Undergrad_Students, Verified, Additional_Notes, 
-           Include_In_Reports, PubID, Scholar_ID_Source, simpleTitle)
+           Include_In_Reports, PubID, Scholar_ID_Source, Date_Added, simpleTitle)
   
   cat(sprintf("✓ Processed %d new publications\n", nrow(new_records)))
 }
@@ -268,6 +302,14 @@ if(nrow(genuinely_new) > 0) {
 # Step 7: Create final database
 cat("\nSTEP 7: Creating updated database...\n")
 if(nrow(genuinely_new) > 0) {
+  # Ensure Date_Added column exists in current_db and is character type
+  if(!"Date_Added" %in% names(current_db)) {
+    current_db$Date_Added <- NA_character_
+  } else {
+    # Convert Date_Added to character if it's datetime
+    current_db$Date_Added <- as.character(current_db$Date_Added)
+  }
+  
   final_db <- bind_rows(current_db, new_records) %>%
     arrange(desc(Year), Title)
 } else {

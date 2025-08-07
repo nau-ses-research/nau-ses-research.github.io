@@ -4,8 +4,8 @@ theme: "theme-research-group"
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: Wowchemy Research Group # Website name
-baseURL: 'https://example.com/' # Website URL
+title: SES Publications Dashboard # Website name
+baseURL: 'https://ses-publications.nau.edu/' # Website URL
 
 ############################
 ## LANGUAGE

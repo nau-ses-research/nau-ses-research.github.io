@@ -1,2 +1,9 @@
-# An optional custom script to run before Hugo builds your site.
-# You can delete it if you do not need it.
+# Pre-build script for SES Publications Dashboard
+# Generates statistics and renders RMarkdown files before Hugo build
+
+cat("🔄 Pre-build: Generating website statistics...\n")
+
+# Generate the statistics
+source("R/generate_website_stats.R")
+
+cat("✅ Pre-build complete!\n")
