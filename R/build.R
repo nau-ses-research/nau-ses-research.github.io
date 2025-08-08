@@ -4,6 +4,7 @@
 cat("🔄 Pre-build: Generating website statistics...\n")
 
 # Generate the statistics
-source("R/generate_website_stats.R")
-
+if(!Sys.getenv("CI") == "true"){
+  source("R/generate_website_stats.R")
+}
 cat("✅ Pre-build complete!\n")
