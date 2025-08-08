@@ -19,7 +19,7 @@ sections:
     title: Faculty Directory
     subtitle: ""
     text: ""
-    count: 20
+    count: 50
     filters:
       folders:
       - faculty-profiles
