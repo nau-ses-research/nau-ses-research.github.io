@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Temuulen Sankey | SES Publications Dashboard</title>
+    <link>https://ses-publications.nau.edu/author/temuulen-sankey/</link>
+      <atom:link href="https://ses-publications.nau.edu/author/temuulen-sankey/index.xml" rel="self" type="application/rss+xml" />
+    <description>Temuulen Sankey</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 07 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://ses-publications.nau.edu/media/logo_hu_d3c1877ebef2a3fb.png</url>
+      <title>Temuulen Sankey</title>
+      <link>https://ses-publications.nau.edu/author/temuulen-sankey/</link>
+    </image>
+    
+    <item>
+      <title>Temuulen Sankey</title>
+      <link>https://ses-publications.nau.edu/faculty-profiles/temuulen-sankey/</link>
+      <pubDate>Tue, 07 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://ses-publications.nau.edu/faculty-profiles/temuulen-sankey/</guid>
+      <description>&lt;h2 id=&#34;about&#34;&gt;About&lt;/h2&gt;
+&lt;p&gt;Dr. Temuulen Sankey is a Professor in the School of Earth and Sustainability at Northern Arizona University, where she has been a faculty member since 2014. Her research focuses on the application of remote sensing technologies to understand and monitor environmental changes, particularly in arid and semi-arid ecosystems.&lt;/p&gt;
+&lt;h2 id=&#34;research-interests&#34;&gt;Research Interests&lt;/h2&gt;
+&lt;h3 id=&#34;remote-sensing-applications&#34;&gt;Remote Sensing Applications&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Multi-scale vegetation mapping using satellite and aerial imagery&lt;/li&gt;
+&lt;li&gt;Change detection methods for ecosystem monitoring&lt;/li&gt;
+&lt;li&gt;Integration of optical and thermal infrared remote sensing&lt;/li&gt;
+&lt;li&gt;LiDAR applications in ecological research&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;uav-drone-technology&#34;&gt;UAV (Drone) Technology&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Development of UAV-based monitoring protocols&lt;/li&gt;
+&lt;li&gt;High-resolution mapping of vegetation structure and composition&lt;/li&gt;
+&lt;li&gt;Real-time environmental monitoring systems&lt;/li&gt;
+&lt;li&gt;Integration of multiple sensor types on UAV platforms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dryland-ecosystems&#34;&gt;Dryland Ecosystems&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Vegetation dynamics in arid and semi-arid environments&lt;/li&gt;
+&lt;li&gt;Impact of climate change on desert plant communities&lt;/li&gt;
+&lt;li&gt;Restoration monitoring in disturbed drylands&lt;/li&gt;
+&lt;li&gt;Fire effects in grassland and shrubland systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;spatial-analysis-and-modeling&#34;&gt;Spatial Analysis and Modeling&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Geographic Information Systems (GIS) applications&lt;/li&gt;
+&lt;li&gt;Spatial statistics and landscape pattern analysis&lt;/li&gt;
+&lt;li&gt;Predictive modeling of vegetation change&lt;/li&gt;
+&lt;li&gt;Machine learning applications in environmental science&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ph.D.&lt;/strong&gt; Geography, Arizona State University&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;M.S.&lt;/strong&gt; Environmental Remote Sensing, University of Arizona&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;B.S.&lt;/strong&gt; Geography, National University of Mongolia&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;selected-publications&#34;&gt;Selected Publications&lt;/h2&gt;
+&lt;p&gt;Dr. Sankey has published over 90 peer-reviewed articles, with recent highlights including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sankey, T.T., Sisk, T.D.,&lt;/strong&gt; et al. (2024). &amp;ldquo;UAV-based monitoring reveals rapid vegetation recovery following wildfire in southwestern US.&amp;rdquo; &lt;em&gt;Remote Sensing of Environment&lt;/em&gt;, 298, 113821. &lt;strong&gt;Cited 156+ times&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sankey, T.T.&lt;/strong&gt; (2023). &amp;ldquo;Machine learning approaches for mapping invasive plant species using hyperspectral imagery.&amp;rdquo; &lt;em&gt;ISPRS Journal of Photogrammetry and Remote Sensing&lt;/em&gt;, 195, 124-138. &lt;strong&gt;Cited 123+ times&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sankey, T.T., McVay, J.,&lt;/strong&gt; et al. (2022). &amp;ldquo;Phenology and productivity of dryland vegetation from satellite time series.&amp;rdquo; &lt;em&gt;Agricultural and Forest Meteorology&lt;/em&gt;, 318, 108892. &lt;strong&gt;Cited 89+ times&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;technical-expertise&#34;&gt;Technical Expertise&lt;/h2&gt;
+&lt;h3 id=&#34;remote-sensing-platforms&#34;&gt;Remote Sensing Platforms&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Satellite systems&lt;/strong&gt;: Landsat, MODIS, Sentinel, WorldView, IKONOS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Airborne sensors&lt;/strong&gt;: Hyperspectral, LiDAR, thermal infrared&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UAV platforms&lt;/strong&gt;: Fixed-wing and multirotor systems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ground-based&lt;/strong&gt;: Spectroradiometry, phenocams, sensor networks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;software-and-programming&#34;&gt;Software and Programming&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Image processing&lt;/strong&gt;: ENVI, ERDAS, Google Earth Engine&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GIS analysis&lt;/strong&gt;: ArcGIS, QGIS, GRASS GIS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Programming&lt;/strong&gt;: Python, R, MATLAB, JavaScript&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Database management&lt;/strong&gt;: PostgreSQL, MongoDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;research-infrastructure&#34;&gt;Research Infrastructure&lt;/h2&gt;
+&lt;h3 id=&#34;uav-laboratory&#34;&gt;UAV Laboratory&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fleet of research drones&lt;/strong&gt; with multiple sensor configurations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Indoor flight testing facility&lt;/strong&gt; for method development&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Field deployment capabilities&lt;/strong&gt; across diverse ecosystems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data processing pipelines&lt;/strong&gt; for rapid analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;partnerships-and-collaborations&#34;&gt;Partnerships and Collaborations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;US Geological Survey&lt;/strong&gt; - Vegetation mapping protocols&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;National Park Service&lt;/strong&gt; - Long-term monitoring programs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bureau of Land Management&lt;/strong&gt; - Restoration effectiveness assessment&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NASA&lt;/strong&gt; - Algorithm validation and method development&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;awards-and-recognition&#34;&gt;Awards and Recognition&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Outstanding Faculty Research Award&lt;/strong&gt;, Northern Arizona University (2020)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Early Career Award&lt;/strong&gt;, American Society for Photogrammetry and Remote Sensing (2018)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Best Paper Award&lt;/strong&gt;, International Journal of Applied Earth Observation (2017)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NASA New Investigator Award&lt;/strong&gt; (2016)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;current-research-projects&#34;&gt;Current Research Projects&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NSF-funded&lt;/strong&gt;: &amp;ldquo;Collaborative Research: Using UAVs to understand vegetation-fire feedbacks&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NASA-funded&lt;/strong&gt;: &amp;ldquo;Validation of satellite-based vegetation indices in dryland ecosystems&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DOI-funded&lt;/strong&gt;: &amp;ldquo;Remote sensing applications for invasive species management&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;graduate-student-training&#34;&gt;Graduate Student Training&lt;/h2&gt;
+&lt;p&gt;Dr. Sankey has supervised 15 graduate students who have developed expertise in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Remote sensing technology and applications&lt;/li&gt;
+&lt;li&gt;GIS and spatial analysis methods&lt;/li&gt;
+&lt;li&gt;Field research and data collection&lt;/li&gt;
+&lt;li&gt;UAV operation and data processing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Her students have found careers in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Environmental consulting firms&lt;/li&gt;
+&lt;li&gt;Government agencies (USGS, NPS, USFS)&lt;/li&gt;
+&lt;li&gt;Technology companies (Google, Esri, Planet Labs)&lt;/li&gt;
+&lt;li&gt;Academic research institutions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;professional-service&#34;&gt;Professional Service&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Associate Editor&lt;/strong&gt;, &lt;em&gt;Remote Sensing of Environment&lt;/em&gt; (2021-present)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Board Member&lt;/strong&gt;, American Society for Photogrammetry and Remote Sensing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Review Panel Member&lt;/strong&gt;, NASA Earth Science Division&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Technical Committee Chair&lt;/strong&gt;, International Association of Landscape Ecology&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;teaching-innovation&#34;&gt;Teaching Innovation&lt;/h2&gt;
+&lt;h3 id=&#34;courses-developed&#34;&gt;Courses Developed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;UAV Applications in Environmental Science&lt;/li&gt;
+&lt;li&gt;Advanced Remote Sensing Methods&lt;/li&gt;
+&lt;li&gt;Spatial Analysis and Modeling&lt;/li&gt;
+&lt;li&gt;Field Methods in Remote Sensing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;educational-outreach&#34;&gt;Educational Outreach&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;K-12 STEM programs&lt;/strong&gt; featuring drone technology&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Professional workshops&lt;/strong&gt; for natural resource agencies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;International training programs&lt;/strong&gt; in remote sensing applications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;global-impact&#34;&gt;Global Impact&lt;/h2&gt;
+&lt;p&gt;Dr. Sankey&amp;rsquo;s research has applications worldwide, particularly in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dryland management&lt;/strong&gt; across six continents&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Climate change monitoring&lt;/strong&gt; in vulnerable ecosystems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conservation planning&lt;/strong&gt; using cutting-edge technology&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Capacity building&lt;/strong&gt; in developing regions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Her work bridges fundamental science with practical applications, establishing NAU as a leader in environmental remote sensing and spatial analysis.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wildfire Ecology in a Changing Climate: SES Research Leads Conservation Efforts</title>
+      <link>https://ses-publications.nau.edu/highlights/forest-fire-ecology/</link>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://ses-publications.nau.edu/highlights/forest-fire-ecology/</guid>
+      <description>&lt;h2 id=&#34;transforming-wildfire-research-with-technology&#34;&gt;Transforming Wildfire Research with Technology&lt;/h2&gt;
+&lt;p&gt;Professors Thomas Sisk and Temuulen Sankey are leading cutting-edge research that combines field ecology with advanced remote sensing to understand how forests respond to increasingly severe wildfires.&lt;/p&gt;
+&lt;h3 id=&#34;innovative-research-methods&#34;&gt;Innovative Research Methods&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Drone Technology&lt;/strong&gt;: Using high-resolution UAV imagery to map forest recovery&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Satellite Analysis&lt;/strong&gt;: Long-term monitoring of landscape changes using satellite data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Field Validation&lt;/strong&gt;: Ground-truthing remote sensing data with detailed field measurements&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;key-discoveries&#34;&gt;Key Discoveries&lt;/h3&gt;
+&lt;p&gt;The research has revealed:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Recovery Patterns&lt;/strong&gt;: Some forest areas recover much faster than expected, while others struggle to regenerate&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Species Adaptation&lt;/strong&gt;: Certain tree species show remarkable resilience to fire damage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ecosystem Services&lt;/strong&gt;: Post-fire landscapes can provide important habitat for wildlife species&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;graduate-student-involvement&#34;&gt;Graduate Student Involvement&lt;/h3&gt;
+&lt;p&gt;This research has trained numerous graduate students who have gone on to careers in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Federal land management agencies&lt;/li&gt;
+&lt;li&gt;Environmental consulting firms&lt;/li&gt;
+&lt;li&gt;Academic research institutions&lt;/li&gt;
+&lt;li&gt;Non-profit conservation organizations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;recent-publications&#34;&gt;Recent Publications&lt;/h3&gt;
+&lt;p&gt;The team has published extensively on wildfire ecology, with recent papers in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Forest Ecology and Management&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Remote Sensing of Environment&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Ecological Applications&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;conservation-applications&#34;&gt;Conservation Applications&lt;/h3&gt;
+&lt;p&gt;Research findings are being applied to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Forest Management&lt;/strong&gt;: Informing post-fire restoration strategies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fire Prevention&lt;/strong&gt;: Developing landscape-level fuel management plans&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wildlife Conservation&lt;/strong&gt;: Protecting habitat corridors in fire-prone landscapes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Climate Adaptation&lt;/strong&gt;: Planning for increased fire frequency under climate change&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;community-impact&#34;&gt;Community Impact&lt;/h3&gt;
+&lt;p&gt;The research has direct relevance to local communities in Arizona, helping land managers and policymakers make informed decisions about forest management and fire risk reduction.&lt;/p&gt;
+&lt;p&gt;This work exemplifies SES&amp;rsquo;s commitment to conducting research that addresses real-world environmental challenges while training the next generation of environmental scientists.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://ses-publications.nau.edu/sitemap.xml
