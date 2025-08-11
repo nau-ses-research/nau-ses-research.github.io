@@ -40,6 +40,7 @@ header:
     show_day_night: true
     show_search: true
     highlight_active_link: false
+  custom_head: true
 
 # Site footer
 
@@ -110,6 +111,9 @@ extensions:
     local_backend: false
   academicons:
     enable: true
+
+# Custom CSS
+custom_css: ["css/custom.css"]
 
 # Citation style
 
