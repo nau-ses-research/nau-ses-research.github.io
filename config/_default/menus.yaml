@@ -16,6 +16,9 @@ main:
   - name: Research Highlights
     url: highlights
     weight: 35
+  - name: Research Themes
+    url: research-themes
+    weight: 36
   - name: Faculty Profiles
     url: faculty-profiles
     weight: 37
