@@ -84,7 +84,7 @@ actively_publishing_count <- length(actively_publishing_faculty)
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
 quote1 <- sprintf(
-  "Over the past 16 years, faculty from NAU's School of Earth and Sustainability have published **%s** peer-reviewed scientific studies in the world's leading journals, with a total of **%s** citations. Since 2009, the School has a collective H-Index of **%d**.",
+  "Over the past 16 years, faculty from NAU's School of Earth and Sustainability have published **%s** peer-reviewed scientific studies in the world's leading journals. Those studies hae been cited a total of **%s** times. Since 2009, the School has a collective H-Index of **%d**.",
   format(total_faculty_pubs, big.mark = ","),
   format(total_citations, big.mark = ","),
   h_index
@@ -93,20 +93,17 @@ quote1 <- sprintf(
 # Format top journals nicely
 top_journals_formatted <- paste(top_journals, collapse = ", ")
 quote2 <- sprintf(
-  "Since 2009, **%d** SES Graduate students have published **%s** publications in **%d** journals, including %s. These articles have been cited **%s** times.",
+  "Since 2009, **%d** SES Graduate students have published **%s** peer-reviewed publications, and have been cited **%s** times.",
   total_grad_students,
   format(total_grad_pubs, big.mark = ","),
-  unique_journals,
-  top_journals_formatted,
   format(grad_citations, big.mark = ",")
 )
 
 quote3 <- sprintf(
-  "In %d, SES Faculty published **%d** articles, Graduate students published **%d**, and Undergraduates published **%d** papers in the scientific literature.",
+  "In %d, SES Faculty published **%d** articles, and students authored **%d** papers in the scientific literature.",
   last_year,
   faculty_last_year,
-  grad_last_year,
-  undergrad_last_year
+  grad_last_year + undergrad_last_year
 )
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
