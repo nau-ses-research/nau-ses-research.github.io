@@ -7,27 +7,35 @@ main:
   - name: Home
     url: /
     weight: 10
-  - name: Faculty Research
-    url: faculty
+  - name: Research
+    url: research
     weight: 20
-  - name: Student Research
-    url: students
-    weight: 30
-  - name: Research Highlights
-    url: highlights
-    weight: 35
+    hasChildren: true
   - name: Research Themes
     url: research-themes
-    weight: 36
-  - name: Faculty Profiles
-    url: faculty-profiles
-    weight: 37
-  - name: Student Opportunities
-    url: student-opportunities
-    weight: 38
+    parent: Research
+    weight: 21
+  - name: Faculty Research
+    url: faculty
+    parent: Research
+    weight: 22
+  - name: Student Research
+    url: students
+    parent: Research
+    weight: 23
   - name: Analytics
     url: analytics
+    parent: Research
+    weight: 24
+  - name: Faculty Profiles
+    url: faculty-profiles
+    weight: 30
+  - name: Student Opportunities
+    url: student-opportunities
     weight: 40
+  - name: Research Highlights
+    url: highlights
+    weight: 45
   - name: About
     url: about
     weight: 50
