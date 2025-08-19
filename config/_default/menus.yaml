@@ -22,6 +22,9 @@ main:
   - name: Faculty Profiles
     url: faculty-profiles
     weight: 37
+  - name: Student Opportunities
+    url: student-opportunities
+    weight: 38
   - name: Analytics
     url: analytics
     weight: 40
