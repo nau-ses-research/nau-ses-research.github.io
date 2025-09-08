@@ -33,6 +33,23 @@ main:
   - name: Student Opportunities
     url: student-opportunities
     weight: 40
+    hasChildren: true
+  - name: Undergraduate Degrees
+    url: student-opportunities/undergraduate-degrees
+    parent: Student Opportunities
+    weight: 41
+  - name: Graduate Degrees
+    url: student-opportunities/graduate-degrees
+    parent: Student Opportunities
+    weight: 42
+  - name: Graduate Certificates
+    url: student-opportunities/graduate-certificates
+    parent: Student Opportunities
+    weight: 43
+  - name: Undergraduate Certificates
+    url: student-opportunities/undergraduate-certificates
+    parent: Student Opportunities
+    weight: 44
   # - name: Research Highlights
   #   url: highlights
   #   weight: 45
