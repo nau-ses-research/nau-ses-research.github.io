@@ -33,9 +33,9 @@ main:
   - name: Student Opportunities
     url: student-opportunities
     weight: 40
-  - name: Research Highlights
-    url: highlights
-    weight: 45
+  # - name: Research Highlights
+  #   url: highlights
+  #   weight: 45
   - name: About
     url: about
     weight: 50
