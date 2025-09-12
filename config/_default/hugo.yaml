@@ -34,10 +34,12 @@ permalinks:
   tags: '/tag/:slug/'
   categories: '/category/:slug/'
   publication_types: '/publication-type/:slug/'
+  student-opportunities: '/student-opportunities/:slug/'
 disableAliases: true
 outputs:
   home: [HTML, RSS, JSON]
   section: [HTML, RSS]
+  page: [HTML]
 imaging:
   resampleFilter: lanczos
   quality: 75
