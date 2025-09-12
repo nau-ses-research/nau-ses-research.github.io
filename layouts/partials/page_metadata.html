@@ -1,0 +1,23 @@
+{{/* Override Hugo Blox page metadata to hide dates */}}
+{{/* This template intentionally hides all date-related metadata */}}
+
+{{/* Only show non-date metadata if needed */}}
+{{ $show_authors := .Site.Params.page.show_authors | default false }}
+
+{{ if $show_authors }}
+{{ with .Params.authors }}
+<div class="article-metadata">
+  {{ range . }}
+    {{ $author := site.GetPage (printf "/authors/%s" .) }}
+    {{ if $author }}
+      <span class="author">{{ $author.Title }}</span>
+    {{ else }}
+      <span class="author">{{ . }}</span>
+    {{ end }}
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}
+
+{{/* Do not display any date information */}}
+{{/* This overrides the default Hugo Blox behavior */}}
