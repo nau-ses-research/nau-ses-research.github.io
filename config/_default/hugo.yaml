@@ -28,6 +28,7 @@ enableEmoji: true
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
 ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$]
+logLevel: 'error'
 permalinks:
   authors: '/author/:slug/'
   tags: '/tag/:slug/'

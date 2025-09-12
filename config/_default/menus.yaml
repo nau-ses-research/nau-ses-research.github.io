@@ -11,6 +11,10 @@ main:
     url: research
     weight: 20
     hasChildren: true
+  - name: Research Impact
+    url: research
+    parent: Research
+    weight: 20
   - name: Research Themes
     url: research-themes
     parent: Research
@@ -61,6 +65,9 @@ main:
   # - name: Research Highlights
   #   url: highlights
   #   weight: 45
+  - name: Alumni
+    url: alumni
+    weight: 50
   - name: About
     url: about
-    weight: 50
+    weight: 60
