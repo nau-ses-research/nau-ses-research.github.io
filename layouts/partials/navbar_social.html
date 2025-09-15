@@ -18,6 +18,12 @@
   </a>
   {{ end }}
   
+  {{ with .Site.Params.social.youtube }}
+  <a href="{{ . }}" target="_blank" rel="noopener" class="navbar-social-link mx-1" title="YouTube">
+    <i class="fab fa-youtube"></i>
+  </a>
+  {{ end }}
+  
   {{ with .Site.Params.social.bluesky }}
   <a href="{{ . }}" target="_blank" rel="noopener" class="navbar-social-link mx-1" title="Bluesky">
     <i class="fas fa-cloud"></i>
