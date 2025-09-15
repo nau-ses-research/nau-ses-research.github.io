@@ -81,3 +81,35 @@ Rscript update_database.R
 ```
 
 The system is designed to be run regularly without causing data integrity issues or duplicates.
+
+## Important Reminders for Claude Code
+
+### Git Workflow
+**CRITICAL**: After completing any major task or making significant changes, ALWAYS commit your work to git:
+
+```bash
+# Always check status first
+git status
+
+# Add changed files
+git add .
+
+# Create descriptive commit with Claude signature
+git commit -m "Brief description of changes
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+```
+
+**Examples of when to commit:**
+- After adding new pages or major content changes
+- After implementing new features (social media icons, navigation changes, etc.)
+- After fixing bugs or resolving issues
+- After major styling or layout updates
+- After SEO optimizations or configuration changes
+
+**Commit Message Guidelines:**
+- Use present tense ("Add social media icons" not "Added social media icons")
+- Be specific about what was changed
+- Always include the Claude Code signature as shown above
