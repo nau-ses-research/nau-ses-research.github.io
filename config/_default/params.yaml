@@ -15,11 +15,11 @@ appearance:
 
 marketing:
   seo:
-    site_type: Organization
-    local_business_type: ''
-    org_name: ''
-    description: 'A highly-customizable Hugo research group theme powered by Wowchemy website builder.'
-    twitter: 'GetResearchDev'
+    site_type: EducationalOrganization
+    local_business_type: 'University'
+    org_name: 'Northern Arizona University School of Earth and Sustainability'
+    description: 'Leading research and education in earth sciences, environmental sustainability, geology, climate science, and conservation at Northern Arizona University. Graduate and undergraduate programs, faculty research, and student opportunities.'
+    twitter: 'nau_ses'
   analytics:
     google_analytics: ''
     baidu_tongji: ''
@@ -41,6 +41,13 @@ header:
     show_search: true
     highlight_active_link: false
   custom_head: true
+
+# Social media links
+social:
+  twitter: 'https://twitter.com/nau_ses'
+  facebook: 'https://www.facebook.com/NAUSESAZ/'
+  instagram: 'https://www.instagram.com/nau_ses/'
+  bluesky: 'https://nau-ses.bsky.social/'
 
 # Site footer
 

@@ -31,6 +31,10 @@ main:
     url: analytics
     parent: Research
     weight: 24
+  - name: About
+    url: about
+    parent: Research
+    weight: 25
   - name: Faculty Profiles
     url: faculty-profiles
     weight: 30
@@ -68,6 +72,3 @@ main:
   - name: Alumni
     url: alumni
     weight: 50
-  - name: About
-    url: about
-    weight: 60

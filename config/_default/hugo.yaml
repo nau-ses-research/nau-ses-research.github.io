@@ -4,8 +4,8 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: SES Publications Dashboard # Website name
-baseURL: 'https://ses-publications.nau.edu/' # Website URL
+title: NAU School of Earth and Sustainability # Website name
+baseURL: 'https://ses-nau.org/' # Website URL
 
 ############################
 ## LANGUAGE
@@ -62,4 +62,6 @@ related:
 security:
   _merge: deep
 sitemap:
-  _merge: deep
+  changefreq: weekly
+  priority: 0.5
+  filename: sitemap.xml
