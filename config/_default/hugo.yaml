@@ -61,7 +61,3 @@ related:
       weight: 70
 security:
   _merge: deep
-sitemap:
-  changefreq: weekly
-  priority: 0.5
-  filename: sitemap.xml
