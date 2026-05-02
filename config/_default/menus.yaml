@@ -66,6 +66,10 @@ main:
     url: student-opportunities/undergraduate-certificates
     parent: Student Opportunities
     weight: 45
+  - name: Sisk Fellowship
+    url: student-opportunities/sisk-fellowship
+    parent: Student Opportunities
+    weight: 46
   # - name: Research Highlights
   #   url: highlights
   #   weight: 45
