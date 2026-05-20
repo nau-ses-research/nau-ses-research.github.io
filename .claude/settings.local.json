@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch *)",
+      "Bash(git ls-tree *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(cp /Users/nicholas/GitHub/nau-ses-research.github.io/a.jpeg /Users/nicholas/GitHub/nau-ses-research.github.io/content/student-opportunities/sisk-fellowship/a.jpeg)",
+      "Bash(cp /Users/nicholas/GitHub/nau-ses-research.github.io/b.jpeg /Users/nicholas/GitHub/nau-ses-research.github.io/content/student-opportunities/sisk-fellowship/b.jpeg)"
+    ]
+  }
+}
