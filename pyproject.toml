@@ -1,0 +1,16 @@
+[project]
+name = "ses-publications-pipeline"
+version = "1.0.0"
+description = "Weekly Google Scholar update pipeline for the SES publications site"
+requires-python = ">=3.11"
+dependencies = [
+    "scholarly>=1.7",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

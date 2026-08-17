@@ -39,14 +39,27 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# pkgdown site
-docs/
-
 # translation temp files
 po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Python
+.venv/
+__pycache__/
+.cache/
+.pytest_cache/
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+
+# Pipeline run artifacts
+backup_*.rds
+citation_backup_*.csv
+update_summary.md
 
 # macOS system files
 .DS_Store
