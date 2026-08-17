@@ -47,6 +47,22 @@ working here.
 - Commit style: present tense, concise subject, body explains why. Data PRs
   use the summary printed by the pipeline as the PR body.
 
+## Annual content updates (each fall)
+
+The Current Students section (`src/content/grad-resources/` and
+`src/pages/current-students/index.astro`) mirrors the SES grad program's
+Google Site and links to staff-maintained Google Drive documents. Once a year
+(August), propose a PR that:
+
+- updates the handbook and Program of Study links to the new academic year's
+  Drive files (ask Nick or Rebecca Best for them);
+- refreshes the Grad Student Council roster;
+- checks the seminar schedules, times, and rooms.
+
+The recruitment banner (`src/components/AnnouncementBanner.astro`) is
+seasonal: confirm with Nick each fall/spring whether it should be enabled and
+what it should say.
+
 ## Local commands
 
 ```bash

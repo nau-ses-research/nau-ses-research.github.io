@@ -16,7 +16,9 @@
       "Bash(python3 -m pytest tests/ -q)",
       "Bash(.venv/bin/python scripts/update_publications.py --help)",
       "Bash(git commit -q -m 'Add Guy'\\\\''s first-run onboarding doc and --max-new-rows override *)",
-      "Bash(git commit -q -m 'Recruitment updates from Clare: drop ESS BA, add program videos and banner *)"
+      "Bash(git commit -q -m 'Recruitment updates from Clare: drop ESS BA, add program videos and banner *)",
+      "Bash(gh run *)",
+      "Bash(git commit -q -m 'Redesign nav bar: fix dropdown buttons and brand lockup *)"
     ]
   }
 }

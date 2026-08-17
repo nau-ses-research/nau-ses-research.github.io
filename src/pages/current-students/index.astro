@@ -1,0 +1,152 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+
+const resources = (await getCollection("gradResources")).sort(
+  (a, b) => a.data.weight - b.data.weight,
+);
+
+const handbooks = [
+  {
+    program: "MS Climate Science & Solutions",
+    handbook: "https://drive.google.com/open?id=1ZXyfkKeApQA1Kcd5csBYFYMFHytMStoP",
+    posLabel: "Academic Advisement Report (in Louie)",
+    pos: "https://peoplesoft.nau.edu/",
+  },
+  {
+    program: "MS Geology",
+    handbook: "https://drive.google.com/open?id=1bcrt-cZuEDg3pO_HASZkekHPi0MjSQ0J",
+    posLabel: "Program of Study",
+    pos: "https://drive.google.com/open?id=1F4QirwkBLXcfmpX-c5NSzdhEj0MLB7zX",
+  },
+  {
+    program: "MS Environmental Sciences & Policy",
+    handbook: "https://drive.google.com/open?id=1bcrt-cZuEDg3pO_HASZkekHPi0MjSQ0J",
+    posLabel: "Program of Study",
+    pos: "https://drive.google.com/open?id=1RYNTrs51nDbeAPblU9GqwPb8tQ-oijVU",
+  },
+  {
+    program: "PhD Earth Sciences & Environmental Sustainability",
+    handbook: "https://drive.google.com/open?id=1mRQ1JmJh_WEJsyguFpnZxi95Px6U0IaK",
+    posLabel: "Program of Study",
+    pos: "https://drive.google.com/open?id=1styNKv-qqQR9jnSCFJO0JxJbc4V8tPsZ",
+  },
+];
+
+const contacts = [
+  { name: "Your thesis or dissertation advisor", role: "always your first stop", email: "" },
+  { name: "Tracy Tiedemann", role: "Graduate Program Coordinator", email: "Tracy.Tiedemann@nau.edu" },
+  { name: "Bob Lenegan", role: "TA Coordinator", email: "Bob.Lenegan@nau.edu" },
+  { name: "John Fegyveresi", role: "Director, MS Climate Science & Solutions", email: "John.Fegyveresi@nau.edu" },
+  { name: "Ryan Porter", role: "MS Geology Graduate Program Advisor", email: "Ryan.Porter@nau.edu" },
+  { name: "Rebecca Best", role: "MS Environmental Sciences & Policy Graduate Program Advisor", email: "Rebecca.Best@nau.edu" },
+  { name: "Nick McKay", role: "PhD ESES Graduate Program Advisor", email: "nicholas.mckay@nau.edu" },
+];
+---
+
+<Base
+  title="Current Students"
+  description="Resources for current SES graduate students: handbooks, programs of study, course planning, thesis and defense procedures, calendars, scholarships, and forms."
+>
+  <PageHero
+    title="Current Students"
+    lede="Everything an SES graduate student needs in one place: handbooks, deadlines, defense procedures, funding, and the people who can help."
+  />
+
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <!-- Resource pages -->
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {resources.map((r) => (
+        <a
+          href={`/current-students/${r.id}/`}
+          class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+        >
+          <h2 class="font-serif text-lg font-semibold text-pine-900 group-hover:text-pine-700">
+            {r.data.nav_title}
+          </h2>
+          <p class="mt-2 text-sm text-slate-600">{r.data.summary}</p>
+        </a>
+      ))}
+    </div>
+
+    <!-- Handbooks -->
+    <section class="mt-14">
+      <h2 class="font-serif text-2xl font-semibold text-pine-900">
+        Handbooks &amp; programs of study
+      </h2>
+      <p class="mt-2 max-w-3xl text-sm text-slate-600">
+        Your handbook is the authoritative reference for your program's requirements; your Program
+        of Study tracks the courses you'll count toward the degree. Read the handbook first,
+        whatever your question.
+      </p>
+      <div class="mt-5 overflow-x-auto">
+        <table class="w-full min-w-[560px] text-sm">
+          <thead>
+            <tr class="border-b-2 border-pine-200 text-left text-pine-900">
+              <th class="px-3 py-2 font-semibold">Program</th>
+              <th class="px-3 py-2 font-semibold">Handbook (25-26)</th>
+              <th class="px-3 py-2 font-semibold">Degree planning</th>
+            </tr>
+          </thead>
+          <tbody>
+            {handbooks.map((h) => (
+              <tr class="border-b border-slate-200 align-top">
+                <td class="px-3 py-2.5 font-medium text-slate-800">{h.program}</td>
+                <td class="px-3 py-2.5">
+                  <a href={h.handbook} class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800">
+                    Handbook (PDF)
+                  </a>
+                </td>
+                <td class="px-3 py-2.5">
+                  <a href={h.pos} class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800">
+                    {h.posLabel}
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Who can help -->
+    <section id="help" class="mt-14">
+      <h2 class="font-serif text-2xl font-semibold text-pine-900">Who can help?</h2>
+      <p class="mt-2 max-w-3xl text-sm text-slate-600">
+        First read your handbook and review your Program of Study, then reach out. The
+        <a href="/current-students/grad-student-council/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">Grad Student Council</a>
+        is also a great source of peer advice.
+      </p>
+      <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+        {contacts.map((c) => (
+          <li class="rounded-lg border border-slate-200 bg-white px-4 py-3">
+            <p class="font-medium text-slate-900">{c.name}</p>
+            <p class="text-sm text-slate-600">{c.role}</p>
+            {c.email && (
+              <a href={`mailto:${c.email}`} class="text-sm text-pine-600 hover:underline">{c.email}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Other resources -->
+    <section class="mt-14 rounded-2xl bg-pine-50 p-8">
+      <h2 class="font-serif text-2xl font-semibold text-pine-900">Beyond SES</h2>
+      <p class="mt-3 max-w-3xl text-slate-700">
+        The
+        <a href="https://in.nau.edu/office-graduate-professional-studies/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">Office of Graduate and Professional Studies</a>
+        supports graduate students campus-wide, including
+        <a href="https://in.nau.edu/office-graduate-professional-studies/housing-and-childcare/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">housing and childcare resources</a>,
+        scholarships, and professional development.
+      </p>
+      <p class="mt-3 text-sm text-slate-600">
+        Stay connected:
+        <a href="https://www.instagram.com/nau_ses/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">Instagram</a> ·
+        <a href="https://www.linkedin.com/company/nau-school-of-earth-and-sustainability" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">LinkedIn</a> ·
+        <a href="https://www.linkedin.com/groups/14093134" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">LinkedIn alumni group</a>
+      </p>
+    </section>
+  </div>
+</Base>

@@ -65,6 +65,16 @@ const news = defineCollection({
   }),
 });
 
+const gradResources = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/grad-resources" }),
+  schema: z.object({
+    title: z.string(),
+    nav_title: z.string(), // short label for menus/cards
+    summary: z.string(),
+    weight: z.number().default(0),
+  }),
+});
+
 const pages = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/pages" }),
   schema: z.object({
@@ -73,4 +83,4 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { faculty, archivedFaculty, themes, opportunities, news, pages };
+export const collections = { faculty, archivedFaculty, themes, opportunities, news, gradResources, pages };

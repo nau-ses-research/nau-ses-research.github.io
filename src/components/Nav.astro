@@ -8,7 +8,7 @@ const research = [
   { name: "Research Themes", href: "/research-themes/" },
   { name: "About the Data", href: "/about/" },
 ];
-const opportunities = [
+const programs = [
   { name: "Overview", href: "/student-opportunities/" },
   { name: "Undergraduate Degrees", href: "/student-opportunities/undergraduate-degrees/" },
   { name: "Graduate Degrees", href: "/student-opportunities/graduate-degrees/" },
@@ -17,12 +17,22 @@ const opportunities = [
   { name: "Undergraduate Certificates", href: "/student-opportunities/undergraduate-certificates/" },
   { name: "Sisk Fellowship", href: "/student-opportunities/sisk-fellowship/" },
 ];
+const currentStudents = [
+  { name: "Overview", href: "/current-students/" },
+  { name: "Choosing Courses", href: "/current-students/choosing-courses/" },
+  { name: "Thesis & Defense", href: "/current-students/thesis-defense/" },
+  { name: "Calendar & Seminars", href: "/current-students/calendar-seminars/" },
+  { name: "Scholarships", href: "/current-students/scholarships/" },
+  { name: "Grad Student Council", href: "/current-students/grad-student-council/" },
+  { name: "Travel & Field Safety", href: "/current-students/travel-field-safety/" },
+];
 
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === "/" ? path === "/" : path.startsWith(href);
 const researchActive = research.some((i) => isActive(i.href));
-const studentsActive = path.startsWith("/student-opportunities/");
+const programsActive = path.startsWith("/student-opportunities/");
+const currentActive = path.startsWith("/current-students/");
 ---
 
 <header class="sticky top-0 z-40 bg-pine-900 text-white shadow-md">
@@ -36,8 +46,41 @@ const studentsActive = path.startsWith("/student-opportunities/");
     </a>
 
     <!-- Desktop menu -->
-    <ul class="hidden lg:flex items-center gap-0.5 text-sm font-medium">
-      <li><a href="/" class:list={["nav-link", isActive("/") && "nav-active"]}>Home</a></li>
+    <ul class="hidden xl:flex items-center gap-0.5 text-sm font-medium">
+      <li class="group relative">
+        <button
+          class:list={["nav-link nav-btn", programsActive && "nav-active"]}
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Programs
+          <svg class="chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <ul class="dropdown">
+          {programs.map((i) => (
+            <li><a href={i.href} class:list={["dropdown-link", path === i.href && "dropdown-active"]}>{i.name}</a></li>
+          ))}
+        </ul>
+      </li>
+      <li class="group relative">
+        <button
+          class:list={["nav-link nav-btn", currentActive && "nav-active"]}
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Current Students
+          <svg class="chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <ul class="dropdown">
+          {currentStudents.map((i) => (
+            <li><a href={i.href} class:list={["dropdown-link", path === i.href && "dropdown-active"]}>{i.name}</a></li>
+          ))}
+        </ul>
+      </li>
       <li class="group relative">
         <button
           class:list={["nav-link nav-btn", researchActive && "nav-active"]}
@@ -57,29 +100,12 @@ const studentsActive = path.startsWith("/student-opportunities/");
       </li>
       <li><a href="/faculty-profiles/" class:list={["nav-link", isActive("/faculty-profiles/") && "nav-active"]}>Faculty</a></li>
       <li><a href="/news/" class:list={["nav-link", isActive("/news/") && "nav-active"]}>News</a></li>
-      <li class="group relative">
-        <button
-          class:list={["nav-link nav-btn", studentsActive && "nav-active"]}
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Students
-          <svg class="chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
-        <ul class="dropdown">
-          {opportunities.map((i) => (
-            <li><a href={i.href} class:list={["dropdown-link", path === i.href && "dropdown-active"]}>{i.name}</a></li>
-          ))}
-        </ul>
-      </li>
       <li><a href="/alumni/" class:list={["nav-link", isActive("/alumni/") && "nav-active"]}>Alumni</a></li>
       <li><a href="/contact/" class:list={["nav-link", isActive("/contact/") && "nav-active"]}>Contact</a></li>
     </ul>
 
     <!-- Mobile toggle -->
-    <button id="menu-toggle" class="lg:hidden p-2" aria-label="Open menu" aria-expanded="false">
+    <button id="menu-toggle" class="xl:hidden p-2" aria-label="Open menu" aria-expanded="false">
       <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M4 6h16M4 12h16M4 18h16" />
       </svg>
@@ -87,14 +113,16 @@ const studentsActive = path.startsWith("/student-opportunities/");
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-pine-700 bg-pine-900 px-4 pb-4 text-sm">
+  <div id="mobile-menu" class="hidden xl:hidden border-t border-pine-700 bg-pine-900 px-4 pb-4 text-sm">
     <a href="/" class="mobile-link">Home</a>
+    <p class="mobile-heading">Programs</p>
+    {programs.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>)}
+    <p class="mobile-heading">Current Students</p>
+    {currentStudents.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>)}
     <p class="mobile-heading">Research</p>
     {research.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>)}
     <a href="/faculty-profiles/" class="mobile-link">Faculty</a>
     <a href="/news/" class="mobile-link">News</a>
-    <p class="mobile-heading">Student Opportunities</p>
-    {opportunities.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>)}
     <a href="/alumni/" class="mobile-link">Alumni</a>
     <a href="/contact/" class="mobile-link">Contact</a>
   </div>
@@ -112,7 +140,7 @@ const studentsActive = path.startsWith("/student-opportunities/");
 <style>
   @reference "../styles/global.css";
   .nav-link {
-    @apply flex items-center rounded-md px-3 py-2 text-pine-100 transition-colors hover:bg-pine-800 hover:text-white;
+    @apply flex items-center whitespace-nowrap rounded-md px-3 py-2 text-pine-100 transition-colors hover:bg-pine-800 hover:text-white;
   }
   .nav-btn {
     @apply gap-1.5;

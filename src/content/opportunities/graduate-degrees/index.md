@@ -11,6 +11,8 @@ image_caption: SES Graduate Programs
 
 The School of Earth and Sustainability offers four comprehensive graduate degree programs designed to prepare students for advanced careers in research, industry, government, and academia.
 
+Already an SES grad student? Head to [Current Students](/current-students/) for handbooks, course planning, defense procedures, and funding.
+
 ## Master of Science in Geology (MS)
 
 **[Complete Program Details](/student-opportunities/geology-ms/)**
