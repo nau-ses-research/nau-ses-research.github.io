@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../assets/logo.png";
+import wordmark from "../assets/nau-wordmark.png";
 
 const research = [
   { name: "Research Impact", href: "/research/" },
@@ -21,41 +21,56 @@ const opportunities = [
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === "/" ? path === "/" : path.startsWith(href);
+const researchActive = research.some((i) => isActive(i.href));
+const studentsActive = path.startsWith("/student-opportunities/");
 ---
 
 <header class="sticky top-0 z-40 bg-pine-900 text-white shadow-md">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-    <a href="/" class="flex items-center gap-3 shrink-0">
-      <Image src={logo} alt="Northern Arizona University" class="h-8 w-auto" width={352} height={60} />
-      <span class="hidden xl:block font-serif text-sm font-semibold leading-tight text-pine-100">
+  <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
+    <a href="/" class="flex min-w-0 items-center gap-3 shrink-0">
+      <Image src={wordmark} alt="Northern Arizona University" class="h-6 w-auto sm:h-7" width={314} height={28} />
+      <span class="hidden h-8 w-px bg-pine-400/50 sm:block" aria-hidden="true"></span>
+      <span class="font-serif text-[13px] font-semibold leading-snug text-white sm:text-sm">
         School of Earth<br />&amp; Sustainability
       </span>
     </a>
 
     <!-- Desktop menu -->
-    <ul class="hidden lg:flex items-center gap-1 text-sm font-medium">
+    <ul class="hidden lg:flex items-center gap-0.5 text-sm font-medium">
       <li><a href="/" class:list={["nav-link", isActive("/") && "nav-active"]}>Home</a></li>
-      <li class="relative group">
-        <button class="nav-link inline-flex items-center gap-1" aria-haspopup="true">
+      <li class="group relative">
+        <button
+          class:list={["nav-link nav-btn", researchActive && "nav-active"]}
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Research
-          <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" /></svg>
+          <svg class="chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </button>
         <ul class="dropdown">
           {research.map((i) => (
-            <li><a href={i.href} class="dropdown-link">{i.name}</a></li>
+            <li><a href={i.href} class:list={["dropdown-link", isActive(i.href) && "dropdown-active"]}>{i.name}</a></li>
           ))}
         </ul>
       </li>
       <li><a href="/faculty-profiles/" class:list={["nav-link", isActive("/faculty-profiles/") && "nav-active"]}>Faculty</a></li>
       <li><a href="/news/" class:list={["nav-link", isActive("/news/") && "nav-active"]}>News</a></li>
-      <li class="relative group">
-        <button class="nav-link inline-flex items-center gap-1" aria-haspopup="true">
+      <li class="group relative">
+        <button
+          class:list={["nav-link nav-btn", studentsActive && "nav-active"]}
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Students
-          <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" /></svg>
+          <svg class="chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </button>
         <ul class="dropdown">
           {opportunities.map((i) => (
-            <li><a href={i.href} class="dropdown-link">{i.name}</a></li>
+            <li><a href={i.href} class:list={["dropdown-link", path === i.href && "dropdown-active"]}>{i.name}</a></li>
           ))}
         </ul>
       </li>
@@ -97,16 +112,32 @@ const isActive = (href: string) =>
 <style>
   @reference "../styles/global.css";
   .nav-link {
-    @apply block rounded-md px-3 py-2 text-pine-100 hover:bg-pine-800 hover:text-white transition-colors;
+    @apply flex items-center rounded-md px-3 py-2 text-pine-100 transition-colors hover:bg-pine-800 hover:text-white;
+  }
+  .nav-btn {
+    @apply gap-1.5;
+  }
+  .chevron {
+    @apply h-3 w-3 opacity-70 transition-transform duration-150 group-hover:rotate-180;
   }
   .nav-active {
     @apply bg-pine-800 text-gold-400;
   }
   .dropdown {
-    @apply invisible absolute left-0 top-full z-50 min-w-56 rounded-b-lg bg-white py-2 text-slate-800 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100;
+    @apply invisible absolute left-0 top-full z-50 mt-1 min-w-56 translate-y-1 rounded-xl border border-slate-200 bg-white py-2 text-slate-700 opacity-0 shadow-xl transition-[opacity,transform] duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100;
+  }
+  /* invisible hover bridge so the mt-1 gap doesn't close the menu */
+  .dropdown::before {
+    content: "";
+    position: absolute;
+    inset: -0.35rem 0 auto 0;
+    height: 0.35rem;
   }
   .dropdown-link {
     @apply block px-4 py-2 hover:bg-pine-50 hover:text-pine-900;
+  }
+  .dropdown-active {
+    @apply font-semibold text-pine-800;
   }
   .mobile-link {
     @apply block py-2 text-pine-100 hover:text-white;
