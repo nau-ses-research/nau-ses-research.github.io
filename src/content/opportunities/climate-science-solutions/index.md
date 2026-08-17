@@ -208,9 +208,7 @@ CSS graduates are prepared for leadership roles in the rapidly expanding climate
 
 **Ready to make a difference in addressing climate change?** The CSS program provides the knowledge, skills, and professional network to launch your career in the growing climate sector.
 
-<div class="text-center my-4">
-  <a href="https://nau.edu/apply/" class="btn btn-success btn-lg" target="_blank">Apply to NAU</a>
-</div>
+  **[Apply to NAU](https://nau.edu/apply/)**
 
 ---
 

@@ -13,18 +13,7 @@ The School of Earth and Sustainability offers four comprehensive graduate degree
 
 ## Master of Science in Geology (MS)
 
-<div class="card">
-  <div class="card-header" id="geologyHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#geologyCollapse" aria-expanded="true" aria-controls="geologyCollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="geologyCollapse" class="collapse show" aria-labelledby="geologyHeader">
-    <div class="card-body">
-
-<a href="/student-opportunities/geology-ms/" class="btn btn-primary mb-3">Complete Program Details</a>
+**[Complete Program Details](/student-opportunities/geology-ms/)**
 
 ### Program Overview
 - **Focus Areas:** Sedimentary, igneous, and metamorphic rocks; stratigraphy, structure, volcanology, surficial processes, water resources
@@ -51,24 +40,9 @@ The School of Earth and Sustainability offers four comprehensive graduate degree
 - Teaching and education roles
 - PhD program preparation
 
-    </div>
-  </div>
-</div>
-
 ## Master of Science in Environmental Sciences and Policy (MS)
 
-<div class="card">
-  <div class="card-header" id="envSciHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#envSciCollapse" aria-expanded="false" aria-controls="envSciCollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="envSciCollapse" class="collapse" aria-labelledby="envSciHeader">
-    <div class="card-body">
-
-<a href="/student-opportunities/environmental-sciences-policy/" class="btn btn-primary mb-3">Complete Program Details</a>
+**[Complete Program Details](/student-opportunities/environmental-sciences-policy/)**
 
 ### Program Overview
 - **Duration:** Two-year program
@@ -94,24 +68,9 @@ The School of Earth and Sustainability offers four comprehensive graduate degree
 - Policy research institutions
 - Entrepreneurial environmental projects
 
-    </div>
-  </div>
-</div>
-
 ## Master of Science in Climate Science and Solutions (MS)
 
-<div class="card">
-  <div class="card-header" id="climateHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#climateCollapse" aria-expanded="false" aria-controls="climateCollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="climateCollapse" class="collapse" aria-labelledby="climateHeader">
-    <div class="card-body">
-
-<a href="/student-opportunities/climate-science-solutions/" class="btn btn-primary mb-3">Complete Program Details</a>
+**[Complete Program Details](/student-opportunities/climate-science-solutions/)**
 
 ### Program Overview
 - **Type:** Professional Science Master's degree
@@ -144,24 +103,9 @@ The School of Earth and Sustainability offers four comprehensive graduate degree
 - Renewable energy companies
 - Environmental policy organizations
 
-    </div>
-  </div>
-</div>
-
 ## Doctor of Philosophy in Earth Sciences and Environmental Sustainability (PhD)
 
-<div class="card">
-  <div class="card-header" id="phdHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#phdCollapse" aria-expanded="false" aria-controls="phdCollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="phdCollapse" class="collapse" aria-labelledby="phdHeader">
-    <div class="card-body">
-
-<a href="/student-opportunities/earth-sciences-environmental-sustainability-phd/" class="btn btn-primary mb-3">Complete Program Details</a>
+**[Complete Program Details](/student-opportunities/earth-sciences-environmental-sustainability-phd/)**
 
 ### Program Overview
 - **Requirements:** 30 course units, comprehensive examination, dissertation
@@ -199,14 +143,9 @@ The School of Earth and Sustainability offers four comprehensive graduate degree
 ![Professional Development](professional-development.jpg)
 *PhD students engage in cutting-edge research and professional development opportunities*
 
-    </div>
-  </div>
-</div>
-</div>
-
 # Guidance for applying to NAU’s graduate school to pursue an advanced degrees in SES
 
-First, if you plan to apply to a thesis-based program (ESP MS, GLG MS, and ESES PhD), [get to know our faculty](/faculty-profiles/) and [review current opportunities for students](/grad-opportunites). **It is very important that you reach out to faculty members you would be interested in working with before you apply**. Faculty expect to receive emails from prospective students and will be happy to hear from you about your specific interests. They can also tell you more about their research and if they have space available in their labs.
+First, if you plan to apply to a thesis-based program (ESP MS, GLG MS, and ESES PhD), [get to know our faculty](/faculty-profiles/) and [review current opportunities for students](/student-opportunities/). **It is very important that you reach out to faculty members you would be interested in working with before you apply**. Faculty expect to receive emails from prospective students and will be happy to hear from you about your specific interests. They can also tell you more about their research and if they have space available in their labs.
 
 Second, entry into any SES Graduate Program requires an online application through the Office of Graduate and Professional Studies. A completed application for admission will include:
 
@@ -217,7 +156,6 @@ Second, entry into any SES Graduate Program requires an online application throu
 - (For all thesis-based programs – ESP MS, GLG MS, and ESES PhD) names of the faculty advisor(s) you have been in contact with and would like to work with;
 - Submission by the January 1st application deadline.
 
-
 ## Contact Information
 
 **Email:** SES.Admin@nau.edu  
@@ -226,6 +164,4 @@ Second, entry into any SES Graduate Program requires an online application throu
 
 **Graduate Program Coordinator:** Contact for specific program information and application guidance
 
-<div class="text-center my-4">
-  <a href="https://nau.edu/apply/" class="btn btn-success btn-lg" target="_blank">Apply to NAU</a>
-</div>
+  **[Apply to NAU](https://nau.edu/apply/)**

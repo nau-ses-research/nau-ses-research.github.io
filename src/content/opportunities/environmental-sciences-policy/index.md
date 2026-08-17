@@ -287,9 +287,7 @@ Our graduates are well-prepared for diverse career paths in environmental scienc
 #### **Questions?**
 Contact our program coordinators at SES.Admin@nau.edu or 928-523-9333 for more information about the Environmental Sciences and Policy MS program.
 
-<div class="text-center my-4">
-  <a href="https://nau.edu/apply/" class="btn btn-success btn-lg" target="_blank">Apply to NAU</a>
-</div>
+  **[Apply to NAU](https://nau.edu/apply/)**
 
 ---
 

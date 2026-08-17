@@ -8,12 +8,8 @@ weight: 30
 image_caption: GHG Accounting Professional Certificate Program
 ---
 
-<div class="alert alert-info" role="alert">
-  <i class="fas fa-file-pdf"></i> <strong>Download the complete program flyer:</strong> 
   <a href="/media/ghg-professional-certificate-flyer.pdf" target="_blank" class="btn btn-primary btn-sm ml-2" style="color: white !important;">
-    <i class="fas fa-download"></i> View PDF Flyer
   </a>
-</div>
 
 ## Program Overview
 
@@ -111,6 +107,4 @@ This certificate prepares you for roles in:
 
 *Receive training and accreditation in greenhouse gas (GHG) accounting to propel your career in climate action!*
 
-<div class="text-center my-4">
-  <a href="mailto:ContinuingEd@nau.edu" class="btn btn-success btn-lg">Register Now</a>
-</div>
+  **[Register Now](mailto:ContinuingEd@nau.edu)**

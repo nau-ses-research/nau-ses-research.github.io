@@ -14,17 +14,6 @@ The School of Earth and Sustainability offers five undergraduate degree programs
 
 ## Geology Bachelor of Science (BS)
 
-<div class="card">
-  <div class="card-header" id="geologyBSHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#geologyBSCollapse" aria-expanded="true" aria-controls="geologyBSCollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="geologyBSCollapse" class="collapse show" aria-labelledby="geologyBSHeader">
-    <div class="card-body">
-
 ### Program Overview
 - **Total Units:** 120
 - **Major Requirements:** 70-72 units
@@ -49,22 +38,7 @@ Develops interdisciplinary knowledge to understand the physical and biological h
 - Government agencies (USGS, state geological surveys)
 - Graduate school preparation
 
-    </div>
-  </div>
-</div>
-
 ## Environmental Sciences Bachelor of Science (BS)
-
-<div class="card">
-  <div class="card-header" id="envSciBSHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#envSciBSCollapse" aria-expanded="false" aria-controls="envSciBSCollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="envSciBSCollapse" class="collapse" aria-labelledby="envSciBSHeader">
-    <div class="card-body">
 
 ### Program Overview
 - **Total Units:** 120
@@ -91,22 +65,7 @@ Interdisciplinary degree exploring environmental problems and solutions through 
 - Graduate programs in environmental fields
 - Corporate sustainability positions
 
-    </div>
-  </div>
-</div>
-
 ## Environmental and Sustainability Studies Bachelor of Arts (BA)
-
-<div class="card">
-  <div class="card-header" id="essBAHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#essBACollapse" aria-expanded="false" aria-controls="essBACollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="essBACollapse" class="collapse" aria-labelledby="essBAHeader">
-    <div class="card-body">
 
 ### Program Overview
 - **Total Units:** 120
@@ -127,22 +86,7 @@ Integrates natural sciences, social sciences, and humanities to address complex 
 - Environmental education
 - Policy and advocacy roles
 
-    </div>
-  </div>
-</div>
-
 ## Environmental and Sustainability Studies Bachelor of Science (BS)
-
-<div class="card">
-  <div class="card-header" id="essBSHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#essBSCollapse" aria-expanded="false" aria-controls="essBSCollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="essBSCollapse" class="collapse" aria-labelledby="essBSHeader">
-    <div class="card-body">
 
 ### Program Overview
 - **Total Units:** 120
@@ -163,22 +107,7 @@ Focuses on real-world solutions to environmental and sustainability challenges w
 - Environmental consulting
 - Sustainable business practices
 
-    </div>
-  </div>
-</div>
-
 ## Earth Science Bachelor of Science in Education (BSED)
-
-<div class="card">
-  <div class="card-header" id="bsedHeader">
-    <h5 class="mb-0">
-      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#bsedCollapse" aria-expanded="false" aria-controls="bsedCollapse">
-        <i class="fas fa-chevron-down"></i> View Program Details
-      </button>
-    </h5>
-  </div>
-  <div id="bsedCollapse" class="collapse" aria-labelledby="bsedHeader">
-    <div class="card-body">
 
 ### Program Overview
 - **Total Units:** 120
@@ -204,10 +133,6 @@ Prepares students to teach Earth sciences in grades 6-12. This program combines 
 - Science curriculum development
 - Educational outreach programs
 
-    </div>
-  </div>
-</div>
-
 ## Application Information
 
 ### Admission Requirements
@@ -228,6 +153,4 @@ Prepares students to teach Earth sciences in grades 6-12. This program combines 
 **Phone:** 928-523-9333  
 **Location:** Room A108, Building 11, Ashurst, NAU Flagstaff Campus
 
-<div class="text-center my-4">
-  <a href="https://nau.edu/apply/" class="btn btn-success btn-lg" target="_blank">Apply to NAU</a>
-</div>
+  **[Apply to NAU](https://nau.edu/apply/)**

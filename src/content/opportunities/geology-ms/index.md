@@ -244,9 +244,7 @@ Take the first step toward your graduate education in geology:
 
 **Questions?** Contact our admissions team at SES.Admin@nau.edu or 928-523-9333.
 
-<div class="text-center my-4">
-  <a href="https://nau.edu/apply/" class="btn btn-success btn-lg" target="_blank">Apply to NAU</a>
-</div>
+  **[Apply to NAU](https://nau.edu/apply/)**
 
 ---
 

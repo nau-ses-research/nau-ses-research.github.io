@@ -336,9 +336,7 @@ Our PhD graduates are prepared for diverse career paths in academia, government,
 #### **Questions About the Program?**
 Contact our graduate program coordinators at SES.Admin@nau.edu or 928-523-9333 for more information about the Earth Sciences and Environmental Sustainability PhD program.
 
-<div class="text-center my-4">
-  <a href="https://nau.edu/apply/" class="btn btn-success btn-lg" target="_blank">Apply to NAU</a>
-</div>
+  **[Apply to NAU](https://nau.edu/apply/)**
 
 ---
 
