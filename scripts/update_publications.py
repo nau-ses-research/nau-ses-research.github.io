@@ -175,6 +175,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true",
                     help="report changes but do not modify data/publications.csv")
+    ap.add_argument("--max-new-rows", type=int, default=MAX_NEW_ROWS,
+                    help="override the new-row guard for supervised catch-up "
+                         "runs (default %(default)s; do not raise casually)")
     ap.add_argument("--summary-file", type=Path,
                     help="write the markdown change summary here (for PR bodies)")
     args = ap.parse_args()
@@ -262,9 +265,11 @@ def main() -> int:
             + (f" +grad: {row['ses_grad_students']}" if row["ses_grad_students"] else ""))
 
     # ---- Guards on the candidate result ------------------------------------
-    if len(new_rows) >= MAX_NEW_ROWS:
-        log(f"ABORT: {len(new_rows)} new rows >= {MAX_NEW_ROWS}; "
-            "that is not a normal week. Nothing was written.")
+    if len(new_rows) >= args.max_new_rows:
+        log(f"ABORT: {len(new_rows)} new rows >= {args.max_new_rows}; "
+            "that is not a normal week. Nothing was written. "
+            "(For a supervised catch-up run, rerun with a higher "
+            "--max-new-rows after reviewing a --dry-run summary.)")
         return 1
     old_total_cites = sum(int(r["citations"]) for r in read_csv(PUB_CSV))
     new_total_cites = sum(int(r["citations"]) for r in db) + sum(
