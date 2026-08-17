@@ -6,20 +6,26 @@
  * the text for the next campaign). Keep the message to one sentence.
  */
 const ENABLED = true;
+const LEAD = "Application season is starting.";
 const MESSAGE =
-  "Interested in studying the environment or geology as an undergraduate or graduate student? Application season is starting.";
+  "Interested in studying the environment or geology as an undergraduate or graduate student?";
 const CTA = "Explore our programs";
 const HREF = "/student-opportunities/";
 ---
 
 {ENABLED && (
-  <div class="bg-gold-400">
-    <a
-      href={HREF}
-      class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-3 text-center text-sm font-medium text-pine-950 hover:underline"
-    >
-      <span>{MESSAGE}</span>
-      <span class="whitespace-nowrap font-semibold">{CTA} →</span>
-    </a>
+  <div class="border-b border-gold-600/30 bg-gradient-to-r from-gold-300 to-gold-400">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-center gap-x-6 gap-y-2.5 px-4 py-3.5 sm:flex-row">
+      <p class="text-center text-sm text-pine-950 sm:text-left">
+        <span class="font-bold">{LEAD}</span>
+        <span class="ml-1.5">{MESSAGE}</span>
+      </p>
+      <a
+        href={HREF}
+        class="shrink-0 whitespace-nowrap rounded-full bg-pine-900 px-4 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-pine-700"
+      >
+        {CTA} →
+      </a>
+    </div>
   </div>
 )}
