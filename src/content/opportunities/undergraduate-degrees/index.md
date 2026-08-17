@@ -6,11 +6,18 @@ summary: >-
   careers and graduate study.
 weight: 10
 image_caption: SES Undergraduate Programs
+videos:
+  - title: BS in Geology
+    youtube_id: ZXtzmhcfcgM
+  - title: BS in Environmental Sciences
+    youtube_id: a-O6IL6LEgA
+  - title: BS in Environmental & Sustainability Studies
+    youtube_id: mkoW-hc7fas
 ---
 
 ## Undergraduate Degree Programs
 
-The School of Earth and Sustainability offers five undergraduate degree programs designed to provide students with comprehensive knowledge and hands-on experience in earth sciences, environmental science, and sustainability studies.
+The School of Earth and Sustainability offers four undergraduate degree programs designed to provide students with comprehensive knowledge and hands-on experience in earth sciences, environmental science, and sustainability studies.
 
 ## Geology Bachelor of Science (BS)
 
@@ -65,27 +72,6 @@ Interdisciplinary degree exploring environmental problems and solutions through 
 - Graduate programs in environmental fields
 - Corporate sustainability positions
 
-## Environmental and Sustainability Studies Bachelor of Arts (BA)
-
-### Program Overview
-- **Total Units:** 120
-- **Major Requirements:** 57 units
-- **Foreign Language:** 16 units required
-
-### Description
-Integrates natural sciences, social sciences, and humanities to address complex environmental and sustainability challenges. This program takes a holistic approach to environmental problem-solving.
-
-### Special Programs
-- Optional accelerated 4+1 graduate programs
-- Potential Bachelor/Juris Doctor 3+3 program
-
-### Career Focus
-- Non-profit organizations
-- Government agencies
-- Community organizations
-- Environmental education
-- Policy and advocacy roles
-
 ## Environmental and Sustainability Studies Bachelor of Science (BS)
 
 ### Program Overview
@@ -94,7 +80,7 @@ Integrates natural sciences, social sciences, and humanities to address complex 
 - **Minimum Major GPA:** 2.0
 
 ### Description
-Focuses on real-world solutions to environmental and sustainability challenges with a stronger emphasis on scientific and technical approaches compared to the BA program.
+Integrates natural sciences, social sciences, and humanities to address complex environmental and sustainability challenges, with an emphasis on scientific and technical approaches to real-world solutions.
 
 ### Accelerated Options
 - 4+1 MA in Sustainable Communities

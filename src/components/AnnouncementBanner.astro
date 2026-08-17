@@ -1,0 +1,25 @@
+---
+/**
+ * Seasonal recruitment banner shown on the home page.
+ *
+ * To turn it off after application season, set ENABLED = false (or update
+ * the text for the next campaign). Keep the message to one sentence.
+ */
+const ENABLED = true;
+const MESSAGE =
+  "Interested in studying the environment or geology as an undergraduate or graduate student? Application season is starting.";
+const CTA = "Explore our programs";
+const HREF = "/student-opportunities/";
+---
+
+{ENABLED && (
+  <div class="bg-gold-400">
+    <a
+      href={HREF}
+      class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-3 text-center text-sm font-medium text-pine-950 hover:underline"
+    >
+      <span>{MESSAGE}</span>
+      <span class="whitespace-nowrap font-semibold">{CTA} →</span>
+    </a>
+  </div>
+)}

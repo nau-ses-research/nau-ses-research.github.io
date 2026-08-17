@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
+import AnnouncementBanner from "../components/AnnouncementBanner.astro";
 import StatTile from "../components/StatTile.astro";
 import { getStats, fmt } from "../lib/stats";
 import heroImg from "../assets/media/home.jpg";
@@ -34,6 +35,7 @@ const programs = [
 ---
 
 <Base title="Home">
+  <AnnouncementBanner />
   <!-- Hero -->
   <section class="relative isolate overflow-hidden bg-pine-950 text-white">
     <Image

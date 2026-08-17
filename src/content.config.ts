@@ -44,6 +44,10 @@ const opportunities = defineCollection({
     summary: z.string(),
     image_caption: z.string().optional(),
     weight: z.number().default(0),
+    // Recruitment videos rendered above the page body
+    videos: z
+      .array(z.object({ title: z.string(), youtube_id: z.string() }))
+      .default([]),
   }),
 });
 

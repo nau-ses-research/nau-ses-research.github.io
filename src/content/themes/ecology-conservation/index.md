@@ -71,7 +71,7 @@ Our faculty includes:
 ## For Students
 
 Students can pursue degrees in:
-- **Bachelor's degrees (BS/BA)** in Environmental Sciences or Environmental & Sustainability Studies
+- **Bachelor's degrees (BS)** in Environmental Sciences or Environmental & Sustainability Studies
 - **Master's Degree (MS)** in Environmental Sciences & Policy
 - **PhD** in Earth Sciences & Environmental Sustainability with ecology emphasis
 
