@@ -7,7 +7,11 @@
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
       "Bash(cp /Users/nicholas/GitHub/nau-ses-research.github.io/a.jpeg /Users/nicholas/GitHub/nau-ses-research.github.io/content/student-opportunities/sisk-fellowship/a.jpeg)",
-      "Bash(cp /Users/nicholas/GitHub/nau-ses-research.github.io/b.jpeg /Users/nicholas/GitHub/nau-ses-research.github.io/content/student-opportunities/sisk-fellowship/b.jpeg)"
+      "Bash(cp /Users/nicholas/GitHub/nau-ses-research.github.io/b.jpeg /Users/nicholas/GitHub/nau-ses-research.github.io/content/student-opportunities/sisk-fellowship/b.jpeg)",
+      "Bash(git checkout *)",
+      "Bash(git merge --no-ff astro-rebuild -m 'Cut over to Astro site: retire Hugo/blogdown/Sheets architecture *)",
+      "Bash(npx astro *)",
+      "Bash(git commit -q -m 'Downscale oversized content images to 2000px *)"
     ]
   }
 }
