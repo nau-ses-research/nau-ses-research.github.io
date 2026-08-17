@@ -1,115 +1,68 @@
-# SES Publications Dashboard
+# SES Website and Publications Dashboard
 
-This is a streamlined publication dashboard for the School of Earth and Sustainability (SES) at Northern Arizona University. The system mines Google Scholar for faculty publications and creates a website to display publications with key statistics.
+The website of NAU's School of Earth and Sustainability (https://ses-nau.org):
+an Astro static site on GitHub Pages, backed by a version-controlled
+publication database mined weekly from Google Scholar.
 
-## System Architecture
+Rebuilt August 2026 from the original R blogdown / Hugo Blox / Google Sheets
+system (retired code in `archive/`). **Read `AGENTS.md` for the working rules
+and `data/README.md` for the data curation contract before changing
+anything.**
 
-### Data Sources
-- **Google Scholar**: Primary source for publication data via the R `scholar` package
-- **Google Sheets**: Intermediate storage for efficiency and manual curation
-  - Publications database: `1HMUJzmD91MlU7zDpWqHmuPwsmjqJIzE5HjaBj3NAMEw`
-  - Student database: `1FuWlVun83yUZKl49r1o71MsZSKaD5Mw14n-ssmEpLVE`
-- **Hugo/Blox Builder**: Static site generator for the final website
+## Architecture
 
-### Database Structure
-The publications database includes:
-- Standard bibliographic fields (Title, Authors, Journal, Year, Citations)
-- **SES_Faculty**: All SES faculty co-authors (enhanced matching with first initials)
-- **SES_Grad_Students**: Graduate student co-authors (automatically detected)
-- **SES_Undergrad_Students**: Undergraduate co-authors (manually added)
-- **Verified**: Flag for manually verified/curated records
-- **Include_In_Reports**: Control visibility in reports
-- **Additional_Notes**: Manual annotations
-- **simpleTitle**: Normalized title for deduplication (no spaces, alphanumeric only)
-
-## Key Scripts
-
-### Primary Update Script
-- **`update_database.R`**: Main update script (calls the streamlined system)
-- **`update_publications_2025.R`**: Core logic for database updates
-
-### What the Update System Does
-1. **Downloads current database** and creates timestamped backup
-2. **Fetches ALL publications** from Google Scholar for citation updates
-3. **Updates citation counts** for all existing publications
-4. **Identifies NEW publications** from 2025 or later only (avoids duplicates)
-5. **Enhanced faculty matching** using first initials from `facultygooglescholarids.csv`
-6. **Improved student detection** with enhanced pattern matching (handles "EJ Baransky" patterns)
-7. **Filters non-peer-reviewed publications** based on journal keywords (meeting, conference, abstract, rxiv, preprint, nsf award, etc.)
-8. **Full author list retrieval** (prevents truncation with "...")
-9. **Preserves verified records** except for citation updates
-10. **Uploads clean results** to Google Sheets
-
-### Faculty Data Format
-`facultygooglescholarids.csv` contains:
-- **First Initial**: Used for enhanced name matching (e.g., "D" for Darrell)
-- **Last Name**: Faculty surname
-- **ID**: Google Scholar ID
-- **StartYear/EndYear**: Publication date range to consider
-
-### Helper Scripts
-- **`R/load_students.R`**: Loads student data with exclusions (McKay, Thompson)
-- **`update_citations_only.R`**: Separate process to update all citation counts
-- **`reading google scholar.R`**: Original exploration script (reference only)
-
-## Update Strategy
-
-The system now uses a **conservative approach**:
-- Only adds publications from **2025 or newer** to avoid duplicate issues
-- Updates **all citation counts** to keep data current
-- Preserves existing database integrity and manual curation
-- Enhanced faculty matching reduces false negatives
-- Automatic student detection maintains comprehensive tracking
-
-## Website Generation
-- Uses Hugo static site generator with Blox Builder theme
-- Hugo configuration in `config/` directory
-- Content templates in `content/` and `layouts/`
-- Build scripts in `R/build.R` and `R/build2.R`
-
-## Running Updates
-```bash
-# Main update command
-Rscript update_database.R
-
-# This will:
-# - Create timestamped backup
-# - Add only 2025+ publications
-# - Update all citation counts
-# - Preserve verified records
-# - Upload results to Google Sheets
+```
+Google Scholar ──weekly──> scripts/update_publications.py ──PR──> data/*.csv
+                                                                    │
+                            src/ (Astro 5 + Tailwind 4) <──build────┘
+                                       │
+        .github/workflows/deploy.yml (validate -> build -> deploy-pages)
+                                       │
+                              https://ses-nau.org (GitHub Pages)
 ```
 
-The system is designed to be run regularly without causing data integrity issues or duplicates.
+- `data/publications.csv` is the system of record (1,000+ publications,
+  curation flags, ~unique `simple_title` dedup key, stable `id` for
+  cross-references). Google Sheets is retired.
+- The site reads the CSVs at build time (`src/lib/publications.ts`,
+  `src/lib/stats.ts`); the `/publications/` explorer is a Preact island fed by
+  a build-time JSON endpoint; `/research/` charts are build-time SVG.
+- Content lives in Astro collections under `src/content/` (faculty,
+  archived-faculty, themes, opportunities, news, pages).
 
-## Important Reminders for Claude Code
+## Recurring operations (run by Guy Clawdsen, @guyclawdsen)
 
-### Git Workflow
-**CRITICAL**: After completing any major task or making significant changes, ALWAYS commit your work to git:
+- **Weekly data update:** `docs/RUNBOOK-weekly-update.md`. Data-only PRs
+  auto-merge on green checks (CODEOWNERS leaves `data/` unowned).
+- **Monthly student-research news story:** `docs/RUNBOOK-monthly-news.md`.
+  Interview by email (Nick cc'd), student approves quotes, PR requires
+  Nick's review.
+
+## Commands
 
 ```bash
-# Always check status first
-git status
-
-# Add changed files
-git add .
-
-# Create descriptive commit with Claude signature
-git commit -m "Brief description of changes
-
-🤖 Generated with [Claude Code](https://claude.ai/code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+npm run dev                          # dev server
+npm run build                        # production build to dist/
+python3 scripts/validate_data.py     # data integrity gate (CI runs this)
+python3 -m pytest tests/ -q          # matcher fixture tests
+uv run scripts/update_publications.py --dry-run   # rehearse the weekly update
 ```
 
-**Examples of when to commit:**
-- After adding new pages or major content changes
-- After implementing new features (social media icons, navigation changes, etc.)
-- After fixing bugs or resolving issues
-- After major styling or layout updates
-- After SEO optimizations or configuration changes
+## Git workflow
 
-**Commit Message Guidelines:**
-- Use present tense ("Add social media icons" not "Added social media icons")
-- Be specific about what was changed
-- Always include the Claude Code signature as shown above
+- `main` is protected: changes land via PR with the `validate` and `build`
+  checks. Site/content/docs changes need Nick's review; `data/`-only PRs
+  auto-merge.
+- Commit messages: present tense, specific subject, body says why. End with:
+
+  ```
+  🤖 Generated with [Claude Code](https://claude.ai/code)
+
+  Co-Authored-By: Claude <noreply@anthropic.com>
+  ```
+
+## History note
+
+Repo history was rewritten at the 2026-08 cutover (committed Hugo build
+output stripped); clones from before then must be re-cloned, not pulled.
+Mirror backups: `~/GitHub/SES_dashboard_backups/` on Nick's machine.
