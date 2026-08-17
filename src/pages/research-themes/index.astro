@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+
+const themes = (await getCollection("themes")).sort(
+  (a, b) => a.data.weight - b.data.weight || a.data.title.localeCompare(b.data.title),
+);
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/themes/*/featured.{jpg,jpeg,png}",
+);
+function imageFor(id: string) {
+  const key = Object.keys(images).find((k) => k.includes(`/${id}/`));
+  return key ? images[key]() : undefined;
+}
+---
+
+<Base
+  title="Research Themes"
+  description="Research themes in NAU's School of Earth and Sustainability: climate change, ecology and conservation, water management, environment and society, tectonics, and sedimentary geology."
+>
+  <PageHero
+    title="Research Themes"
+    lede="SES research spans Earth's systems, from deep-time tectonics to present-day climate, ecosystems, water, and the human communities that depend on them."
+  />
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {await Promise.all(
+        themes.map(async (t) => {
+          const img = await imageFor(t.id);
+          return (
+            <a
+              href={`/research-themes/${t.id}/`}
+              class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
+            >
+              {img && (
+                <Image
+                  src={img.default}
+                  alt={t.data.title}
+                  width={640}
+                  height={400}
+                  class="aspect-[8/5] w-full object-cover transition group-hover:scale-[1.02]"
+                />
+              )}
+              <div class="p-5">
+                <h2 class="font-serif text-xl font-semibold text-pine-900 group-hover:text-pine-700">
+                  {t.data.title}
+                </h2>
+                <p class="mt-2 line-clamp-3 text-sm text-slate-600">{t.data.summary}</p>
+              </div>
+            </a>
+          );
+        }),
+      )}
+    </div>
+  </div>
+</Base>

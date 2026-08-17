@@ -1,0 +1,28 @@
+{
+  "name": "ses-nau-site",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "description": "School of Earth and Sustainability, Northern Arizona University — department website",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.0.0",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/source-serif-4": "^5.2.5",
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^5.13.0",
+    "csv-parse": "^5.6.0",
+    "preact": "^10.26.0",
+    "tailwindcss": "^4.1.0"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3"
+  }
+}

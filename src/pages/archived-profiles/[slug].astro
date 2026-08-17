@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import ProfilePage from "../../components/ProfilePage.astro";
+
+export async function getStaticPaths() {
+  const archived = await getCollection("archivedFaculty");
+  return archived.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+
+const portraits = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/archived-faculty/*/featured.{jpg,jpeg,png}",
+);
+const key = Object.keys(portraits).find((k) => k.includes(`/${entry.id}/`));
+const portrait = key ? (await portraits[key]()).default : undefined;
+---
+
+<ProfilePage entry={entry} portrait={portrait} archived />
