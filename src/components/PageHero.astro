@@ -1,0 +1,16 @@
+---
+/** Slim page-title band used on inner pages. */
+interface Props {
+  title: string;
+  lede?: string;
+}
+const { title, lede } = Astro.props;
+---
+
+<div class="bg-pine-900 text-white">
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-bold sm:text-4xl">{title}</h1>
+    {lede && <p class="mt-3 max-w-3xl text-lg text-pine-100">{lede}</p>}
+  </div>
+  <div class="h-1.5 bg-gold-400"></div>
+</div>

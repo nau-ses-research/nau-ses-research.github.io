@@ -239,9 +239,17 @@ def main() -> int:
             c["scholar_ids"].append(p["scholar_id"])
 
     new_rows = []
+    skipped_fills = []
     existing_ids = {r["id"] for r in db}
     for cand in candidates.values():
-        details = fill_publication(cand["_raw"])
+        try:
+            details = fill_publication(cand["_raw"])
+        except Exception as e:  # noqa: BLE001 - Scholar throttling mid-run
+            skipped_fills.append(cand["title"])
+            log(f"  skip (detail fetch failed, will retry next run): "
+                f"{cand['title'][:70]} ({type(e).__name__})")
+            time.sleep(random.uniform(20, 30))
+            continue
         time.sleep(random.uniform(2, 5))
         journal = details["journal"]
         if is_excluded_journal(journal):
@@ -275,6 +283,11 @@ def main() -> int:
         f"- Citation updates: {len(citation_updates)}",
         f"- New publications: {len(new_rows)}",
     ]
+    if skipped_fills:
+        summary.append(
+            f"- Deferred (detail fetch throttled, retry next run): {len(skipped_fills)}")
+        for t in skipped_fills:
+            summary.append(f"  - {t}")
     for r in new_rows:
         summary.append(f"  - {r['title']} ({r['year']}) — {r['ses_faculty']}"
                        + (f"; grad: {r['ses_grad_students']}" if r["ses_grad_students"] else ""))

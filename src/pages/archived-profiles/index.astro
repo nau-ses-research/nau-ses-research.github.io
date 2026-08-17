@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+
+const archived = (await getCollection("archivedFaculty")).sort((a, b) =>
+  a.data.last_name.localeCompare(b.data.last_name),
+);
+---
+
+<Base title="Former Faculty" description="Archived profiles of former SES faculty." noindex>
+  <PageHero
+    title="Former Faculty"
+    lede="Archived profiles of faculty who have moved on from the School of Earth and Sustainability."
+  />
+  <div class="mx-auto max-w-4xl px-4 py-12">
+    <ul class="grid gap-3 sm:grid-cols-2">
+      {archived.map((f) => (
+        <li>
+          <a
+            href={`/archived-profiles/${f.id}/`}
+            class="block rounded-lg border border-slate-200 px-4 py-3 hover:bg-pine-50"
+          >
+            <span class="font-medium text-pine-900">{f.data.name}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-8">
+      <a href="/faculty-profiles/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">
+        ← Current faculty
+      </a>
+    </p>
+  </div>
+</Base>

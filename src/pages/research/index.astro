@@ -1,0 +1,116 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import StatTile from "../../components/StatTile.astro";
+import BarChart from "../../components/BarChart.astro";
+import HBarChart from "../../components/HBarChart.astro";
+import { getStats, fmt } from "../../lib/stats";
+
+const s = getStats();
+// exclude the current partial year from the time series so the last bar
+// doesn't misread as a collapse
+const nowYear = new Date().getFullYear();
+const byYear = s.byYear.filter((r) => r.year < nowYear);
+const years = byYear.map((r) => r.year);
+const sinceYears = nowYear - 2009;
+---
+
+<Base
+  title="Research Impact"
+  description={`SES research by the numbers: ${fmt(s.totalFacultyPubs)} publications and ${fmt(s.totalCitations)} citations since 2009, with an H-index of ${s.hIndex}. Updated weekly from Google Scholar.`}
+>
+  <PageHero
+    title="Research Impact"
+    lede="The publication record of the School of Earth and Sustainability, updated weekly from Google Scholar and curated by hand."
+  />
+
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <!-- Headline numbers -->
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <StatTile value={fmt(s.totalFacultyPubs)} label="Publications" sub="peer-reviewed, since 2009" />
+      <StatTile value={fmt(s.totalCitations)} label="Citations" sub="to SES faculty research" />
+      <StatTile value={String(s.hIndex)} label="H-index" sub="school-wide, since 2009" />
+      <StatTile value={String(s.activelyPublishingCount)} label="Active authors" sub="faculty publishing in the last 2 years" />
+    </div>
+
+    <div class="prose-ses mx-auto mt-10 max-w-3xl text-center">
+      <p class="text-lg">
+        Over the past {sinceYears} years, faculty from NAU's School of Earth and Sustainability
+        have published <strong>{fmt(s.totalFacultyPubs)}</strong> peer-reviewed studies in the
+        world's leading journals, gathering <strong>{fmt(s.totalCitations)}</strong> citations
+        across <strong>{fmt(s.uniqueJournals)}</strong> journals.
+      </p>
+      <p class="text-lg">
+        Students drive that record: <strong>{fmt(s.totalGradStudents)}</strong> SES graduate
+        students have co-authored <strong>{fmt(s.totalGradPubs)}</strong> of those publications,
+        cited <strong>{fmt(s.gradCitations)}</strong> times. In {s.lastYear} alone, SES faculty
+        published <strong>{s.facultyLastYear}</strong> articles and students authored
+        <strong>{s.studentLastYear}</strong> papers.
+      </p>
+    </div>
+
+    <!-- Charts -->
+    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+      <BarChart
+        title="Publications per year"
+        ariaLabel="Bar chart of SES publications per year since 2009, split into papers with and without graduate-student co-authors"
+        labels={years}
+        series={[
+          byYear.map((r) => r.faculty - r.grad),
+          byYear.map((r) => r.grad),
+        ]}
+        seriesNames={["Faculty only", "With student authors"]}
+        stacked
+      />
+      <BarChart
+        title="Citations to each year's publications"
+        ariaLabel="Bar chart of citations accumulated by SES publications from each year since 2009"
+        labels={years}
+        series={[byYear.map((r) => r.citations)]}
+        seriesNames={["Citations"]}
+      />
+    </div>
+
+    <div class="mt-6">
+      <HBarChart
+        title="Where SES publishes most"
+        ariaLabel="Ranked bar chart of the journals with the most SES publications"
+        data={s.topJournals.map((j) => ({ label: j.journal, value: j.count }))}
+      />
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/publications/"
+        class="inline-block rounded-lg bg-pine-900 px-6 py-3 font-medium text-white hover:bg-pine-700"
+      >
+        Explore every publication
+      </a>
+      <p class="mt-3 text-sm text-slate-500">
+        Search {fmt(s.totalFacultyPubs)} papers by author, journal, year, or student involvement.
+      </p>
+    </div>
+  </div>
+
+  <!-- shared tooltip for [data-tip] chart marks -->
+  <div
+    id="chart-tip"
+    class="pointer-events-none fixed z-50 hidden rounded-md bg-pine-950 px-2.5 py-1.5 text-xs text-white shadow-lg"
+  >
+  </div>
+  <script>
+    const tip = document.getElementById("chart-tip")!;
+    document.querySelectorAll<SVGElement>("[data-tip]").forEach((el) => {
+      el.addEventListener("mousemove", (e) => {
+        tip.textContent = el.dataset.tip ?? "";
+        tip.classList.remove("hidden");
+        const pad = 12;
+        const w = tip.offsetWidth;
+        const x = Math.min(e.clientX + pad, window.innerWidth - w - 8);
+        tip.style.left = `${x}px`;
+        tip.style.top = `${e.clientY + pad}px`;
+      });
+      el.addEventListener("mouseleave", () => tip.classList.add("hidden"));
+    });
+  </script>
+</Base>

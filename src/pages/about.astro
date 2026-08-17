@@ -1,0 +1,84 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+---
+
+<Base
+  title="About the Publication Data"
+  description="How the SES publications database is collected, curated, and kept current: weekly Google Scholar updates, automated matching, and human verification."
+>
+  <PageHero
+    title="About the Publication Data"
+    lede="How we collect, curate, and publish the research record of the School of Earth and Sustainability."
+  />
+  <div class="prose-ses mx-auto max-w-3xl px-4 py-10">
+    <p>
+      The <a href="/publications/">publications explorer</a> and
+      <a href="/research/">research-impact dashboard</a> on this site are built from a curated
+      database of peer-reviewed publications by SES faculty and students.
+    </p>
+
+    <h2>How the data is collected</h2>
+    <ul>
+      <li>
+        <strong>Google Scholar, weekly.</strong> Every week, an automated pipeline checks the
+        Google Scholar profile of each SES faculty member, refreshes citation counts for every
+        publication, and adds newly published papers.
+      </li>
+      <li>
+        <strong>Since 2009.</strong> Statistics cover publications from 2009 onward, the era of
+        the modern school.
+      </li>
+      <li>
+        <strong>Peer-reviewed only.</strong> Conference abstracts, preprints, and similar
+        materials are filtered out automatically.
+      </li>
+    </ul>
+
+    <h2>How authors are identified</h2>
+    <ul>
+      <li>
+        <strong>Faculty matching.</strong> Publications are attributed to SES faculty by matching
+        author names (including initials and name variants) against the faculty roster, bounded by
+        each person's years at NAU.
+      </li>
+      <li>
+        <strong>Student identification.</strong> Graduate-student co-authors are detected against
+        the SES student roster, with publication dates checked against enrollment periods.
+        Undergraduate co-authors are added by hand.
+      </li>
+      <li>
+        <strong>Human verification.</strong> Records are reviewed and corrected by people;
+        verified records are protected from automated changes (except citation counts).
+      </li>
+    </ul>
+
+    <h2>What the numbers mean</h2>
+    <ul>
+      <li>
+        <strong>H-index</strong> is computed school-wide: the largest number <em>h</em> such that
+        <em>h</em> SES publications have each been cited at least <em>h</em> times.
+      </li>
+      <li>
+        <strong>Citations</strong> come from Google Scholar and change continuously; our copies
+        refresh weekly.
+      </li>
+      <li>
+        <strong>Student papers</strong> count publications with at least one SES graduate or
+        undergraduate student among the authors.
+      </li>
+    </ul>
+
+    <h2>Infrastructure</h2>
+    <p>
+      The site is a static Astro build hosted on GitHub Pages. The publication database lives as
+      version-controlled CSV files in the site's repository; every change is tracked, validated,
+      and reviewable. Weekly data updates and the monthly student-research news features are
+      handled by automated agents supervised by SES faculty.
+    </p>
+    <p>
+      Spotted an error in a record?
+      <a href="/contact/">Let us know</a> and we'll fix it.
+    </p>
+  </div>
+</Base>

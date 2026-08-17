@@ -1,0 +1,9 @@
+# Review routing for the two-tier trust model (see AGENTS.md):
+# - data/** has no owner, so weekly data PRs auto-merge on green checks.
+# - Everything else (site code, content, news articles, docs, workflows)
+#   requires Nick's review via "require review from Code Owners".
+* @nickmckay
+
+# data/ is deliberately unowned (the bare pattern below clears ownership):
+# weekly pipeline PRs touch only data/ and auto-merge on green checks.
+data/

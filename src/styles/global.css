@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* SES design tokens: deep NAU blue anchored with warm sandstone gold,
+   editorial serif display over Inter body. Single light theme. */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
+
+  --color-pine-50: #f2f7fb;
+  --color-pine-100: #e0ecf5;
+  --color-pine-200: #c3d9ea;
+  --color-pine-300: #97bdd8;
+  --color-pine-400: #5b96bf;
+  --color-pine-500: #3577a4;
+  --color-pine-600: #255e88;
+  --color-pine-700: #1f4c6f;
+  --color-pine-800: #123a5c;
+  --color-pine-900: #003466;
+  --color-pine-950: #06243d;
+
+  --color-gold-300: #ffd97a;
+  --color-gold-400: #f8b237;
+  --color-gold-500: #e29c1d;
+  --color-gold-600: #c07f0e;
+
+  --color-sand-50: #faf8f4;
+  --color-sand-100: #f3efe7;
+  --color-sand-200: #e5ddcd;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Long-form markdown content */
+.prose-ses {
+  @apply text-slate-700 leading-relaxed;
+}
+.prose-ses h2 {
+  @apply font-serif text-2xl font-semibold text-pine-900 mt-10 mb-4;
+}
+.prose-ses h3 {
+  @apply font-serif text-xl font-semibold text-pine-800 mt-8 mb-3;
+}
+.prose-ses p {
+  @apply my-4;
+}
+.prose-ses a {
+  @apply text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800;
+}
+.prose-ses ul {
+  @apply list-disc pl-6 my-4 space-y-1;
+}
+.prose-ses ol {
+  @apply list-decimal pl-6 my-4 space-y-1;
+}
+.prose-ses strong {
+  @apply font-semibold text-slate-900;
+}
+.prose-ses img {
+  @apply rounded-lg my-6;
+}
+.prose-ses blockquote {
+  @apply border-l-4 border-gold-400 pl-4 italic text-slate-600 my-6;
+}
+.prose-ses figure {
+  @apply my-6;
+}
+.prose-ses figcaption {
+  @apply text-sm text-slate-500 mt-2;
+}
+.prose-ses table {
+  @apply w-full text-sm my-6;
+}
+.prose-ses th {
+  @apply text-left font-semibold text-pine-900 border-b-2 border-pine-200 px-3 py-2;
+}
+.prose-ses td {
+  @apply border-b border-slate-200 px-3 py-2 align-top;
+}

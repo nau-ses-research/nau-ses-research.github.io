@@ -1,0 +1,41 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import PublicationExplorer from "../../components/PublicationExplorer";
+import { getFacultyRecords, getPublications } from "../../lib/publications";
+import { getStats, fmt } from "../../lib/stats";
+
+const stats = getStats();
+const pubs = getPublications();
+const years = pubs.map((p) => p.year).filter((y): y is number => y !== null);
+const minYear = Math.min(...years);
+const maxYear = Math.max(...years);
+
+// Faculty who actually appear in the data, sorted by last name
+const labelsInData = new Set(pubs.flatMap((p) => p.ses_faculty));
+const facultyOptions = getFacultyRecords()
+  .filter((r) => labelsInData.has(r.label))
+  .sort((a, b) => a.last_name.localeCompare(b.last_name))
+  .map((r) => ({
+    label: r.label,
+    name: `${r.first_name || r.first_initial} ${r.last_name}`,
+  }));
+---
+
+<Base
+  title="Publications"
+  description={`Browse ${fmt(stats.totalFacultyPubs)} peer-reviewed publications by NAU School of Earth and Sustainability faculty and students, updated weekly from Google Scholar.`}
+>
+  <PageHero
+    title="Publications"
+    lede={`Every peer-reviewed SES publication since 2009: ${fmt(stats.totalFacultyPubs)} papers, cited ${fmt(stats.totalCitations)} times. Updated weekly from Google Scholar.`}
+  />
+  <div class="mx-auto max-w-4xl px-4 py-10">
+    <PublicationExplorer
+      client:load
+      facultyOptions={facultyOptions}
+      minYear={minYear}
+      maxYear={maxYear}
+    />
+  </div>
+</Base>

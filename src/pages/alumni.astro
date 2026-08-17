@@ -1,0 +1,140 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import gradPhoto from "../assets/media/alumni-graduation.jpg";
+
+const sectors = [
+  { title: "Industry", text: "Environmental consulting, mining, energy, water resources, and technology sectors" },
+  { title: "Government", text: "Federal and state agencies, natural resource management, environmental protection" },
+  { title: "Education", text: "Teaching and research positions at universities, community colleges, and K-12 schools" },
+  { title: "Non-Profit Organizations", text: "Conservation organizations, environmental advocacy, community development" },
+  { title: "Research & Academia", text: "Research institutions, national laboratories, graduate programs" },
+];
+
+const programs = [
+  {
+    title: "Geology",
+    items: [
+      "Environmental consulting and remediation",
+      "Natural resource exploration and extraction",
+      "Hydrogeology and groundwater management",
+      "Geotechnical engineering support",
+      "Government agency research and monitoring",
+      "Academic research and teaching",
+    ],
+  },
+  {
+    title: "Environmental Sciences & Sustainability Studies",
+    items: [
+      "Environmental impact assessment and mitigation",
+      "Sustainability consulting and green business",
+      "Climate change adaptation and mitigation",
+      "Environmental education and outreach",
+      "Policy analysis and development",
+      "Conservation and natural resource management",
+    ],
+  },
+  {
+    title: "Climate Science & Solutions",
+    items: [
+      "Climate data analysis and modeling",
+      "Climate risk assessment for businesses and communities",
+      "Renewable energy project development",
+      "Climate policy implementation",
+      "Carbon accounting and emissions management",
+      "Climate adaptation planning",
+    ],
+  },
+];
+---
+
+<Base
+  title="Alumni"
+  description="Connect with NAU School of Earth and Sustainability alumni working in environmental consulting, government agencies, academia, and sustainability initiatives worldwide."
+>
+  <PageHero
+    title="Alumni"
+    lede="Hundreds of SES graduates apply their skills across industry, government, education, and non-profit sectors around the world. Stay connected with your NAU colleagues and today's students."
+  />
+
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-pine-900">Where our alumni work</h2>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {sectors.map((s) => (
+          <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 class="font-semibold text-pine-800">{s.title}</h3>
+            <p class="mt-1 text-sm text-slate-600">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-14 grid items-start gap-10 lg:grid-cols-[1fr_360px]">
+      <div>
+        <h2 class="font-serif text-2xl font-semibold text-pine-900">
+          Field experiences that launch careers
+        </h2>
+        <div class="prose-ses mt-4 max-w-none">
+          <p>
+            One of the hallmarks of SES education is our commitment to field-based learning. Our
+            alumni often reflect on transformative field experiences that shaped their careers and
+            built lasting professional networks.
+          </p>
+          <p>
+            Field experiences like summer research trips, capstone projects, and collaborative
+            research with faculty provide students with hands-on skills and real-world applications
+            of their classroom learning. These experiences often lead to job opportunities, graduate
+            school connections, and lifelong professional relationships.
+          </p>
+          <blockquote>
+            "The field experiences in SES didn't just teach me technical skills. They showed me how
+            to work as part of a team, think critically about complex environmental problems, and
+            communicate science to diverse audiences."
+            <br />
+            <strong>— SES alumni reflection</strong>
+          </blockquote>
+        </div>
+      </div>
+      <figure>
+        <Image src={gradPhoto} alt="SES graduates at commencement" width={720} class="rounded-xl shadow" />
+        <figcaption class="mt-2 text-sm text-slate-500">
+          SES alumni, graduate students, and faculty celebrate at graduation.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="mt-14">
+      <h2 class="font-serif text-2xl font-semibold text-pine-900">Alumni by program</h2>
+      <div class="mt-6 grid gap-6 lg:grid-cols-3">
+        {programs.map((p) => (
+          <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 class="font-serif text-lg font-semibold text-pine-800">{p.title}</h3>
+            <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-600">
+              {p.items.map((i) => (
+                <li>{i}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-14 rounded-2xl bg-pine-50 p-8">
+      <h2 class="font-serif text-2xl font-semibold text-pine-900">Stay connected</h2>
+      <p class="mt-3 max-w-3xl text-slate-700">
+        We encourage all SES alumni to stay connected with the school and with each other: mentor
+        current students, share job opportunities, collaborate on research, or just tell us what
+        you're working on. Help us keep our alumni community current by updating your contact
+        information and career details.
+      </p>
+      <a
+        href="/contact/"
+        class="mt-5 inline-block rounded-lg bg-pine-900 px-5 py-2.5 font-medium text-white hover:bg-pine-700"
+      >
+        Contact SES
+      </a>
+    </section>
+  </div>
+</Base>

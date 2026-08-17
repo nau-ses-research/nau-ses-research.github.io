@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+
+export async function getStaticPaths() {
+  const opps = await getCollection("opportunities");
+  return opps.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const shortTitle = entry.data.title.split("|")[0].trim();
+---
+
+<Base title={shortTitle} description={entry.data.summary}>
+  <PageHero title={shortTitle} lede={entry.data.summary} />
+  <div class="mx-auto max-w-4xl px-4 py-10">
+    <div class="prose-ses max-w-none">
+      <Content />
+    </div>
+    <p class="mt-10">
+      <a href="/student-opportunities/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800">
+        ← All student opportunities
+      </a>
+    </p>
+  </div>
+</Base>

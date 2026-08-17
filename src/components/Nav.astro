@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+
+const research = [
+  { name: "Research Impact", href: "/research/" },
+  { name: "Publications", href: "/publications/" },
+  { name: "Research Themes", href: "/research-themes/" },
+  { name: "About the Data", href: "/about/" },
+];
+const opportunities = [
+  { name: "Overview", href: "/student-opportunities/" },
+  { name: "Undergraduate Degrees", href: "/student-opportunities/undergraduate-degrees/" },
+  { name: "Graduate Degrees", href: "/student-opportunities/graduate-degrees/" },
+  { name: "Professional Certificates", href: "/student-opportunities/professional-certificates/" },
+  { name: "Graduate Certificates", href: "/student-opportunities/graduate-certificates/" },
+  { name: "Undergraduate Certificates", href: "/student-opportunities/undergraduate-certificates/" },
+  { name: "Sisk Fellowship", href: "/student-opportunities/sisk-fellowship/" },
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header class="sticky top-0 z-40 bg-pine-900 text-white shadow-md">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <a href="/" class="flex items-center gap-3 shrink-0">
+      <Image src={logo} alt="Northern Arizona University" class="h-8 w-auto" width={352} height={60} />
+      <span class="hidden xl:block font-serif text-sm font-semibold leading-tight text-pine-100">
+        School of Earth<br />&amp; Sustainability
+      </span>
+    </a>
+
+    <!-- Desktop menu -->
+    <ul class="hidden lg:flex items-center gap-1 text-sm font-medium">
+      <li><a href="/" class:list={["nav-link", isActive("/") && "nav-active"]}>Home</a></li>
+      <li class="relative group">
+        <button class="nav-link inline-flex items-center gap-1" aria-haspopup="true">
+          Research
+          <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" /></svg>
+        </button>
+        <ul class="dropdown">
+          {research.map((i) => (
+            <li><a href={i.href} class="dropdown-link">{i.name}</a></li>
+          ))}
+        </ul>
+      </li>
+      <li><a href="/faculty-profiles/" class:list={["nav-link", isActive("/faculty-profiles/") && "nav-active"]}>Faculty</a></li>
+      <li><a href="/news/" class:list={["nav-link", isActive("/news/") && "nav-active"]}>News</a></li>
+      <li class="relative group">
+        <button class="nav-link inline-flex items-center gap-1" aria-haspopup="true">
+          Students
+          <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" /></svg>
+        </button>
+        <ul class="dropdown">
+          {opportunities.map((i) => (
+            <li><a href={i.href} class="dropdown-link">{i.name}</a></li>
+          ))}
+        </ul>
+      </li>
+      <li><a href="/alumni/" class:list={["nav-link", isActive("/alumni/") && "nav-active"]}>Alumni</a></li>
+      <li><a href="/contact/" class:list={["nav-link", isActive("/contact/") && "nav-active"]}>Contact</a></li>
+    </ul>
+
+    <!-- Mobile toggle -->
+    <button id="menu-toggle" class="lg:hidden p-2" aria-label="Open menu" aria-expanded="false">
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-pine-700 bg-pine-900 px-4 pb-4 text-sm">
+    <a href="/" class="mobile-link">Home</a>
+    <p class="mobile-heading">Research</p>
+    {research.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>)}
+    <a href="/faculty-profiles/" class="mobile-link">Faculty</a>
+    <a href="/news/" class="mobile-link">News</a>
+    <p class="mobile-heading">Student Opportunities</p>
+    {opportunities.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>)}
+    <a href="/alumni/" class="mobile-link">Alumni</a>
+    <a href="/contact/" class="mobile-link">Contact</a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  toggle?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+</script>
+
+<style>
+  @reference "../styles/global.css";
+  .nav-link {
+    @apply block rounded-md px-3 py-2 text-pine-100 hover:bg-pine-800 hover:text-white transition-colors;
+  }
+  .nav-active {
+    @apply bg-pine-800 text-gold-400;
+  }
+  .dropdown {
+    @apply invisible absolute left-0 top-full z-50 min-w-56 rounded-b-lg bg-white py-2 text-slate-800 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100;
+  }
+  .dropdown-link {
+    @apply block px-4 py-2 hover:bg-pine-50 hover:text-pine-900;
+  }
+  .mobile-link {
+    @apply block py-2 text-pine-100 hover:text-white;
+  }
+  .mobile-heading {
+    @apply pt-3 pb-1 text-xs font-semibold uppercase tracking-wide text-pine-300;
+  }
+</style>

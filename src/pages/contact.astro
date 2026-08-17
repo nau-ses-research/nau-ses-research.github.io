@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import contactPhoto from "../assets/media/contact.jpg";
+---
+
+<Base
+  title="Contact"
+  description="Contact the School of Earth and Sustainability at Northern Arizona University."
+>
+  <PageHero title="Contact" lede="Any questions? We'd love to hear from you." />
+
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <div class="grid items-start gap-10 lg:grid-cols-2">
+      <div class="space-y-6">
+        <div>
+          <h2 class="font-serif text-xl font-semibold text-pine-900">
+            School of Earth and Sustainability
+          </h2>
+          <p class="mt-2 leading-relaxed text-slate-700">
+            Room A108, Building 11, Ashurst<br />
+            624 S Knoles Dr<br />
+            Flagstaff, AZ 86011
+          </p>
+        </div>
+        <div>
+          <p class="text-slate-700">
+            <strong>Email:</strong>
+            <a href="mailto:SES.Admin@nau.edu" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">
+              SES.Admin@nau.edu
+            </a>
+          </p>
+          <p class="mt-1 text-slate-700"><strong>Phone:</strong> 928-523-9333</p>
+        </div>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a
+            href="https://nau.edu/apply-now/"
+            class="rounded-lg bg-gold-400 px-5 py-2.5 font-semibold text-pine-950 hover:bg-gold-300"
+          >
+            Apply to NAU
+          </a>
+          <a
+            href="https://nau.edu/school-of-earth-and-sustainability/"
+            class="rounded-lg border border-pine-300 px-5 py-2.5 font-medium text-pine-800 hover:bg-pine-50"
+          >
+            SES at nau.edu
+          </a>
+        </div>
+      </div>
+      <Image src={contactPhoto} alt="NAU campus in Flagstaff" width={800} class="rounded-xl shadow" />
+    </div>
+  </div>
+</Base>

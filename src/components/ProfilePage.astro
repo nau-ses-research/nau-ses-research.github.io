@@ -1,0 +1,112 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PubItem from "./PubItem.astro";
+import { facultyBySlug, publicationsByFaculty } from "../lib/publications";
+
+interface Props {
+  entry: CollectionEntry<"faculty"> | CollectionEntry<"archivedFaculty">;
+  portrait?: ImageMetadata;
+  archived?: boolean;
+}
+const { entry, portrait, archived = false } = Astro.props;
+const { Content } = await render(entry);
+
+const record = facultyBySlug(entry.id);
+const pubs = record ? publicationsByFaculty(record.label) : [];
+const recent = [...pubs]
+  .sort((a, b) => (b.year ?? 0) - (a.year ?? 0) || b.citations - a.citations)
+  .slice(0, 5);
+const explorerUrl = record
+  ? `/publications/?faculty=${encodeURIComponent(record.label)}`
+  : "/publications/";
+---
+
+<Base
+  title={entry.data.name}
+  description={entry.data.summary ?? `${entry.data.name}, School of Earth and Sustainability, Northern Arizona University`}
+  noindex={archived}
+>
+  <div class="bg-pine-900 py-8">
+    <div class="mx-auto max-w-6xl px-4">
+      <p class="text-sm text-pine-200">
+        <a href="/faculty-profiles/" class="hover:text-gold-400">Faculty</a>
+        {archived && <span> · Former faculty</span>}
+      </p>
+      <h1 class="mt-1 font-serif text-3xl font-bold text-white sm:text-4xl">{entry.data.name}</h1>
+    </div>
+  </div>
+  <div class="h-1.5 bg-gold-400"></div>
+
+  <div class="mx-auto max-w-6xl gap-10 px-4 py-10 lg:grid lg:grid-cols-[300px_1fr]">
+    <aside class="mb-8 lg:mb-0">
+      {portrait && (
+        <Image
+          src={portrait}
+          alt={entry.data.name}
+          width={600}
+          class="w-full max-w-xs rounded-xl shadow"
+        />
+      )}
+      {entry.data.interests.length > 0 && (
+        <div class="mt-6">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-pine-700">
+            Research interests
+          </h2>
+          <p class="mt-2 flex flex-wrap gap-1.5">
+            {entry.data.interests.map((t) => (
+              <span class="rounded-full bg-pine-50 px-2.5 py-1 text-xs text-pine-700">{t}</span>
+            ))}
+          </p>
+        </div>
+      )}
+      <div class="mt-6 space-y-2 text-sm">
+        {record?.scholar_id && (
+          <a
+            href={`https://scholar.google.com/citations?user=${record.scholar_id}`}
+            class="block text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800"
+          >
+            Google Scholar profile
+          </a>
+        )}
+        {pubs.length > 0 && (
+          <a
+            href={explorerUrl}
+            class="block text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800"
+          >
+            All {pubs.length} SES publications
+          </a>
+        )}
+      </div>
+    </aside>
+
+    <div>
+      {archived && (
+        <p class="mb-6 rounded-lg bg-sand-100 px-4 py-3 text-sm text-slate-600">
+          This is an archived profile of a former SES faculty member.
+        </p>
+      )}
+      <div class="prose-ses max-w-none">
+        <Content />
+      </div>
+
+      {recent.length > 0 && (
+        <section class="mt-12">
+          <h2 class="font-serif text-2xl font-semibold text-pine-900">Recent publications</h2>
+          <div class="mt-2">
+            {recent.map((p) => (
+              <PubItem pub={p} />
+            ))}
+          </div>
+          <a
+            href={explorerUrl}
+            class="mt-4 inline-block rounded-lg bg-pine-900 px-4 py-2 text-sm font-medium text-white hover:bg-pine-700"
+          >
+            Explore all {pubs.length} publications
+          </a>
+        </section>
+      )}
+    </div>
+  </div>
+</Base>
