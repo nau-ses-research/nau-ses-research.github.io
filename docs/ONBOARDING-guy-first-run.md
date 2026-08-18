@@ -44,9 +44,21 @@ Then read, in this order:
   uv run scripts/update_publications.py --dry-run --summary-file update_summary.md
   ```
 
-  The run takes a while (polite delays between ~40 Scholar profile fetches,
-  plus one detail fetch per new paper). Read the whole summary before doing
-  anything else. Sanity checks:
+  This catch-up run is long: **expect 30–90 minutes** (polite delays between
+  ~40 Scholar profile fetches, plus a detail fetch and DOI lookup per new
+  paper; there may be 100+ of them). If your execution environment enforces
+  command timeouts, run it detached so it survives:
+
+  ```bash
+  nohup uv run scripts/update_publications.py --dry-run \
+    --summary-file update_summary.md > update_run.log 2>&1 &
+  ```
+
+  and follow `update_run.log`. The summary file appears in a PRELIMINARY
+  form once the citation pass finishes and is overwritten with the final
+  version at the end. If Scholar starts refusing fetches, stop and wait
+  3–6 hours before one retry; don't hammer it. Read the whole summary before
+  doing anything else. Sanity checks:
   - Profiles fetched should be ~40/42 (two faculty have flaky profiles).
     If the run aborts with a low fetch rate, Scholar is blocking; wait a few
     hours and try once more, then open an issue per the runbook.

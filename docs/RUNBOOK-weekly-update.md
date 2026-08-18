@@ -17,10 +17,30 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
    ```
    (First time: `uv sync` to install dependencies. Plain
    `python3 scripts/update_publications.py` works in any env with `scholarly`.)
-   The run takes 5–15 minutes: it fetches ~40 Scholar profiles with polite
-   delays, updates citations, appends new publications, and validates. It
-   aborts by itself (writing nothing) if Scholar looks blocked or the numbers
-   look wrong.
+   A normal week takes 5–15 minutes; a backlog/catch-up run can take
+   **30–90 minutes** because every new publication needs a detail fetch and a
+   DOI lookup with polite delays. The pipeline aborts by itself (writing
+   nothing) if Scholar looks blocked or the numbers look wrong.
+
+   **If your execution environment kills long commands** (agent tool
+   timeouts, flaky sessions), run it detached and follow the log instead:
+
+   ```bash
+   nohup uv run scripts/update_publications.py --summary-file update_summary.md \
+     > update_run.log 2>&1 &
+   tail -f update_run.log   # or poll it; the process survives your session
+   ```
+
+   The summary file is written twice: a PRELIMINARY version as soon as the
+   profile fetch and citation pass finish, and the final version at the end,
+   so even an interrupted run leaves usable counts. Progress lines
+   (`[N/M candidates processed]`) show where a long run is.
+
+   If Scholar blocks mid-run (repeated fetch errors, abort on the
+   success-rate guard): **wait at least 3–6 hours before retrying**; repeated
+   immediate retries extend the block. geckodriver/Firefox version warnings
+   from scholarly are harmless noise; they matter only if every single fetch
+   fails even after a wait.
 3. **If it succeeded with changes:**
    ```bash
    git checkout -b data-update-$(date +%Y-%m-%d)

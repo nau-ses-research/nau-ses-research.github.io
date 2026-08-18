@@ -247,10 +247,24 @@ def main() -> int:
         if p["scholar_id"] not in c["scholar_ids"]:
             c["scholar_ids"].append(p["scholar_id"])
 
+    # Preliminary summary written up front: the detail-fetch loop below can
+    # run 30-90 minutes on a backlog, and if this process is killed mid-loop
+    # (agent exec timeouts, ssh drops) the operator still gets the counts.
+    if args.summary_file:
+        args.summary_file.write_text(
+            f"PRELIMINARY (detail fetches in progress; final summary overwrites this)\n"
+            f"- Profiles fetched: {attempted - len(failed)}/{attempted}"
+            + (f" (failed: {', '.join(failed)})" if failed else "") + "\n"
+            f"- Citation updates: {len(citation_updates)}\n"
+            f"- New-publication candidates to process: {len(candidates)}\n")
+
     new_rows = []
     skipped_fills = []
     existing_ids = {r["id"] for r in db}
-    for cand in candidates.values():
+    n_cands = len(candidates)
+    for ci, cand in enumerate(candidates.values(), 1):
+        if ci % 10 == 0:
+            log(f"  [{ci}/{n_cands} candidates processed]")
         try:
             details = fill_publication(cand["_raw"])
         except Exception as e:  # noqa: BLE001 - Scholar throttling mid-run
