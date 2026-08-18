@@ -16,8 +16,21 @@ const shortTitle = entry.data.title.split("|")[0].trim();
 
 <Base title={shortTitle} description={entry.data.summary}>
   <PageHero title={shortTitle} lede={entry.data.summary} />
+  {entry.data.videos.length === 1 && (
+    <div class="bg-pine-950">
+      <div class="mx-auto max-w-5xl px-4 py-10">
+        <iframe
+          class="aspect-video w-full rounded-xl shadow-2xl"
+          src={`https://www.youtube-nocookie.com/embed/${entry.data.videos[0].youtube_id}`}
+          title={entry.data.videos[0].title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        />
+      </div>
+    </div>
+  )}
   <div class="mx-auto max-w-4xl px-4 py-10">
-    {entry.data.videos.length > 0 && (
+    {entry.data.videos.length > 1 && (
       <section class="mb-10">
         <h2 class="font-serif text-2xl font-semibold text-pine-900">
           Meet our programs
