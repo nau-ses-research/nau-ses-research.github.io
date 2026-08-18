@@ -1,46 +1,46 @@
-slug,first_initial,first_name,last_name,scholar_id,start_year,end_year,active,profile
-suzanne-affinati,S,Suzanne,Affinatti,kARu5JoAAAAJ,2021,,true,current
-scott-anderson,R,Scott,Anderson,,2000,,true,current
-francisco-apen,F,Francisco,Apen,s-uRSoYAAAAJ,2024,,true,archived
-clare-aslan,C,Clare,Aslan,OQcWVAoAAAAJ,2014,,true,current
-rebecca-best,R,Rebecca,Best,MS9xVqIAAAAJ,2016,,true,current
-duan-biggs,D,Duan,Biggs,zQTZixsAAAAJ,2021,,true,current
-,J,,Byrnes,Tu_tGfwAAAAJ,2023,,true,none
-brett-dickson,B,Brett,Dickson,TZcEU1QAAAAJ,2014,2022,false,archived
-michael-erb,M,Michael,Erb,6w5ZNo4AAAAJ,2017,2025,false,archived
-john-fegyveresi,J,John,Fegyveresi,y6CEvEMAAAAJ,2019,,true,current
-james-gaherty,J,James,Gaherty,uglQirIAAAAJ,2019,,true,current
-,K,,Grimm,B0yY-3YAAAAJ,2014,2020,false,none
-roger-haro,R,Roger,Haro,vECIU2QAAAAJ,2023,,true,archived
-thomas-hoisch,T,Thomas,Hoisch,7_cd6R4AAAAJ,2000,,true,archived
-deborah-huntzinger,D,Deborah,Huntzinger,e4XX478AAAAJ,2011,,true,current
-nancy-johnson,N,Nancy,Johnson,vYs1mtEAAAAJ,2000,,true,current
-taylor-joyal,T,Taylor,Joyal,LUAnXfsAAAAJ,2012,,true,current
-darrell-kaufman,D,Darrell,Kaufman,KpeykKsAAAAJ,2000,,true,current
-rosemary-logan,R,Rosemary,Logan,,2022,,true,archived
-nicholas-mckay,N,Nicholas,McKay,j8_CgoEAAAAJ,2013,,true,current
-julie-mueller,J,Julie,Mueller,brG-UpsAAAAJ,2008,,true,archived
-erik-nielsen,E,Erik,Nielsen,vAflpUkAAAAJ,2008,,true,current
-erika-nowak,E,Erika,Nowak,RLI2k1MAAAAJ,2017,,true,current
-rod-parnell,R,Rod,Parnell,IoVNx7IAAAAJ,2000,,true,archived
-denielle-perry,D,Denielle,Perry,eQIGxvsAAAAJ,2017,,true,current
-ryan-porter,R,Ryan,Porter,VrFY4scAAAAJ,2014,,true,current
-lucero-radonic,L,Lucero,Radonic,eLQPg4oAAAAJ,2023,,true,archived
-pranay-ranjan,P,Pranay,Ranjan,UsiCVxYAAAAJ,2022,,true,current
-christine-regalla,C,Christine,Regalla,PdHBgEUAAAAJ,2019,,true,current
-mary-reid,M,Mary,Reid,pg-HuIIAAAAJ,2003,,true,archived
-cody-routson,C,Cody,Routson,TQAQTl0AAAAJ,2017,,true,archived
-helen-rowe,H,Helen,Rowe,NRUIqxcAAAAJ,2018,,true,current
-james-sample,J,James,Sample,JL2daQcAAAAJ,2003,,true,archived
-robert-sanford,R,Robert,Sanford,mMGsnC8AAAAJ,2012,,true,archived
-temuulen-sankey,T,Temuulen,Sankey,3zszVGYAAAAJ,2014,,true,archived
-donna-shillington,D,Donna,Shillington,bDSq2ksAAAAJ,2019,,true,current
-thomas-sisk,T,Thomas,Sisk,2ZA_zeIAAAAJ,2000,,true,archived
-michael-smith,M,Michael,Smith,CBG7OuAAAAAJ,2014,,true,current
-bridget-smith-konter,B,Bridget,Smith-Konter,,2025,,true,current
-sara-souther,S,Sara,Souther,zzM06IcAAAAJ,2017,,true,current
-abraham-springer,A,Abraham,Springer,X53gmAQAAAAJ,2008,,true,current
-diana-stuart,D,Diana,Stuart,cc0d2WUAAAAJ,2012,,true,current
-casey-tierney,C,Casey,Tierney,mXXdXgYAAAAJ,2021,,true,current
-paul-umhoefer,P,Paul,Umhoefer,ZLMsh8MAAAAJ,2000,,true,archived
-laura-wasylenki,L,Laura,Wasylenki,QVFkTAgAAAAJ,2018,,true,current
+slug,first_initial,first_name,last_name,scholar_id,start_year,end_year,active,profile,themes
+suzanne-affinati,S,Suzanne,Affinatti,kARu5JoAAAAJ,2021,,true,current,tectonics-interior
+scott-anderson,R,Scott,Anderson,,2000,,true,current,climate-change; ecology-conservation
+francisco-apen,F,Francisco,Apen,s-uRSoYAAAAJ,2024,,true,archived,
+clare-aslan,C,Clare,Aslan,OQcWVAoAAAAJ,2014,,true,current,ecology-conservation; environment-society
+rebecca-best,R,Rebecca,Best,MS9xVqIAAAAJ,2016,,true,current,ecology-conservation; water-management
+duan-biggs,D,Duan,Biggs,zQTZixsAAAAJ,2021,,true,current,ecology-conservation; environment-society
+,J,,Byrnes,Tu_tGfwAAAAJ,2023,,true,none,
+brett-dickson,B,Brett,Dickson,TZcEU1QAAAAJ,2014,2022,false,archived,
+michael-erb,M,Michael,Erb,6w5ZNo4AAAAJ,2017,2025,false,archived,
+john-fegyveresi,J,John,Fegyveresi,y6CEvEMAAAAJ,2019,,true,current,climate-change
+james-gaherty,J,James,Gaherty,uglQirIAAAAJ,2019,,true,current,tectonics-interior
+,K,,Grimm,B0yY-3YAAAAJ,2014,2020,false,none,
+roger-haro,R,Roger,Haro,vECIU2QAAAAJ,2023,,true,archived,
+thomas-hoisch,T,Thomas,Hoisch,7_cd6R4AAAAJ,2000,,true,archived,
+deborah-huntzinger,D,Deborah,Huntzinger,e4XX478AAAAJ,2011,,true,current,climate-change; environment-society
+nancy-johnson,N,Nancy,Johnson,vYs1mtEAAAAJ,2000,,true,current,ecology-conservation
+taylor-joyal,T,Taylor,Joyal,LUAnXfsAAAAJ,2012,,true,current,sedimentary-geology
+darrell-kaufman,D,Darrell,Kaufman,KpeykKsAAAAJ,2000,,true,current,climate-change
+rosemary-logan,R,Rosemary,Logan,,2022,,true,archived,
+nicholas-mckay,N,Nicholas,McKay,j8_CgoEAAAAJ,2013,,true,current,climate-change
+julie-mueller,J,Julie,Mueller,brG-UpsAAAAJ,2008,,true,archived,
+erik-nielsen,E,Erik,Nielsen,vAflpUkAAAAJ,2008,,true,current,environment-society
+erika-nowak,E,Erika,Nowak,RLI2k1MAAAAJ,2017,,true,current,ecology-conservation
+rod-parnell,R,Rod,Parnell,IoVNx7IAAAAJ,2000,,true,archived,
+denielle-perry,D,Denielle,Perry,eQIGxvsAAAAJ,2017,,true,current,water-management; environment-society
+ryan-porter,R,Ryan,Porter,VrFY4scAAAAJ,2014,,true,current,tectonics-interior
+lucero-radonic,L,Lucero,Radonic,eLQPg4oAAAAJ,2023,,true,archived,
+pranay-ranjan,P,Pranay,Ranjan,UsiCVxYAAAAJ,2022,,true,current,water-management; environment-society
+christine-regalla,C,Christine,Regalla,PdHBgEUAAAAJ,2019,,true,current,tectonics-interior; sedimentary-geology
+mary-reid,M,Mary,Reid,pg-HuIIAAAAJ,2003,,true,archived,
+cody-routson,C,Cody,Routson,TQAQTl0AAAAJ,2017,,true,archived,
+helen-rowe,H,Helen,Rowe,NRUIqxcAAAAJ,2018,,true,current,ecology-conservation
+james-sample,J,James,Sample,JL2daQcAAAAJ,2003,,true,archived,
+robert-sanford,R,Robert,Sanford,mMGsnC8AAAAJ,2012,,true,archived,
+temuulen-sankey,T,Temuulen,Sankey,3zszVGYAAAAJ,2014,,true,archived,
+donna-shillington,D,Donna,Shillington,bDSq2ksAAAAJ,2019,,true,current,tectonics-interior
+thomas-sisk,T,Thomas,Sisk,2ZA_zeIAAAAJ,2000,,true,archived,
+michael-smith,M,Michael,Smith,CBG7OuAAAAAJ,2014,,true,current,sedimentary-geology; tectonics-interior
+bridget-smith-konter,B,Bridget,Smith-Konter,,2025,,true,current,tectonics-interior
+sara-souther,S,Sara,Souther,zzM06IcAAAAJ,2017,,true,current,ecology-conservation; environment-society
+abraham-springer,A,Abraham,Springer,X53gmAQAAAAJ,2008,,true,current,water-management
+diana-stuart,D,Diana,Stuart,cc0d2WUAAAAJ,2012,,true,current,environment-society
+casey-tierney,C,Casey,Tierney,mXXdXgYAAAAJ,2021,,true,current,tectonics-interior
+paul-umhoefer,P,Paul,Umhoefer,ZLMsh8MAAAAJ,2000,,true,archived,
+laura-wasylenki,L,Laura,Wasylenki,QVFkTAgAAAAJ,2018,,true,current,tectonics-interior

@@ -66,14 +66,14 @@ Dr. Nancy Collins Johnson is a Regents' Professor at Northern Arizona University
 - **Visiting Scholar**, Multiple international institutions
 
 ## Research Impact
-Dr. Johnson has achieved remarkable research impact with over 19,000 citations of her work across more than 125 publications. Her h-index of 56 reflects the broad influence of her research on soil ecology, mycorrhizal biology, and ecosystem science.
+Dr. Johnson's research on soil ecology, mycorrhizal biology, and ecosystem science is among the most influential in her field.
 
 ## Major Research Contributions
 
 ### Mycorrhizal Function and Evolution
 
 #### Mutualism-Parasitism Continuum
-- **Landmark publication** "Functioning of mycorrhizal associations along the mutualism–parasitism continuum" (2,500+ citations)
+- **Landmark publication** "Functioning of mycorrhizal associations along the mutualism–parasitism continuum"
 - **Theoretical framework** for understanding variation in mycorrhizal functioning
 - **Context-dependency** in the function of plant microbiomes
 - **Resource availability effects** on symbiotic outcomes

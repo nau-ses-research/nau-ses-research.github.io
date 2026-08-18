@@ -79,7 +79,7 @@ Dr. Roderic "Rod" Parnell is a Professor of Earth Sciences and Environmental Sus
 
 ## Research Impact
 
-Dr. Parnell has made significant contributions to environmental geology and sustainability education, with over 1,300 citations of his research. His work has influenced both scientific understanding and educational approaches in environmental studies.
+Dr. Parnell has made significant contributions to environmental geology and sustainability education. His work has influenced both scientific understanding and educational approaches in environmental studies.
 
 ## Mentorship and Supervision
 

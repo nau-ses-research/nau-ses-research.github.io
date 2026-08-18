@@ -45,7 +45,7 @@ Dr. Darrell Kaufman is a Regents' Professor in the School of Earth and Sustainab
 
 ## Selected Publications
 
-Dr. Kaufman has published over 240 peer-reviewed works that have been cited over 40,000 times. Recent highlights include:
+Recent highlights from Dr. Kaufman's extensive publication record include:
 -	Kaufman, D., Bright, J., Ebert, C., Lindberg, K., Marshall, L., McKay, N., Schuur, E., Thomas, E., 2025. Radiocarbon dating of lake sediment using low-temperature combustion. Radiocarbon, in press.
 -	Kaufman, D., Masson-Delmotte, V., 2024. Opinion: Distribute paleoscience information across the next IPCC reports. Climate of the Past 20, 2587-2594.
 -	Kaufman, D.S., Broadman, E., 2023. Revisiting the Holocene global temperature conundrum. Nature 614, 425-435.

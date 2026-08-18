@@ -74,7 +74,7 @@ Dr. Sara Souther is an Assistant Professor in the School of Earth and Sustainabi
 
 ## Research Impact
 
-Dr. Souther has made significant contributions to conservation biology and plant ecology with over 900 citations of her research across 30+ peer-reviewed publications. Her work spans ecosystems from Alaska to Arizona and directly informs conservation management decisions.
+Dr. Souther has made significant contributions to conservation biology and plant ecology. Her work spans ecosystems from Alaska to Arizona and directly informs conservation management decisions.
 
 ## Major Research Projects
 

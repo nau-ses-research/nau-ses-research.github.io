@@ -65,7 +65,7 @@ Dr. Erik Nielsen is Northern Arizona University's Chief Sustainability Officer a
 
 ## Research Impact
 
-Dr. Nielsen has made significant contributions to community-based conservation, with over 1,400 citations of his research. His work spans multiple disciplines including environmental policy, natural resources governance, illicit drivers of land use change, and sustainability science.
+Dr. Nielsen has made significant contributions to community-based conservation. His work spans multiple disciplines including environmental policy, natural resources governance, illicit drivers of land use change, and sustainability science.
 
 ## Sustainability Leadership at NAU
 

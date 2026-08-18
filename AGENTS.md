@@ -47,6 +47,15 @@ working here.
 - Commit style: present tense, concise subject, body explains why. Data PRs
   use the summary printed by the pipeline as the PR body.
 
+## Quarterly freshness sweep
+
+`docs/CONTENT-REGISTRY.md` maps every page to its owner and review cadence.
+Each quarter (Jan / Apr / Jul / Oct), check rows past their review date and
+open one GitHub issue listing what needs human eyes. Never hand-write a fact
+the data layer already knows: people, publication counts, and citation
+numbers are derived from `data/` at build time, and prose must not duplicate
+them.
+
 ## Annual content updates (each fall)
 
 The Current Students section (`src/content/grad-resources/` and

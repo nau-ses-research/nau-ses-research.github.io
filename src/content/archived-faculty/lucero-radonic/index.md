@@ -69,7 +69,7 @@ Dr. Lucero Radonic is an Associate Professor in the Department of Anthropology a
 
 ## Research Impact
 
-Dr. Radonic has made significant contributions to environmental anthropology and water governance studies, with over 590 citations of her research. Her work bridges academic research with practical policy applications and community engagement.
+Dr. Radonic has made significant contributions to environmental anthropology and water governance studies. Her work bridges academic research with practical policy applications and community engagement.
 
 ## Water, Society and Policy Lab
 

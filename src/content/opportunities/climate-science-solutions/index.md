@@ -24,19 +24,19 @@ Climate change represents one of the most pressing challenges of our time, creat
 
 ### Program Highlights
 
-#### 🎓 Professional Focus
+#### Professional Focus
 - **18-month intensive program** - faster time to degree
 - **Non-thesis format** - emphasis on practical application
 - **36-credit curriculum** - comprehensive yet focused
 - **Professional development** integrated throughout
 
-#### 🏢 Industry Connections
+#### Industry Connections
 - **Advisory board** of industry professionals
 - **Networking opportunities** with climate professionals
 - **Internship program** providing real-world experience
 - **Career placement support** and job market preparation
 
-#### 🌍 Institutional Commitment
+#### Institutional Commitment
 - NAU is committed to **carbon neutrality by 2030**
 - Located in Arizona, addressing regional climate vulnerabilities
 - Founding signatory of the **Presidents' Climate Commitment**

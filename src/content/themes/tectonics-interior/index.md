@@ -71,22 +71,6 @@ Special emphasis on:
 - Plate boundary zones
 - Active tectonic regions
 
-## Who We Are
-
-Our faculty includes:
-- **Francisco Apen** - Petrology, geochemistry, geochronology
-- **James Gaherty** - Earthquake seismology, geodynamics
-- **Ryan Porter** - Geophysics, seismology, tectonics
-- **Christine Regalla** - Structural geology, active tectonics
-- **James Sample** - Tectonics, geochemistry
-- **Donna Shillington** - Geophysics, seismology
-- **Michael Smith** - Sedimentary geology
-- **Bridget Smith-Konter** - Geodesy, active tectonics
-- **Casey Tierney** - Geochemistry, volcanology
-- **Mary Reid** - Igneous petrology (Emeritus)
-- **Michael Ort** - Volcanology (Emeritus)
-- **Nancy Riggs** - Volcanology, tectonics (Emeritus)
-
 ## Collaborators
 
 **At NAU:**

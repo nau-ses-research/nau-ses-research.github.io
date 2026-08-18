@@ -49,29 +49,6 @@ Our research informs:
 - Climate adaptation planning
 - Sustainable development practices
 
-## Faculty Expertise
-
-Faculty bring diverse expertise in:
-- Environmental policy
-- Human geography
-- Environmental sociology
-- Political ecology
-- Sustainability science
-- Resource economics
-
-## Who We Are
-
-Our faculty includes:
-- **Clare Aslan** - Coupled natural-human systems
-- **Duan Biggs** - Conservation innovations
-- **Deborah Huntzinger** - Climate science
-- **Rosemary Logan** - Sustainable food systems
-- **Erik Nielsen** - Environmental policy
-- **Denielle Perry** - Water resources geography
-- **Pranay Ranjan** - Water governance
-- **Sara Souther** - Ethnobotany
-- **Diana Stuart** - Environmental sociology
-
 ## Collaborators
 
 - **Social and Behavioral Sciences**

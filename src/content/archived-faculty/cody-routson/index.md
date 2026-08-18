@@ -44,7 +44,7 @@ Dr. Cody Routson is an Assistant Research Professor in the School of Earth and S
 
 ## Research Impact
 
-Dr. Routson's research has been highly cited, with over 2,075 citations, reflecting the significant impact of his work on understanding past climate changes and their implications for future climate projections.
+Dr. Routson's research has been highly cited.
 
 ## Major Research Contributions
 

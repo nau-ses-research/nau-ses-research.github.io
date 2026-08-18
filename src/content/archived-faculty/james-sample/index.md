@@ -39,7 +39,7 @@ Dr. James Sample is a Professor in the School of Earth and Sustainability at Nor
 
 ## Research Impact
 
-Dr. Sample has made significant contributions to the fields of structural geology and tectonics, with over 3,600 citations of his research work. His studies have advanced understanding of crustal processes and tectonic evolution.
+Dr. Sample has made significant contributions to the fields of structural geology and tectonics. His studies have advanced understanding of crustal processes and tectonic evolution.
 
 ## Regional Focus
 

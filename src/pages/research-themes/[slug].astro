@@ -3,6 +3,8 @@ import { getCollection, render } from "astro:content";
 import { Image } from "astro:assets";
 import Base from "../../layouts/Base.astro";
 import PageHero from "../../components/PageHero.astro";
+import PubItem from "../../components/PubItem.astro";
+import { getFacultyRecords, getPublications } from "../../lib/publications";
 
 export async function getStaticPaths() {
   const themes = await getCollection("themes");
@@ -11,6 +13,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+// People and publications are derived from data/, never hand-listed here.
+const themeFaculty = getFacultyRecords()
+  .filter((r) => r.themes.includes(entry.id) && r.profile === "current")
+  .sort((a, b) => a.last_name.localeCompare(b.last_name));
+const themeLabels = new Set(themeFaculty.map((r) => r.label));
+const recentPubs = getPublications()
+  .filter((p) => p.ses_faculty.some((f) => themeLabels.has(f)))
+  .sort((a, b) => (b.year ?? 0) - (a.year ?? 0) || b.citations - a.citations)
+  .slice(0, 5);
 
 const banners = import.meta.glob<{ default: ImageMetadata }>(
   "/src/content/themes/*/{banner,featured}.{jpg,jpeg,png}",
@@ -30,6 +42,41 @@ const banner = key ? (await banners[key]()).default : undefined;
     <div class="prose-ses max-w-none">
       <Content />
     </div>
+
+    {themeFaculty.length > 0 && (
+      <section class="mt-12">
+        <h2 class="font-serif text-2xl font-semibold text-pine-900">Who we are</h2>
+        <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+          {themeFaculty.map((f) => (
+            <li>
+              <a
+                href={`/faculty-profiles/${f.slug}/`}
+                class="block rounded-lg border border-slate-200 px-4 py-2.5 font-medium text-pine-900 hover:bg-pine-50"
+              >
+                {f.first_name} {f.last_name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {recentPubs.length > 0 && (
+      <section class="mt-12">
+        <h2 class="font-serif text-2xl font-semibold text-pine-900">Recent publications</h2>
+        <div class="mt-2">
+          {recentPubs.map((p) => (
+            <PubItem pub={p} />
+          ))}
+        </div>
+        <p class="mt-4 text-sm text-slate-500">
+          From the
+          <a href="/publications/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">full publication database</a>,
+          updated weekly.
+        </p>
+      </section>
+    )}
+
     <p class="mt-10">
       <a href="/research-themes/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800">
         ← All research themes

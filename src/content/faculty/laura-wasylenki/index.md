@@ -45,7 +45,7 @@ Dr. Laura Wasylenki is a Retired Professor in the School of Earth and Sustainabi
 
 ## Research Impact
 
-Dr. Wasylenki has made significant contributions to environmental geochemistry and biogeochemistry, with over 3,300 citations of her research. Her thirty-two peer-reviewed publications have an h-index of 27, reflecting the high impact of her work in the field. She had continuous NSF and NASA funding for 21 years.
+Dr. Wasylenki has made significant contributions to environmental geochemistry and biogeochemistry, with continuous NSF and NASA funding for 21 years.
 
 ## SESAME Laboratory
 

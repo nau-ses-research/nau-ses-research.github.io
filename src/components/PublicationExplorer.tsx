@@ -16,6 +16,7 @@ interface Pub {
   g: string[]; // grad students
   u: string[]; // undergrads
   p: string; // scholar pubid
+  d: string; // doi
 }
 
 interface Props {
@@ -126,6 +127,7 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
           />
           <select
             value={faculty}
+            aria-label="Filter by faculty member"
             onChange={(e) => setFaculty((e.target as HTMLSelectElement).value)}
             class="rounded-lg border border-slate-300 px-3 py-2 focus:border-pine-500 focus:outline-none"
           >
@@ -192,9 +194,9 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
         {filtered.slice(0, limit).map((p) => (
           <article key={p.id} id={p.id} class="border-b border-slate-100 py-4">
             <h3 class="font-medium text-slate-900">
-              {p.p ? (
+              {p.d || p.p ? (
                 <a
-                  href={`https://scholar.google.com/citations?view_op=view_citation&citation_for_view=${p.p}`}
+                  href={p.d ? `https://doi.org/${p.d}` : `https://scholar.google.com/citations?view_op=view_citation&citation_for_view=${p.p}`}
                   class="hover:text-pine-700 hover:underline"
                 >
                   {p.t}
@@ -207,7 +209,7 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
             <p class="mt-1 text-sm">
               <span class="italic text-slate-700">{p.j}</span>
               {p.y && <span class="text-slate-500"> · {p.y}</span>}
-              {p.c > 0 && <span class="text-slate-500"> · {p.c.toLocaleString()} citations</span>}
+              {p.c > 0 && <span class="text-slate-500"> · {p.c.toLocaleString()} {p.c === 1 ? "citation" : "citations"}</span>}
             </p>
             {(p.g.length > 0 || p.u.length > 0) && (
               <p class="mt-1 text-xs text-pine-600">

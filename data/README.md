@@ -27,6 +27,7 @@ ascending (keep this sort; it makes weekly diffs line-scoped).
 | `verified` | `true` once a human has checked the row. |
 | `include_in_reports` | `false` hides the row from all site stats and listings. |
 | `additional_notes` | Free-text curation notes. |
+| `doi` | Digital Object Identifier (bare form, e.g. `10.1029/...`), matched via OpenAlex; best-effort, may be blank. |
 | `pubid` | Google Scholar per-publication id. |
 | `scholar_id_source` | Scholar profile ID the row was first fetched from. |
 | `date_added` | ISO date the row entered the database. |
@@ -41,7 +42,9 @@ author matching; `scholar_id` (blank = no Scholar profile) drives fetching;
 `start_year`/`end_year` bound which publication years count for that person
 (blank `end_year` = still active, and `active` mirrors that); `slug` +
 `profile` (`current` / `archived` / `none`) link names to profile pages on the
-site.
+site. `themes` holds `"; "`-separated research-theme slugs (matching
+`src/content/themes/`); theme pages derive their people and publications from
+this column, so keep it current when faculty arrive or leave.
 
 ### `students.csv`
 
@@ -59,6 +62,7 @@ and human curators share `publications.csv` under these rules:
 
 **The pipeline may only:**
 - update `citations` on existing rows (including `verified` ones);
+- fill an empty `doi` on any row (via `scripts/enrich_dois.py` matching);
 - append new rows, always with `verified=false`, `include_in_reports=true`;
 - never delete rows, never resort beyond the canonical sort, never edit any
   other field on an existing row.

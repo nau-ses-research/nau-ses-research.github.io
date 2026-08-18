@@ -2,9 +2,8 @@
 name: R. Scott Anderson
 last_name: Anderson
 summary: >-
-  Renowned paleoecologist with over 8,300 citations and extensive research on
-  paleoclimate records from the southwestern United States and international
-  sites.
+  Paleoecologist reconstructing southwestern U.S. environmental history from
+  lake sediments, pollen, and fire records.
 interests:
   - Paleoecology
   - Quaternary Sciences
@@ -72,7 +71,7 @@ Dr. R. Scott Anderson is Professor Emeritus in the School of Earth and Sustainab
 
 ## Research Impact
 
-Dr. Anderson has made significant contributions to paleoecology and paleoclimatology with over 8,300 citations of his research. His work has fundamentally advanced understanding of southwestern U.S. environmental history and global paleoclimate patterns.
+Dr. Anderson has made significant contributions to paleoecology and paleoclimatology. His work has fundamentally advanced understanding of southwestern U.S. environmental history and global paleoclimate patterns.
 
 ## Major Research Contributions
 
@@ -188,7 +187,6 @@ Students consistently praise Dr. Anderson for:
 ## Awards and Recognition
 
 - **Professor Emeritus** status recognizing distinguished career contributions
-- **High Citation Impact** - Over 8,300 research citations
 - **International Research Recognition** - Collaborative projects worldwide
 - **Student Teaching Excellence** - Positive evaluations and feedback
 - **NAU Teacher of the Year 2017-18

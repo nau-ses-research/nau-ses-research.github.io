@@ -3,8 +3,7 @@ name: Duan Biggs
 last_name: Biggs
 summary: >-
   Founder of Resilient Conservation and expert in conservation conflict, illegal
-  wildlife trade, nature-based tourism, and community-based conservation with
-  over 8,000 citations.
+  wildlife trade, nature-based tourism, and community-based conservation.
 interests:
   - Conservation Science
   - Wildlife Conservation
@@ -85,7 +84,7 @@ Dr. Duan Biggs is the Associate Professor and Olajos-Goslow Chair of Environment
 
 ## Research Impact
 
-Dr. Biggs has made significant contributions to conservation science with over 8,000 citations of his research. His work has influenced international conservation policy and practice, with direct applications in wildlife management, global conservation policy, tourism resilience, and community-based conservation approaches.
+Dr. Biggs has made significant contributions to conservation science. His work has influenced international conservation policy and practice, with direct applications in wildlife management, global conservation policy, tourism resilience, and community-based conservation approaches.
 
 ## Resilient Conservation Leadership
 
@@ -186,7 +185,6 @@ https://www.resilientconservation.org/soccer
 - NASA – Community Science and Earth Systems Monitoring – Principal Investigator (2024)
 **Olajos-Goslow Chair** - Prestigious endowed professorship at NAU (2021 -
 - **Australian Research Council Early Career Fellowship** (2016)
-- **High Citation Impact** - Over 8,000 research citations
 - **International Policy Recognition** - Invited expert for global conservation initiatives
 - **Media Recognition** - New York Times, Scientific American, the New Scientist and Alaska Beacon contributor
 

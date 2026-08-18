@@ -33,12 +33,6 @@ Research on protecting and restoring riparian ecosystems.
 ### Aquifer Recharge Studies
 Investigating groundwater recharge processes and management strategies.
 
-## Faculty Expertise
-
-- **Abe Springer** - Hydrogeology
-- **Denielle Perry** - Water resources policy
-- **Pranay Ranjan** - Water governance
-
 ## Research Areas
 
 - Hydrologic systems analysis
@@ -75,16 +69,6 @@ Specialization in:
 - Community engagement projects
 - Interdisciplinary collaboration
 - Professional development
-
-## Who We Are
-
-Our faculty includes:
-- **Abe Springer** - Hydrogeology, ecohydrology, karst
-- **Denielle Perry** - Water resources policy and management
-- **Julie Mueller** - Environmental economics
-- **Pranay Ranjan** - Water governance, conservation behavior
-- **Rebecca Best** - Aquatic ecology and evolution
-- **James Sample** - Tectonics, geochemistry, geoscience education
 
 ## Collaborators
 

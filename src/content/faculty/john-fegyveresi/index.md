@@ -65,7 +65,7 @@ Dr. Fegyveresi employs a range of advanced analytical techniques:
 
 ## Research Impact
 
-With 60 publications and over 1,700 citations, Dr. Fegyveresi has made significant contributions to understanding polar climate systems and ice sheet dynamics.
+Dr. Fegyveresi has made significant contributions to understanding polar climate systems and ice sheet dynamics.
 
 ## Graduate Student Supervision
 

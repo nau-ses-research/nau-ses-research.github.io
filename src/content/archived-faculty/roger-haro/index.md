@@ -73,7 +73,7 @@ Dr. Roger Haro serves as Professor and Dean of the College of Environment, Fores
 
 ## Research Impact
 
-Dr. Haro has made significant contributions to freshwater ecology and environmental conservation with over 1,000 citations of his research. His work has informed aquatic ecosystem management and conservation policy across multiple scales.
+Dr. Haro has made significant contributions to freshwater ecology and environmental conservation. His work has informed aquatic ecosystem management and conservation policy across multiple scales.
 
 ## Administrative Leadership
 
@@ -142,7 +142,6 @@ As Dean, Dr. Haro provides leadership for:
 ## Awards and Recognition
 
 - **Dean Appointment** - Recognition of leadership excellence at NAU
-- **Research Impact** - Over 1,000 citations demonstrating scholarly influence
 - **Administrative Excellence** - Successful program development and management
 - **Collaborative Leadership** - Multi-institutional partnership development
 

@@ -31,24 +31,24 @@ Our MS in Geology program offers diverse research opportunities across multiple 
 
 Our geology faculty and students conduct research across four major interdisciplinary research themes:
 
-#### 🌡️ Past & Present Climate Change
+#### Past & Present Climate Change
 - Paleoclimatology and paleoceanography
 - Proxy development and climate reconstruction
 - Modern climate system interactions
 
-#### 🌋 Tectonics & Earth's Interior
+#### Tectonics & Earth's Interior
 - Structural geology and tectonics
 - Geophysics and seismology
 - Metamorphic petrology
 - Regional geological studies
 
-#### 🏔️ Sedimentary Geology & Geomorphology
+#### Sedimentary Geology & Geomorphology
 - Basin analysis and sequence stratigraphy
 - Quaternary geology and surficial processes
 - Landscape evolution and geomorphology
 - Sedimentary geochemistry
 
-#### 💧 Water Management, Policy & Science
+#### Water Management, Policy & Science
 - Hydrogeology and groundwater flow
 - Water-rock interactions
 - Environmental hydrogeology
@@ -204,31 +204,31 @@ We are committed to supporting our graduate students through various funding mec
 
 **For Research and Faculty Information:**
 - Visit our [Faculty Profiles](/faculty-profiles/) to learn more about individual faculty research programs
-- Review current [Graduate Research Opportunities](/grad-opportunities/) for available positions
+- Review current [Graduate Research Opportunities](/student-opportunities/) for available positions
 
 ### Why Choose NAU Geology?
 
-#### **🏔️ Exceptional Location**
+#### **Exceptional Location**
 - Located in the geologically diverse Colorado Plateau
 - Easy access to world-class geological field sites
 - Year-round fieldwork opportunities
 
-#### **🧑‍🏫 Faculty Excellence**
+#### **‍Faculty Excellence**
 - Internationally recognized research programs
 - Low student-to-faculty ratios ensuring personalized mentoring
 - Active collaboration with government agencies and industry
 
-#### **🔬 Research Infrastructure**
+#### **Research Infrastructure**
 - Modern analytical laboratories and instrumentation
 - Extensive rock, mineral, and sediment collections
 - High-performance computing resources
 
-#### **🌟 Professional Development**
+#### **Professional Development**
 - Conference presentation opportunities
 - Professional society involvement
 - Career networking and placement support
 
-#### **🤝 Collaborative Environment**
+#### **Collaborative Environment**
 - Interdisciplinary research opportunities
 - Strong collegial atmosphere among students and faculty
 - Integration with broader SES research community

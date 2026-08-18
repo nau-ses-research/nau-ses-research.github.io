@@ -16,10 +16,6 @@ image_caption: Ecology and Conservation Research
 
 SES faculty lead research programs investigating biodiversity, ecosystem function, the ecological impacts of human activities, and strategies for ecosystem conservation and management.
 
-## Faculty Expertise
-
-We have 10 faculty members with expertise in community ecology, conservation biology, aquatic ecology, soil ecology, and wildlife conservation.
-
 ## Degree Programs
 
 Students can pursue:
@@ -47,19 +43,6 @@ Our research directly supports:
 - Ecosystem restoration projects
 - Environmental policy development
 - Sustainable resource management
-
-## Who We Are
-
-Our faculty includes:
-- **Clare Aslan** - Community ecology, conservation biology
-- **Rebecca Best** - Aquatic ecology and evolution
-- **Duan Biggs** - Conservation innovations
-- **Brett Dickson** - Conservation biology
-- **Nancy Johnson** - Soil ecology
-- **Erika Nowak** - Herpetology
-- **Helen Rowe** - Conservation, restoration ecology
-- **Teki Sankey** - Remote sensing
-- **Sara Souther** - Plant population ecology
 
 ## Collaborators
 

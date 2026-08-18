@@ -61,7 +61,7 @@ https://porterryanc.weebly.com/
 
 ## Research Impact
 
-Dr. Porter has made significant contributions to seismology and geophysics with over 700 citations of his research. His work combines field observations, seismic analysis, and geophysical modeling to understand tectonic and volcanic processes.
+Dr. Porter has made significant contributions to seismology and geophysics. His work combines field observations, seismic analysis, and geophysical modeling to understand tectonic and volcanic processes.
 
 ## Major Research Projects
 

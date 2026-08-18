@@ -16,7 +16,7 @@ function imageFor(id: string) {
   return key ? images[key]() : undefined;
 }
 const dateFmt = (d: Date) =>
-  d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
 ---
 
 <Base
@@ -47,7 +47,7 @@ const dateFmt = (d: Date) =>
             return (
               <a
                 href={`/news/${n.id}/`}
-                class="group grid gap-5 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md sm:grid-cols-[220px_1fr]"
+                class:list={["group grid gap-5 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md", img && "sm:grid-cols-[220px_1fr]"]}
               >
                 {img && (
                   <Image

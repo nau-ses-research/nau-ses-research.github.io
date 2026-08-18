@@ -17,6 +17,7 @@ export const GET: APIRoute = () => {
     g: p.ses_grad_students,
     u: p.ses_undergrad_students,
     p: p.pubid,
+    d: p.doi,
   }));
   return new Response(JSON.stringify(pubs), {
     headers: { "Content-Type": "application/json" },

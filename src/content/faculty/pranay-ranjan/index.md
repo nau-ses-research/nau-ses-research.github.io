@@ -71,7 +71,7 @@ Dr. Pranay Ranjan is an Assistant Professor of Environmental Policy in the Schoo
 
 ## Research Impact
 
-Dr. Ranjan has made significant contributions to the fields of environmental social sciences and agricultural conservation with over 2,100 citations of his research across 35+ publications. His work bridges theory and practice in environmental policy and governance.
+Dr. Ranjan has made significant contributions to the fields of environmental social sciences and agricultural conservation. His work bridges theory and practice in environmental policy and governance.
 
 ## Major Publications
 
@@ -200,7 +200,6 @@ Dr. Ranjan mentors graduate students in the Environmental Science & Policy progr
 
 - **Resilient Conservation Affiliate** - Recognition for conservation research excellence
 - **Multiple Grant Awards** - Successful funding for agricultural conservation research
-- **High Citation Impact** - Over 2,100 citations demonstrating research influence
 - **Policy Impact** - Research directly informing conservation policy development
 
 ## Collaborative Research

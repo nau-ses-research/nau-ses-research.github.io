@@ -50,7 +50,7 @@ Dr. Thomas D. (Todd) Hoisch is a Professor of Geology and former Department Chai
 
 ## Research Accomplishments
 
-Dr. Hoisch has made significant contributions to metamorphic petrology, with over 1,700 citations for his research. His work includes fundamental studies on:
+Dr. Hoisch has made significant contributions to metamorphic petrology. His work includes fundamental studies on:
 
 ### Mineral Equilibria Studies
 - Contributions to understanding mixing properties of octahedrally-coordinated cations in muscovite and biotite

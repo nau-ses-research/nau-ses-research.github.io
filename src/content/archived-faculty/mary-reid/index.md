@@ -3,7 +3,7 @@ name: Mary Reid
 last_name: Reid
 summary: >-
   Leading expert in isotope geochemistry, lithosphere evolution, and analytical
-  geochemistry with over 6,000 citations.
+  geochemistry.
 interests:
   - Geochemistry
   - Petrology
@@ -54,7 +54,6 @@ Dr. Mary Reid is a Professor Emeritus and President's Distinguished Teaching Fel
 
 - **Norman L. Bowen Award**, American Geophysical Union, Volcanology, Geochemistry and Petrology Section
 - **President's Distinguished Teaching Fellow**, Northern Arizona University
-- Over **6,100 citations** for her research contributions
 
 ## Research Impact
 

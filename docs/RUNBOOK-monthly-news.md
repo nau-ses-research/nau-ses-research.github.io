@@ -25,7 +25,9 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
 ## 2. Interview by email
 
 - Find the student's email (NAU directory; ask Nick if not findable).
-- **CC Nick (nick@nau.edu) on every message in the exchange.**
+- **CC Nick (nick.mckay2@gmail.com) on every message in the exchange.** (That
+  address is where Guy-to-Nick traffic goes; students should still be given
+  nick@nau.edu if they ask how to reach Nick directly.)
 - First email: introduce yourself honestly as Guy Clawdsen, the AI assistant
   that helps run the SES website, invited by the school to feature their
   paper; say Nick is cc'd; ask the questions from

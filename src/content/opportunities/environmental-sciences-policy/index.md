@@ -247,31 +247,31 @@ Our graduates are well-prepared for diverse career paths in environmental scienc
 
 **For Faculty Information:**
 - Visit our [Faculty Profiles](/faculty-profiles/) to learn about individual research programs
-- Review current [Graduate Research Opportunities](/grad-opportunities/) for available positions
+- Review current [Graduate Research Opportunities](/student-opportunities/) for available positions
 
 ### Why Choose NAU's Environmental Sciences and Policy Program?
 
-#### **🌲 Exceptional Location**
+#### **Exceptional Location**
 - Located in the environmentally diverse Southwest
 - Access to diverse ecosystems for field research
 - Proximity to major environmental challenges and policy issues
 
-#### **🧑‍🏫 Faculty Excellence**
+#### **‍Faculty Excellence**
 - Internationally recognized researchers and policy experts
 - Strong commitment to student mentoring and success
 - Active collaboration with agencies and policy organizations
 
-#### **🔬 Research Opportunities**
+#### **Research Opportunities**
 - State-of-the-art research facilities and instrumentation
 - Extensive environmental databases and monitoring networks
 - Connections with government agencies and research institutions
 
-#### **🤝 Professional Networks**
+#### **Professional Networks**
 - Strong alumni network in environmental careers
 - Active partnerships with agencies and organizations
 - Regular visits from environmental professionals and policymakers
 
-#### **🌍 Real-World Impact**
+#### **Real-World Impact**
 - Research that informs environmental policy and management
 - Opportunities to contribute to environmental solutions
 - Training that prepares leaders for environmental challenges

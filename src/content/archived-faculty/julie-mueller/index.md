@@ -71,7 +71,7 @@ Dr. Julie M. Mueller is an Associate Professor with joint appointments in The W.
 
 ## Research Impact
 
-Dr. Mueller has made significant contributions to environmental economics with over 425 citations across 23 research publications. Her work directly informs forest management decisions, water policy, and rural economic development strategies across the southwestern United States.
+Dr. Mueller has made significant contributions to environmental economics. Her work directly informs forest management decisions, water policy, and rural economic development strategies across the southwestern United States.
 
 ## Major Research Projects
 

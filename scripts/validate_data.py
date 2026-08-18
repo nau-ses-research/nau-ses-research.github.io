@@ -20,13 +20,17 @@ DATA = REPO / "data"
 PUB_COLS = [
     "id", "title", "authors", "journal", "number", "year", "citations",
     "ses_faculty", "ses_grad_students", "ses_undergrad_students", "verified",
-    "include_in_reports", "additional_notes", "pubid", "scholar_id_source",
-    "date_added", "simple_title",
+    "include_in_reports", "additional_notes", "doi", "pubid",
+    "scholar_id_source", "date_added", "simple_title",
 ]
 FACULTY_COLS = [
     "slug", "first_initial", "first_name", "last_name", "scholar_id",
-    "start_year", "end_year", "active", "profile",
+    "start_year", "end_year", "active", "profile", "themes",
 ]
+THEME_SLUGS = {
+    "climate-change", "ecology-conservation", "environment-society",
+    "sedimentary-geology", "tectonics-interior", "water-management",
+}
 STUDENT_COLS = [
     "first", "last", "full_name", "degree", "program", "advisor",
     "start_year", "status", "notes",
@@ -78,6 +82,9 @@ for i, r in enumerate(faculty, start=2):
         err(f"faculty.csv line {i}: malformed scholar_id {r['scholar_id']!r}")
     if r["profile"] not in ("current", "archived", "none"):
         err(f"faculty.csv line {i}: profile={r['profile']!r}")
+    for t in filter(None, r["themes"].split("; ")):
+        if t not in THEME_SLUGS:
+            err(f"faculty.csv line {i}: unknown theme {t!r}")
 check_bool(faculty, "faculty.csv", "active")
 
 # --------------------------------------------------------------- students.csv

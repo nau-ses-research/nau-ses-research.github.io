@@ -20,7 +20,8 @@
       "Bash(gh run *)",
       "Bash(git commit -q -m 'Redesign nav bar: fix dropdown buttons and brand lockup *)",
       "Bash(git commit -q -m 'Home: photo doorway cards, drop metrics strip; videos on Programs overview *)",
-      "Bash(git commit -q -m 'Tile-based undergrad degrees page; photos on tiles site-wide *)"
+      "Bash(git commit -q -m 'Tile-based undergrad degrees page; photos on tiles site-wide *)",
+      "Bash(git commit -q -m 'Phase 0: make it true, searchable, and alive *)"
     ]
   }
 }

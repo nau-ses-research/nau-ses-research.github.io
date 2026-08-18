@@ -6,9 +6,11 @@ interface Props {
   pub: Publication;
 }
 const { pub } = Astro.props;
-const scholarUrl = pub.pubid
-  ? `https://scholar.google.com/citations?view_op=view_citation&citation_for_view=${pub.pubid}`
-  : undefined;
+const scholarUrl = pub.doi
+  ? `https://doi.org/${pub.doi}`
+  : pub.pubid
+    ? `https://scholar.google.com/citations?view_op=view_citation&citation_for_view=${pub.pubid}`
+    : undefined;
 ---
 
 <article class="border-b border-slate-100 py-4">
@@ -24,7 +26,9 @@ const scholarUrl = pub.pubid
     <span class="italic text-slate-700">{pub.journal}</span>
     {pub.year && <span class="text-slate-500"> · {pub.year}</span>}
     {pub.citations > 0 && (
-      <span class="text-slate-500"> · {pub.citations.toLocaleString()} citations</span>
+      <span class="text-slate-500">
+        {" "}· {pub.citations.toLocaleString()} {pub.citations === 1 ? "citation" : "citations"}
+      </span>
     )}
   </p>
   {(pub.ses_grad_students.length > 0 || pub.ses_undergrad_students.length > 0) && (

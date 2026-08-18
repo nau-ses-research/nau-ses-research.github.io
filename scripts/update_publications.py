@@ -31,6 +31,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from enrich_dois import lookup_doi  # noqa: E402
 from matchers import (  # noqa: E402
     Faculty, Student, is_excluded_journal, match_faculty,
     match_grad_students, simple_title,
@@ -137,6 +138,10 @@ def fill_publication(raw: dict) -> dict:
 
 def build_new_row(cand: dict, details: dict, faculty: list[Faculty],
                   students: list[Student], existing_ids: set[str]) -> dict:
+    try:
+        doi = lookup_doi(cand["title"], str(cand["year"])) or ""
+    except Exception:  # noqa: BLE001 - DOI is best-effort enrichment
+        doi = ""
     fac = match_faculty(details["authors"], faculty)
     # Union with the profiles the pub was fetched from (mirrors the R
     # pipeline, which trusted the source profile even without a text match).
@@ -164,6 +169,7 @@ def build_new_row(cand: dict, details: dict, faculty: list[Faculty],
         "verified": "false",
         "include_in_reports": "true",
         "additional_notes": "",
+        "doi": doi,
         "pubid": details["pubid"],
         "scholar_id_source": cand["scholar_ids"][0],
         "date_added": datetime.date.today().isoformat(),

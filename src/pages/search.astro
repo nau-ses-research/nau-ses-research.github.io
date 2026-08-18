@@ -1,0 +1,39 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+---
+
+<Base title="Search" description="Search every page on the SES site." noindex>
+  <PageHero title="Search" lede="Search pages, programs, resources, and news across the whole site. Looking for a paper? Try the publications explorer instead." />
+  <div class="mx-auto max-w-3xl px-4 py-10">
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <div id="search" class="min-h-64"></div>
+    <p class="mt-8 text-sm text-slate-500">
+      Searching for a publication?
+      <a href="/publications/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">
+        The publications explorer
+      </a>
+      searches all {"1,000+"} papers by title, author, and journal.
+    </p>
+  </div>
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+      if (typeof PagefindUI !== "undefined") {
+        new PagefindUI({ element: "#search", showSubResults: true, autofocus: true });
+      } else {
+        document.getElementById("search").innerHTML =
+          "<p style='color:#64748b'>Search index not available in the dev server; run a production build.</p>";
+      }
+    });
+  </script>
+  <style is:global>
+    #search {
+      --pagefind-ui-primary: #1f4c6f;
+      --pagefind-ui-text: #334155;
+      --pagefind-ui-border: #cbd5e1;
+      --pagefind-ui-background: #ffffff;
+      --pagefind-ui-font: inherit;
+    }
+  </style>
+</Base>

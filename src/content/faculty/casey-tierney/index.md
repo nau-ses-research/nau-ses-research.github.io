@@ -56,7 +56,7 @@ Dr. Casey R. Tierney is an Assistant Teaching Professor in the School of Earth a
 
 ## Research Impact
 
-Dr. Tierney has contributed to advancing understanding of volcanic and magmatic processes, with research that integrates multiple geological disciplines. His work includes 107 citations and demonstrates expertise in field geology, laboratory analysis, and geochemical modeling.
+Dr. Tierney has contributed to advancing understanding of volcanic and magmatic processes, with research that integrates multiple geological disciplines. His work demonstrates expertise in field geology, laboratory analysis, and geochemical modeling.
 
 ## Teaching Excellence
 

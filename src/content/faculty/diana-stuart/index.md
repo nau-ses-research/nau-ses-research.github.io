@@ -53,7 +53,7 @@ Dr. Diana Stuart is a Professor in the School of Earth and Sustainability at Nor
 
 ## Research Impact
 
-Dr. Stuart has written multiple books, over 60 journal articles, and her publications have been cited over 3,000 times. 
+Dr. Stuart has written multiple books, over 60 journal articles. 
 
 ## Major Publications
 

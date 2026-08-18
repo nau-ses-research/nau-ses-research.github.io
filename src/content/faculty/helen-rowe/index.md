@@ -71,7 +71,7 @@ Dr. Helen Rowe is an Associate Research Professor in the School of Earth and Sus
 
 ## Research Impact
 
-Dr. Rowe has made significant contributions to desert ecology and conservation with over 790 citations of her research across 38+ publications. Her work directly informs management practices for invasive species control and ecological restoration in arid environments.
+Dr. Rowe has made significant contributions to desert ecology and conservation. Her work directly informs management practices for invasive species control and ecological restoration in arid environments.
 
 ## Major Research Projects
 
@@ -128,7 +128,6 @@ Dr. Rowe coordinates wildlife monitoring efforts using camera traps as part of t
 
 ### Research Impact
 - 38+ peer-reviewed publications
-- Over 790 research citations
 - Direct application of research to management practices
 - Integration of citizen science with professional research
 

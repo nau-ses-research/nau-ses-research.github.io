@@ -18,6 +18,7 @@ export interface Publication {
   ses_undergrad_students: string[];
   verified: boolean;
   include_in_reports: boolean;
+  doi: string;
   pubid: string;
   date_added: string;
 }
@@ -30,6 +31,7 @@ export interface FacultyRecord {
   scholar_id: string;
   active: boolean;
   profile: "current" | "archived" | "none";
+  themes: string[]; // theme slugs (see src/content/themes)
   label: string; // "D Kaufman" — matches ses_faculty entries
 }
 
@@ -60,6 +62,7 @@ export function getPublications(): Publication[] {
       ses_undergrad_students: splitMulti(r.ses_undergrad_students),
       verified: r.verified === "true",
       include_in_reports: r.include_in_reports === "true",
+      doi: r.doi ?? "",
       pubid: r.pubid,
       date_added: r.date_added,
     }))
@@ -79,6 +82,7 @@ export function getFacultyRecords(): FacultyRecord[] {
     scholar_id: r.scholar_id,
     active: r.active === "true",
     profile: r.profile as FacultyRecord["profile"],
+    themes: splitMulti(r.themes),
     label: `${r.first_initial} ${r.last_name}`,
   }));
   return _faculty;

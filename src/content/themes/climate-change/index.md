@@ -23,12 +23,6 @@ Understanding climate system changes and interactions between the atmosphere, oc
 - How does the terrestrial biosphere respond to climate change?
 - What are the impacts of climate change on human societies?
 
-## Key Faculty
-
-- **Michael Erb** - Paleoclimatology
-- **Darrell Kaufman** - Paleoclimate reconstruction
-- **Nicholas McKay** - Climate dynamics
-
 ## Notable Projects
 
 ### Southern Alaska Lakes
@@ -69,18 +63,6 @@ Our research informs:
 - Climate modeling experience
 - International research collaborations
 - Conference presentations
-
-## Who We Are
-
-Our faculty includes:
-- **Jordon Bright** - Geochronology, ostracods, stable isotopes
-- **Michael Erb** - Paleoclimatology, climate modeling, data assimilation
-- **John Fegyveresi** - Paleoclimatology, glaciology, ice-core science
-- **Deborah Huntzinger** - Land-atmosphere carbon dynamics
-- **Darrell Kaufman** - Paleoclimate, quaternary geochronology
-- **Nicholas McKay** - Climate dynamics, paleoclimate
-- **Cody Routson** - Extreme hydroclimate events
-- **R. Scott Anderson** - Paleoecology, forest history (Emeritus)
 
 ## Collaborators
 

@@ -66,7 +66,7 @@ Dr. Francisco Apen is an Assistant Professor in the School of Earth and Sustaina
 
 ## Research Impact
 
-Dr. Apen has made significant contributions to understanding continental crust evolution with over 125 citations across his research publications. His work provides crucial insights into how Earth's earliest continents formed and evolved over billions of years.
+Dr. Apen has made significant contributions to understanding continental crust evolution. His work provides crucial insights into how Earth's earliest continents formed and evolved over billions of years.
 
 ## Major Research Projects
 

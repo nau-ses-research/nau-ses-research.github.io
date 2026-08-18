@@ -19,7 +19,7 @@ This comprehensive doctoral program emphasizes the integration of **earth scienc
 
 Students can focus their doctoral studies in one of five emphasis areas, each designed to provide deep expertise while maintaining interdisciplinary connections:
 
-#### 1. 🌍 Earth Systems
+#### 1. Earth Systems
 **Focus Areas:**
 - Geosciences and earth system processes
 - Energy resources and extraction
@@ -34,7 +34,7 @@ Students can focus their doctoral studies in one of five emphasis areas, each de
 - Structural geology and tectonics
 - Hydrogeology and groundwater systems
 
-#### 2. 🌡️ Climate & Environmental Change
+#### 2. Climate & Environmental Change
 **Focus Areas:**
 - Climate variability and long-term climate change
 - Ecosystem impacts of environmental change
@@ -49,7 +49,7 @@ Students can focus their doctoral studies in one of five emphasis areas, each de
 - Ecosystem ecology and biogeochemistry
 - Environmental modeling and prediction
 
-#### 3. 🌱 Ecology, Evolution & Conservation Biology
+#### 3. Ecology, Evolution & Conservation Biology
 **Focus Areas:**
 - Ecological processes and ecosystem functioning
 - Evolutionary biology and population genetics
@@ -64,7 +64,7 @@ Students can focus their doctoral studies in one of five emphasis areas, each de
 - Population and community ecology
 - Molecular ecology and phylogenetics
 
-#### 4. 🏛️ Environment & Society
+#### 4. Environment & Society
 **Focus Areas:**
 - Environmental policy analysis and development
 - Sustainability science and practice
@@ -79,7 +79,7 @@ Students can focus their doctoral studies in one of five emphasis areas, each de
 - Social-ecological systems analysis
 - Environmental justice and ethics
 
-#### 5. ⚙️ Engineering Sustainable Systems
+#### 5. Engineering Sustainable Systems
 **Focus Areas:**
 - Sustainable development and design
 - Environmental engineering processes
@@ -291,35 +291,35 @@ Our PhD graduates are prepared for diverse career paths in academia, government,
 
 **For Faculty Information:**
 - Visit our [Faculty Profiles](/faculty-profiles/) to learn about individual research programs
-- Review current [Graduate Research Opportunities](/grad-opportunities/) for available positions
+- Review current [Graduate Research Opportunities](/student-opportunities/) for available positions
 
 ### Why Choose NAU's Earth Sciences and Environmental Sustainability PhD?
 
-#### **🔬 Research Excellence**
+#### **Research Excellence**
 - Faculty publish in top-tier journals (Nature, Science, PNAS, etc.)
 - Strong record of external funding from major agencies
 - Cutting-edge research facilities and instrumentation
 - Collaborative research environment across disciplines
 
-#### **🏔️ Unique Location**
+#### **Unique Location**
 - Access to diverse Southwest ecosystems and geological formations
 - Proximity to major environmental challenges and research sites
 - Partnerships with regional agencies and organizations
 - Field research opportunities year-round
 
-#### **🤝 Collaborative Environment**
+#### **Collaborative Environment**
 - Small program size ensures personalized attention
 - Strong peer mentoring and support networks
 - Regular interaction with faculty and visiting researchers
 - Integration across emphasis areas and research themes
 
-#### **🌟 Professional Development**
+#### **Professional Development**
 - Comprehensive training in research methods and analysis
 - Teaching and communication skills development
 - Conference presentation and publication opportunities
 - Preparation for diverse career paths
 
-#### **🌍 Real-World Impact**
+#### **Real-World Impact**
 - Research that addresses pressing environmental challenges
 - Policy-relevant findings and applications
 - Community engagement and outreach opportunities

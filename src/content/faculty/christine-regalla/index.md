@@ -43,7 +43,7 @@ Dr. Christine Regalla is an Associate Professor in the School of Earth and Susta
 
 ## Research Impact
 
-Dr. Regalla has made significant contributions to structural geology and active tectonics, with over 1,100 citations and 70 research works. Her research focusses on subduciton forearcs and zones of distributed deformation, including field areas in Japan, Cascadia and the Western US.
+Dr. Regalla has made significant contributions to structural geology and active tectonics. Her research focuses on subduction forearcs and zones of distributed deformation, including field areas in Japan, Cascadia and the Western US.
 
 ## Research Approach
 

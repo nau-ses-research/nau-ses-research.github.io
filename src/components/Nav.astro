@@ -5,6 +5,7 @@ import wordmark from "../assets/nau-wordmark.png";
 const research = [
   { name: "Research Impact", href: "/research/" },
   { name: "Publications", href: "/publications/" },
+  { name: "Student Research", href: "/research/students/" },
   { name: "Research Themes", href: "/research-themes/" },
   { name: "About the Data", href: "/about/" },
 ];
@@ -102,6 +103,14 @@ const currentActive = path.startsWith("/current-students/");
       <li><a href="/news/" class:list={["nav-link", isActive("/news/") && "nav-active"]}>News</a></li>
       <li><a href="/alumni/" class:list={["nav-link", isActive("/alumni/") && "nav-active"]}>Alumni</a></li>
       <li><a href="/contact/" class:list={["nav-link", isActive("/contact/") && "nav-active"]}>Contact</a></li>
+      <li>
+        <a href="/search/" class:list={["nav-link", isActive("/search/") && "nav-active"]} aria-label="Search the site">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="8.5" cy="8.5" r="5.5" />
+            <path d="m13 13 4.5 4.5" stroke-linecap="round" />
+          </svg>
+        </a>
+      </li>
     </ul>
 
     <!-- Mobile toggle -->
@@ -125,6 +134,7 @@ const currentActive = path.startsWith("/current-students/");
     <a href="/news/" class="mobile-link">News</a>
     <a href="/alumni/" class="mobile-link">Alumni</a>
     <a href="/contact/" class="mobile-link">Contact</a>
+    <a href="/search/" class="mobile-link">Search</a>
   </div>
 </header>
 

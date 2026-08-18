@@ -69,7 +69,7 @@ Dr. Taylor Joyal is an Associate Teaching Professor in the School of Earth and S
 
 ## Research Impact
 
-Dr. Joyal has made significant contributions to fluvial geomorphology and hydrology with over 560 citations across 22+ publications. His work directly informs watershed management, restoration practice, and post-fire debris flow characterization.
+Dr. Joyal has made significant contributions to fluvial geomorphology and hydrology. His work directly informs watershed management, restoration practice, and post-fire debris flow characterization.
 
 ## Major Research Areas
 

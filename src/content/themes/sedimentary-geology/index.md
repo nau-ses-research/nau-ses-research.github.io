@@ -16,12 +16,6 @@ image_caption: Sedimentary Geology and Geomorphology Research
 
 Studying Earth's marine and terrestrial surfaces using field surveys, remote sensing, lab analyses, and numerical modeling. Our research spans diverse environments including deserts, mountains, rivers, and coastal areas.
 
-## Key Faculty
-
-- **Michael Smith** - Geochronology
-- **Taylor Joyal** - Geomorphology
-- **Christine Regalla** - Structural geology
-
 ## Research Environments
 
 Our studies focus on:
@@ -71,13 +65,6 @@ Students gain experience in:
 - Quaternary geology
 - Coastal processes
 - Fluvial systems
-
-## Who We Are
-
-Our faculty includes:
-- **Michael Smith** - Geochronology of sedimentary basins, deep time stratigraphy, marine geomorphology
-- **Taylor Joyal** - Geomorphology
-- **Christine Regalla** - Structural geology, active tectonics, tectonic geomorphology
 
 ## Collaborators
 

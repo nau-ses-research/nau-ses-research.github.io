@@ -46,7 +46,7 @@ Dr. Abraham "Abe" Springer is a Professor of hydrogeology and ecohydrogeology in
 
 ## Research Impact
 
-Dr. Springer has made significant contributions to understanding springs ecosystems, with over 2,600 citations of his research. His work has advanced knowledge of how these unique ecosystems function and their critical role in biodiversity conservation.
+Dr. Springer has made significant contributions to understanding springs ecosystems. His work has advanced knowledge of how these unique ecosystems function and their critical role in biodiversity conservation.
 
 ## Major Research Contributions
 

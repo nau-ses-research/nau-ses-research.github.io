@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ses-nau.org/sitemap-index.xml

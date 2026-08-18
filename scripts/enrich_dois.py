@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+"""Add DOIs to data/publications.csv by matching titles against OpenAlex.
+
+Run from the repo root:  python3 scripts/enrich_dois.py [--limit N] [--dry-run]
+
+Conservative matching: a candidate is accepted only when the normalized
+(alphanumeric, lowercased) titles are equal, or one contains the other and
+they differ by less than 20 characters, AND the publication year matches
+within one year. Rows that already have a doi are skipped, so this is safe
+to re-run and is also called for new rows by the weekly pipeline.
+
+Uses the anonymous OpenAlex pool with a descriptive User-Agent; be patient.
+"""
+
+import argparse
+import csv
+import json
+import re
+import sys
+import time
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+PUB_CSV = REPO / "data" / "publications.csv"
+UA = ("ses-nau.org publications pipeline "
+      "(https://github.com/nau-ses-research/nau-ses-research.github.io)")
+
+
+def norm(title: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", title.lower())
+
+
+def _accept(want: str, got: str, year: str, got_year) -> bool:
+    if not got:
+        return False
+    contained = (want in got or got in want) and abs(len(want) - len(got)) < 20
+    if want != got and not contained:
+        return False
+    if year and got_year and abs(int(year) - int(got_year)) > 1:
+        return False
+    return True
+
+
+def lookup_doi(title: str, year: str) -> str | None:
+    """Crossref first (fast, tolerant of our volume), OpenAlex as fallback."""
+    want = norm(title)
+    q = urllib.parse.quote(title[:250])
+    # --- Crossref
+    url = f"https://api.crossref.org/works?query.bibliographic={q}&rows=3"
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            items = json.load(r)["message"]["items"]
+        for it in items:
+            got = norm((it.get("title") or [""])[0])
+            got_year = (it.get("issued", {}).get("date-parts", [[None]]) or [[None]])[0][0]
+            if _accept(want, got, year, got_year):
+                return it.get("DOI") or None
+    except Exception as e:  # noqa: BLE001 - fall through to OpenAlex
+        print(f"  crossref error ({type(e).__name__})", flush=True)
+        time.sleep(2)
+    # --- OpenAlex fallback
+    url = f"https://api.openalex.org/works?search={q}&per-page=3"
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            results = json.load(r).get("results", [])
+    except Exception as e:  # noqa: BLE001 - network lookups fail; skip row
+        print(f"  openalex error ({type(e).__name__}); skipping", flush=True)
+        time.sleep(2)
+        return None
+    for w in results:
+        got = norm(w.get("title") or w.get("display_name") or "")
+        if _accept(want, got, year, w.get("publication_year")):
+            doi = (w.get("doi") or "").replace("https://doi.org/", "")
+            return doi or None
+    return None
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--limit", type=int, help="only process the first N missing-DOI rows")
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    with open(PUB_CSV, newline="") as f:
+        reader = csv.DictReader(f)
+        cols = list(reader.fieldnames or [])
+        rows = list(reader)
+    if "doi" not in cols:
+        cols.insert(cols.index("pubid"), "doi")
+        for r in rows:
+            r["doi"] = ""
+
+    todo = [r for r in rows if not r.get("doi") and r["title"]]
+    if args.limit:
+        todo = todo[: args.limit]
+    print(f"{len(rows)} rows; {len(todo)} to look up", flush=True)
+
+    def write_out():
+        if args.dry_run:
+            return
+        with open(PUB_CSV, "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=cols, quoting=csv.QUOTE_MINIMAL)
+            w.writeheader()
+            w.writerows(rows)
+
+    found = 0
+    for i, r in enumerate(todo, 1):
+        doi = lookup_doi(r["title"], r["year"])
+        if doi:
+            r["doi"] = doi
+            found += 1
+        if i % 25 == 0:
+            print(f"  {i}/{len(todo)} processed, {found} DOIs found", flush=True)
+        if i % 100 == 0:
+            write_out()  # checkpoint so an interrupted run keeps its progress
+        time.sleep(0.2)
+
+    print(f"Done: {found}/{len(todo)} matched "
+          f"({sum(1 for r in rows if r.get('doi'))} total rows now have DOIs)", flush=True)
+    if args.dry_run:
+        print("Dry run: not writing.")
+        return 0
+    write_out()
+    print(f"Wrote {PUB_CSV}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

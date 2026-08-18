@@ -3,8 +3,7 @@ name: Robert L. Sanford Jr.
 last_name: Jr.
 summary: >-
   Expert in paleoecology, pyrogenic carbon research, and biogeochemical
-  signatures of human land use across diverse ecosystems with over 8,500
-  citations.
+  signatures of human land use across diverse ecosystems and land-use change.
 interests:
   - Biogeochemistry
   - Ecosystem Ecology
@@ -70,7 +69,7 @@ Dr. Robert L. Sanford Jr., known as "Buck," is a Professor Emeritus in the Schoo
 
 ## Research Impact
 
-Dr. Sanford has made groundbreaking contributions to biogeochemistry and ecosystem ecology with over 8,500 citations of his research across 70+ publications. His work has fundamentally advanced understanding of fire history, land use impacts, and ecosystem biogeochemistry.
+Dr. Sanford has made groundbreaking contributions to biogeochemistry and ecosystem ecology. His work has fundamentally advanced understanding of fire history, land use impacts, and ecosystem biogeochemistry.
 
 ## Awards and Recognition
 

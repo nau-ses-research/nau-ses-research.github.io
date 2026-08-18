@@ -52,7 +52,7 @@ Dr. Michael Elliot Smith is an Associate Professor in the School of Earth and Su
 
 ## Research Impact
 
-Dr. Smith has made significant contributions to sedimentary geology and paleoclimatology with over 2,900 citations of his research. His work on ancient climate records and sedimentary basin analysis has advanced geologic understanding of past climate change and landscape evolution.
+Dr. Smith has made significant contributions to sedimentary geology and paleoclimatology. His work on ancient climate records and sedimentary basin analysis has advanced geologic understanding of past climate change and landscape evolution.
 
 ## Sedimentary Research Group
 
@@ -104,7 +104,6 @@ Dr. Smith mentors graduate students in:
 ## Awards and Recognition
 
 - **NSF Research Grants** - Multiple competitive awards
-- **High Citation Impact** - Over 2,900 research citations
 - **GSA Fellow** - Geological Society of America
 - **William Dickinson Award recipient** - SEPM mid-career medal
 
