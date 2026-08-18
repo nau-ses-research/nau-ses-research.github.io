@@ -6,7 +6,10 @@ import VideoGrid from "../../components/VideoGrid.astro";
 
 export async function getStaticPaths() {
   const opps = await getCollection("opportunities");
-  return opps.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+  // undergraduate-degrees has a dedicated tile-based route
+  return opps
+    .filter((entry) => entry.id !== "undergraduate-degrees")
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 
 const { entry } = Astro.props;

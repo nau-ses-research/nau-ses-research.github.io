@@ -7,6 +7,17 @@ import heroImg from "../assets/media/home.jpg";
 import undergradImg from "../assets/media/undergraduate-field-experience.jpg";
 import gradImg from "../assets/media/graduate-research.jpg";
 import researchImg from "../assets/media/sediment-cores.jpg";
+import ugProgramsImg from "../assets/media/coders.jpg";
+import gradProgramsImg from "../assets/media/graduate-graduation.jpg";
+import certProgramsImg from "../assets/media/climate-science-work.jpg";
+
+const themeImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/themes/*/featured.{jpg,jpeg,png}",
+);
+async function themeImageFor(id: string) {
+  const key = Object.keys(themeImages).find((k) => k.includes(`/${id}/`));
+  return key ? (await themeImages[key]()).default : undefined;
+}
 const themes = (await getCollection("themes")).sort(
   (a, b) => a.data.weight - b.data.weight || a.data.title.localeCompare(b.data.title),
 );
@@ -19,16 +30,19 @@ const programs = [
     name: "Undergraduate Degrees",
     href: "/student-opportunities/undergraduate-degrees/",
     text: "Comprehensive programs in Geology, Environmental Sciences, and Sustainability Studies preparing students for professional careers.",
+    image: ugProgramsImg,
   },
   {
     name: "Graduate Degrees",
     href: "/student-opportunities/graduate-degrees/",
     text: "Advanced research programs including Master's and PhD options in cutting-edge Earth and environmental sciences.",
+    image: gradProgramsImg,
   },
   {
     name: "Certificate Programs",
     href: "/student-opportunities/",
     text: "Specialized training for career advancement in high-demand environmental and sustainability fields.",
+    image: certProgramsImg,
   },
 ];
 ---
@@ -164,13 +178,22 @@ const programs = [
       {programs.map((p) => (
         <a
           href={p.href}
-          class="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+          class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
         >
-          <h3 class="font-serif text-xl font-semibold text-pine-900 group-hover:text-pine-700">
-            {p.name}
-          </h3>
-          <p class="mt-2 text-sm text-slate-600">{p.text}</p>
-          <p class="mt-4 text-sm font-medium text-gold-600 group-hover:text-gold-500">Learn more →</p>
+          <Image
+            src={p.image}
+            alt=""
+            width={800}
+            height={480}
+            class="aspect-[5/3] w-full object-cover transition group-hover:scale-[1.02]"
+          />
+          <span class="block p-6">
+            <h3 class="font-serif text-xl font-semibold text-pine-900 group-hover:text-pine-700">
+              {p.name}
+            </h3>
+            <p class="mt-2 text-sm text-slate-600">{p.text}</p>
+            <p class="mt-4 text-sm font-medium text-gold-600 group-hover:text-gold-500">Learn more →</p>
+          </span>
         </a>
       ))}
     </div>
@@ -181,17 +204,33 @@ const programs = [
     <div class="mx-auto max-w-6xl px-4 py-16">
       <h2 class="text-center font-serif text-3xl font-bold text-pine-900">Research Themes</h2>
       <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {themes.map((t) => (
-          <a
-            href={`/research-themes/${t.id}/`}
-            class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md"
-          >
-            <h3 class="font-serif text-lg font-semibold text-pine-900 group-hover:text-pine-700">
-              {t.data.title}
-            </h3>
-            <p class="mt-2 line-clamp-2 text-sm text-slate-600">{t.data.summary}</p>
-          </a>
-        ))}
+        {await Promise.all(
+          themes.map(async (t) => {
+            const img = await themeImageFor(t.id);
+            return (
+              <a
+                href={`/research-themes/${t.id}/`}
+                class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
+              >
+                {img && (
+                  <Image
+                    src={img}
+                    alt=""
+                    width={640}
+                    height={360}
+                    class="aspect-video w-full object-cover transition group-hover:scale-[1.02]"
+                  />
+                )}
+                <span class="block p-5">
+                  <h3 class="font-serif text-lg font-semibold text-pine-900 group-hover:text-pine-700">
+                    {t.data.title}
+                  </h3>
+                  <p class="mt-2 line-clamp-2 text-sm text-slate-600">{t.data.summary}</p>
+                </span>
+              </a>
+            );
+          }),
+        )}
       </div>
     </div>
   </section>
