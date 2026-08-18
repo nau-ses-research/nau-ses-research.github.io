@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import PageHero from "../../components/PageHero.astro";
+import VideoGrid from "../../components/VideoGrid.astro";
 
 export async function getStaticPaths() {
   const opps = await getCollection("opportunities");
@@ -21,24 +22,10 @@ const shortTitle = entry.data.title.split("|")[0].trim();
         <h2 class="font-serif text-2xl font-semibold text-pine-900">
           Meet our programs
         </h2>
-        <p class="mt-1 text-sm text-slate-600">
+        <p class="mt-1 mb-4 text-sm text-slate-600">
           Hear from our students and faculty about what it's like to study here.
         </p>
-        <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {entry.data.videos.map((v) => (
-            <figure>
-              <iframe
-                class="aspect-video w-full rounded-xl shadow-sm"
-                src={`https://www.youtube-nocookie.com/embed/${v.youtube_id}`}
-                title={v.title}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              />
-              <figcaption class="mt-2 text-sm font-medium text-pine-800">{v.title}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <VideoGrid videos={entry.data.videos} />
       </section>
     )}
     <div class="prose-ses max-w-none">

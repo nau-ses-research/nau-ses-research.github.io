@@ -18,7 +18,8 @@
       "Bash(git commit -q -m 'Add Guy'\\\\''s first-run onboarding doc and --max-new-rows override *)",
       "Bash(git commit -q -m 'Recruitment updates from Clare: drop ESS BA, add program videos and banner *)",
       "Bash(gh run *)",
-      "Bash(git commit -q -m 'Redesign nav bar: fix dropdown buttons and brand lockup *)"
+      "Bash(git commit -q -m 'Redesign nav bar: fix dropdown buttons and brand lockup *)",
+      "Bash(git commit -q -m 'Home: photo doorway cards, drop metrics strip; videos on Programs overview *)"
     ]
   }
 }

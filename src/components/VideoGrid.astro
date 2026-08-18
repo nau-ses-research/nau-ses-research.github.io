@@ -1,0 +1,23 @@
+---
+/** Responsive grid of embedded YouTube videos (privacy-enhanced host). */
+interface Props {
+  videos: { title: string; youtube_id: string }[];
+}
+const { videos } = Astro.props;
+---
+
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {videos.map((v) => (
+    <figure>
+      <iframe
+        class="aspect-video w-full rounded-xl shadow-sm"
+        src={`https://www.youtube-nocookie.com/embed/${v.youtube_id}`}
+        title={v.title}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      />
+      <figcaption class="mt-2 text-sm font-medium text-pine-800">{v.title}</figcaption>
+    </figure>
+  ))}
+</div>

@@ -3,6 +3,13 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import Base from "../../layouts/Base.astro";
 import PageHero from "../../components/PageHero.astro";
+import VideoGrid from "../../components/VideoGrid.astro";
+
+const videos = [
+  { title: "BS in Geology", youtube_id: "ZXtzmhcfcgM" },
+  { title: "BS in Environmental Sciences", youtube_id: "a-O6IL6LEgA" },
+  { title: "BS in Environmental & Sustainability Studies", youtube_id: "mkoW-hc7fas" },
+];
 
 // The nav-linked opportunity pages (weight < 90); loose program pages
 // (geology-ms etc.) are linked from within the degree pages themselves.
@@ -29,6 +36,15 @@ const shortTitle = (t: string) => t.split("|")[0].trim();
     lede="From bachelor's degrees to PhDs, professional certificates to funded fellowships: find your path in earth and sustainability science at NAU."
   />
   <div class="mx-auto max-w-6xl px-4 py-12">
+    <section class="mb-12">
+      <h2 class="font-serif text-2xl font-semibold text-pine-900">See yourself here</h2>
+      <p class="mt-1 mb-4 text-sm text-slate-600">
+        Hear from our students and faculty about studying earth and sustainability science at NAU.
+      </p>
+      <VideoGrid videos={videos} />
+    </section>
+
+    <h2 class="mb-6 font-serif text-2xl font-semibold text-pine-900">Degrees, certificates &amp; fellowships</h2>
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {await Promise.all(
         opps.map(async (o) => {
