@@ -69,7 +69,18 @@ def fetch_faculty_pubs(faculty_rows: list[dict], current_year: int) -> tuple[lis
     pubs: list[dict] = []
     failed: list[str] = []
     targets = [r for r in faculty_rows if r["scholar_id"]]
+    processed = 0
     for row in targets:
+        # Circuit breaker: if the first several profiles ALL fail, Scholar is
+        # blocking this IP; stop burning requests instead of grinding through
+        # the whole roster (returning processed-count makes the success-rate
+        # guard abort the run).
+        if processed >= 5 and len(failed) == processed:
+            log(f"  CIRCUIT BREAKER: first {processed} profiles all failed; "
+                "Scholar is blocking this IP. Stopping the fetch early; "
+                "wait several hours before retrying.")
+            return pubs, processed, failed
+        processed += 1
         label = f"{row['first_initial']} {row['last_name']}"
         start = int(row["start_year"]) if row["start_year"] else 0
         end = int(row["end_year"]) if row["end_year"] else current_year
@@ -108,7 +119,7 @@ def fetch_faculty_pubs(faculty_rows: list[dict], current_year: int) -> tuple[lis
             json.dump([{k: v for k, v in p.items() if k != "_raw"}
                        for p in pubs if p["scholar_id"] == row["scholar_id"]], f)
         time.sleep(random.uniform(2, 5))
-    return pubs, len(targets), failed
+    return pubs, processed, failed
 
 
 def fill_publication(raw: dict) -> dict:
