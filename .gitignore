@@ -67,3 +67,6 @@ update_summary.md
 content/.DS_Store
 content/.DS_Store
 .DS_Store
+
+# pipeline run lock
+.update_publications.lock

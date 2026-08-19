@@ -36,6 +36,10 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
    so even an interrupted run leaves usable counts. Progress lines
    (`[N/M candidates processed]`) show where a long run is.
 
+   **Never run two instances at once.** The pipeline refuses to start if
+   another instance holds the run lock; if you see that abort, tail the
+   existing run's log instead of retrying. A slow run is normal.
+
    If Scholar blocks mid-run (repeated fetch errors, abort on the
    success-rate guard): **wait at least 3–6 hours before retrying**; repeated
    immediate retries extend the block. geckodriver/Firefox version warnings

@@ -177,7 +177,32 @@ def build_new_row(cand: dict, details: dict, faculty: list[Faculty],
     }
 
 
+def acquire_run_lock():
+    """Refuse to run if another pipeline instance is already running.
+
+    Guards against stacked runs (an impatient operator or agent starting a
+    second instance because the first looks slow), which hammer Scholar in
+    parallel and get the IP blocked. The lock is a flock on a file in the
+    repo root; it releases automatically when the process exits or dies.
+    """
+    import fcntl
+
+    lock_file = open(REPO / ".update_publications.lock", "w")
+    try:
+        fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        log("ABORT: another update_publications.py instance is already "
+            "running (lock held on .update_publications.lock). Do NOT start "
+            "parallel runs; tail the existing run's log instead. If you are "
+            "certain no other instance exists, a stale lock cannot occur "
+            "(flock releases on process death), so find and check the other "
+            "process: pgrep -fa update_publications.py")
+        sys.exit(1)
+    return lock_file  # keep a reference so the lock lives as long as we do
+
+
 def main() -> int:
+    _lock = acquire_run_lock()
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true",
                     help="report changes but do not modify data/publications.csv")
