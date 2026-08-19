@@ -21,7 +21,10 @@
       "Bash(git commit -q -m 'Redesign nav bar: fix dropdown buttons and brand lockup *)",
       "Bash(git commit -q -m 'Home: photo doorway cards, drop metrics strip; videos on Programs overview *)",
       "Bash(git commit -q -m 'Tile-based undergrad degrees page; photos on tiles site-wide *)",
-      "Bash(git commit -q -m 'Phase 0: make it true, searchable, and alive *)"
+      "Bash(git commit -q -m 'Phase 0: make it true, searchable, and alive *)",
+      "Bash(python3 -c \"import ast; ast.parse\\(open\\('scripts/update_publications.py'\\).read\\(\\)\\); print\\('syntax ok'\\)\")",
+      "Bash(git commit -q -m 'Harden pipeline for long catch-up runs \\(from Guy'\\\\''s first-run report\\) *)",
+      "Bash(git commit -q -m 'Analytics, SEO, and DOI second pass *)"
     ]
   }
 }

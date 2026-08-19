@@ -1,6 +1,6 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import PubItem from "./PubItem.astro";
 import { facultyBySlug, publicationsByFaculty } from "../lib/publications";
@@ -21,12 +21,35 @@ const recent = [...pubs]
 const explorerUrl = record
   ? `/publications/?faculty=${encodeURIComponent(record.label)}`
   : "/publications/";
+
+const ogPortrait = portrait
+  ? new URL((await getImage({ src: portrait, width: 1200 })).src, Astro.site).href
+  : undefined;
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: entry.data.name,
+  description: entry.data.summary,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  ...(entry.data.interests.length > 0 && { knowsAbout: entry.data.interests }),
+  ...(record?.scholar_id && {
+    sameAs: [`https://scholar.google.com/citations?user=${record.scholar_id}`],
+  }),
+  affiliation: {
+    "@type": "CollegeOrUniversity",
+    name: "School of Earth and Sustainability, Northern Arizona University",
+    url: "https://ses-nau.org/",
+  },
+};
 ---
 
 <Base
   title={entry.data.name}
   description={entry.data.summary ?? `${entry.data.name}, School of Earth and Sustainability, Northern Arizona University`}
   noindex={archived}
+  ogImage={ogPortrait}
+  jsonLd={personJsonLd}
 >
   <div class="bg-pine-900 py-8">
     <div class="mx-auto max-w-6xl px-4">

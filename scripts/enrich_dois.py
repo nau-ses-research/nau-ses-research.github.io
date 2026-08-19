@@ -14,6 +14,7 @@ Uses the anonymous OpenAlex pool with a descriptive User-Agent; be patient.
 
 import argparse
 import csv
+import difflib
 import json
 import re
 import sys
@@ -43,9 +44,39 @@ def _accept(want: str, got: str, year: str, got_year) -> bool:
     return True
 
 
-def lookup_doi(title: str, year: str) -> str | None:
+def _accept_loose(want: str, got: str, year: str, got_year,
+                  first_author_surname: str, got_surnames: set[str]) -> bool:
+    """Second-pass matching: fuzzier titles, but the year must agree within
+    one AND our first author's surname must appear among the candidate's
+    authors. The author check is what makes the looseness safe."""
+    if not got or not first_author_surname:
+        return False
+    if not (year and got_year and abs(int(year) - int(got_year)) <= 1):
+        return False
+    if first_author_surname not in got_surnames:
+        return False
+    if want in got or got in want:
+        return True
+    return difflib.SequenceMatcher(None, want, got).ratio() >= 0.93
+
+
+def first_surname(authors: str) -> str:
+    """Normalized surname of the first author from our 'LP Marshall, ...'
+    or 'Marshall, LP' style strings."""
+    first = (authors or "").split(",")[0].strip()
+    if not first:
+        return ""
+    parts = first.split()
+    # 'LP Marshall' -> Marshall; bare 'Marshall' (from 'Marshall, LP') -> itself
+    cand = parts[-1] if len(parts) > 1 else parts[0]
+    return re.sub(r"[^a-z]", "", cand.lower())
+
+
+def lookup_doi(title: str, year: str, authors: str = "",
+               loose: bool = False) -> str | None:
     """Crossref first (fast, tolerant of our volume), OpenAlex as fallback."""
     want = norm(title)
+    surname = first_surname(authors) if loose else ""
     q = urllib.parse.quote(title[:250])
     # --- Crossref
     url = f"https://api.crossref.org/works?query.bibliographic={q}&rows=3"
@@ -58,6 +89,13 @@ def lookup_doi(title: str, year: str) -> str | None:
             got_year = (it.get("issued", {}).get("date-parts", [[None]]) or [[None]])[0][0]
             if _accept(want, got, year, got_year):
                 return it.get("DOI") or None
+            if loose:
+                got_surnames = {
+                    re.sub(r"[^a-z]", "", (a.get("family") or "").lower())
+                    for a in it.get("author", [])
+                }
+                if _accept_loose(want, got, year, got_year, surname, got_surnames):
+                    return it.get("DOI") or None
     except Exception as e:  # noqa: BLE001 - fall through to OpenAlex
         print(f"  crossref error ({type(e).__name__})", flush=True)
         time.sleep(2)
@@ -83,6 +121,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, help="only process the first N missing-DOI rows")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--loose", action="store_true",
+                    help="second-pass matching: fuzzier titles, but requires "
+                         "year agreement AND first-author surname match")
     args = ap.parse_args()
 
     with open(PUB_CSV, newline="") as f:
@@ -109,7 +150,7 @@ def main() -> int:
 
     found = 0
     for i, r in enumerate(todo, 1):
-        doi = lookup_doi(r["title"], r["year"])
+        doi = lookup_doi(r["title"], r["year"], r.get("authors", ""), loose=args.loose)
         if doi:
             r["doi"] = doi
             found += 1

@@ -10,15 +10,50 @@ interface Props {
   description?: string;
   /** Set on archived-profile pages so search engines skip them. */
   noindex?: boolean;
+  /** Absolute URL for the social-share image; defaults to the site card. */
+  ogImage?: string;
+  /** Extra JSON-LD object rendered alongside the site-wide organization. */
+  jsonLd?: Record<string, unknown>;
 }
 
 const {
   title,
   description = "The School of Earth and Sustainability at Northern Arizona University: research and education in earth sciences, environmental sustainability, geology, climate science, and conservation.",
   noindex = false,
+  ogImage = new URL("/og-default.jpg", Astro.site).href,
+  jsonLd,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollegeOrUniversity",
+  name: "School of Earth and Sustainability, Northern Arizona University",
+  alternateName: "NAU SES",
+  url: "https://ses-nau.org/",
+  logo: "https://ses-nau.org/icon.png",
+  sameAs: [
+    "https://nau.edu/school-of-earth-and-sustainability/",
+    "https://www.instagram.com/nau_ses/",
+    "https://www.facebook.com/NAUSESAZ/",
+    "https://www.youtube.com/@nauschoolofearthsustainability",
+    "https://nau-ses.bsky.social/",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Room A108, Ashurst Bldg, 624 S Knoles Dr",
+    addressLocality: "Flagstaff",
+    addressRegion: "AZ",
+    postalCode: "86011",
+    addressCountry: "US",
+  },
+  parentOrganization: {
+    "@type": "CollegeOrUniversity",
+    name: "Northern Arizona University",
+    url: "https://nau.edu/",
+  },
+};
 const fullTitle =
   title === "Home"
     ? "School of Earth and Sustainability | Northern Arizona University"
@@ -40,6 +75,12 @@ const fullTitle =
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="School of Earth and Sustainability, NAU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1J3WD3SGQN"></script>
     <script is:inline>
@@ -63,5 +104,18 @@ const fullTitle =
       <slot />
     </main>
     <Footer />
+    <!-- Conversion events: clicks toward applying (see roadmap Phase 1) -->
+    <script is:inline>
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+        if (!a || typeof gtag !== "function") return;
+        if (a.href.indexOf("nau.edu/apply") !== -1) {
+          gtag("event", "apply_click", {
+            link_url: a.href,
+            page_path: location.pathname,
+          });
+        }
+      });
+    </script>
   </body>
 </html>

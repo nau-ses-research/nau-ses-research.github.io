@@ -15,21 +15,68 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const shortTitle = entry.data.title.split("|")[0].trim();
+const video = entry.data.videos.length === 1 ? entry.data.videos[0] : undefined;
+
+const programJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOccupationalProgram",
+  name: shortTitle,
+  description: entry.data.summary,
+  provider: {
+    "@type": "CollegeOrUniversity",
+    name: "School of Earth and Sustainability, Northern Arizona University",
+    url: "https://ses-nau.org/",
+  },
+  url: new URL(Astro.url.pathname, Astro.site).href,
+};
 ---
 
-<Base title={shortTitle} description={entry.data.summary}>
+<Base
+  title={shortTitle}
+  description={entry.data.summary}
+  jsonLd={programJsonLd}
+  ogImage={video ? `https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg` : undefined}
+>
   <PageHero title={shortTitle} lede={entry.data.summary} />
-  {entry.data.videos.length === 1 && (
+  {video && (
     <div class="bg-pine-950">
       <div class="mx-auto max-w-5xl px-4 py-10">
         <iframe
+          id="program-video"
           class="aspect-video w-full rounded-xl shadow-2xl"
-          src={`https://www.youtube-nocookie.com/embed/${entry.data.videos[0].youtube_id}`}
-          title={entry.data.videos[0].title}
+          src={`https://www.youtube-nocookie.com/embed/${video.youtube_id}?enablejsapi=1`}
+          title={video.title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         />
       </div>
+      <script is:inline>
+        (function () {
+          var iframe = document.getElementById("program-video");
+          if (!iframe) return;
+          var tag = document.createElement("script");
+          tag.src = "https://www.youtube.com/iframe_api";
+          document.head.appendChild(tag);
+          var fired = false;
+          window.onYouTubeIframeAPIReady = function () {
+            new YT.Player(iframe, {
+              events: {
+                onStateChange: function (ev) {
+                  if (ev.data === YT.PlayerState.PLAYING && !fired) {
+                    fired = true;
+                    if (typeof gtag === "function") {
+                      gtag("event", "video_play", {
+                        video_title: iframe.title,
+                        page_path: location.pathname,
+                      });
+                    }
+                  }
+                },
+              },
+            });
+          };
+        })();
+      </script>
     </div>
   )}
   <div class="mx-auto max-w-4xl px-4 py-10">
