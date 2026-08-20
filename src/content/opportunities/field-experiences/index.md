@@ -50,11 +50,12 @@ measure sections, run instruments, and defend interpretations on the outcrop.
 ## Farther afield
 
 ![Students on a boat in the Santorini caldera](santorini-boat.jpg)
-*Surveying the Santorini caldera by boat, NAU in Greece.*
+*Surveying the Santorini caldera by boat, from the NAU in Greece program.*
 
-Summer programs take SES students abroad, including **NAU in Greece**, where
-geology students map volcanic stratigraphy on Santorini and study the
-archaeology of the Aegean's eruptions firsthand.
+Field courses have at times ranged well beyond the Southwest; past programs
+took geology students as far as Greece to map the volcanic stratigraphy of
+Santorini. Where courses travel varies year to year with the curriculum;
+the constant is that the destinations are working field sites, not tours.
 
 ## The point
 

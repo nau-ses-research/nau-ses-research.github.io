@@ -34,7 +34,7 @@ const news = (await getCollection("news"))
 
 // The pulse: what's new this week, derived at build time
 const latestPubs = [...getPublications()]
-  .sort((a, b) => b.date_added.localeCompare(a.date_added) || (b.year ?? 0) - (a.year ?? 0))
+  .sort((a, b) => b.date_added.localeCompare(a.date_added) || b.citations - a.citations || (b.year ?? 0) - (a.year ?? 0))
   .slice(0, 3);
 const upcoming = await getUpcomingEvents(3);
 
