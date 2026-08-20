@@ -42,7 +42,10 @@
       "Bash(git pull *)",
       "Bash(git commit -q -m 'Dashboard: show 2026 in progress, exclude IPCC outliers from charts; first-author filter *)",
       "Bash(git commit -q -m 'Roster changes: restore 5 faculty to current, archive 4 who left *)",
-      "Bash(python3 ~/GitHub/obsidianVault/scripts/sync-ses-faculty-notes.py)"
+      "Bash(python3 ~/GitHub/obsidianVault/scripts/sync-ses-faculty-notes.py)",
+      "Bash(npm run *)",
+      "Bash(python3 -c ' *)",
+      "Bash(git commit -q -m 'Matchers: handle Crossref '\\\\''First M. Last'\\\\'' author style *)"
     ]
   }
 }

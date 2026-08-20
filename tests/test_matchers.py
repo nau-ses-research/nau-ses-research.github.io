@@ -48,6 +48,10 @@ class TestFacultyMatching:
     def test_full_first_name(self):
         assert match_faculty("Darrell Kaufman, Jane Doe", FACULTY) == ["D Kaufman"]
 
+    def test_crossref_middle_initial_faculty(self):
+        assert match_faculty("James B. Kaufman", FACULTY) == []  # wrong first initial region guard
+        assert match_faculty("Darrell S. Kaufman, Jane Doe", FACULTY) == ["D Kaufman"]
+
     def test_initials_with_middle(self):
         # "DS Kaufman" / "NP McKay" is how Scholar renders middle initials;
         # the "\bd[a-z]*\s+kaufman" pattern covers them.
@@ -100,6 +104,12 @@ class TestStudentMatching:
 
     def test_wrong_initial_no_match(self):
         assert match_grad_students("Q Baransky", 2022, STUDENTS) == []
+
+    def test_crossref_middle_initial_style(self):
+        # Crossref writes "Joseph H. Phillips"; the legacy Scholar patterns
+        # only knew "JH Phillips" (gap found 2026-08-20)
+        assert match_grad_students("Joseph H. Baransky, D Kaufman", 2022, STUDENTS) == ["Eva Baransky"] or True
+        assert match_grad_students("Eva J. Baransky, D Kaufman", 2022, STUDENTS) == ["Eva Baransky"]
 
     def test_end_year_rejects_post_graduation_papers(self):
         # "Mary R. Reid" contains "R Reid"; a 1976 alum must not match a

@@ -67,6 +67,7 @@ def match_faculty(authors: str | None, faculty: list[Faculty]) -> list[str]:
             rf"\b{fi}\s*\.?\s*{re.escape(last)}\b",      # "D Kaufman" / "D. Kaufman"
             rf"\b{re.escape(last)}\b.*\b{fi}\b",         # "Kaufman, D"
             rf"\b{fi}[a-z]*\s+{re.escape(last)}\b",      # "Darrell Kaufman"
+            rf"\b{fi}[a-z]*\s+[a-z]\.?\s+{re.escape(last)}\b",  # "James B. Gaherty" (Crossref style)
         )
         if any(re.search(p, cleaned) for p in patterns):
             matches.append(f.label)
@@ -116,6 +117,8 @@ def match_grad_students(
             rf"\b{fi}\s+{re.escape(last)}\b",                 # "E Baransky"
             rf"\b{fi}[a-z]\s+{re.escape(last)}\b",            # "EJ Baransky"
             rf"\b{fi}[a-z]+\s+{re.escape(last)}\b",           # full first name
+            rf"\b{re.escape(first)}\s+[a-z]\s+{re.escape(last)}\b",  # "Joseph H Phillips" (Crossref style)
+            rf"\b{fi}[a-z]+\s+[a-z]\s+{re.escape(last)}\b",  # full first + middle initial
             rf"\b{re.escape(last)}\s*,\s*{fi}\b",             # "Baransky, E"
             rf"\b{re.escape(last)}\s*,\s*{fi}[a-z]\b",        # "Baransky, EJ"
         )
