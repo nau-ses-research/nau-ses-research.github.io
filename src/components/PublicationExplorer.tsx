@@ -22,6 +22,7 @@ interface Pub {
 
 interface Props {
   facultyOptions: { label: string; name: string }[];
+  facultyMeta: Record<string, { n: string; u?: string }>;
   minYear: number;
   maxYear: number;
 }
@@ -41,7 +42,7 @@ function readParams() {
   };
 }
 
-export default function PublicationExplorer({ facultyOptions, minYear, maxYear }: Props) {
+export default function PublicationExplorer({ facultyOptions, facultyMeta, minYear, maxYear }: Props) {
   const [pubs, setPubs] = useState<Pub[] | null>(null);
   const [error, setError] = useState(false);
   const [search, setSearch] = useState("");
@@ -229,6 +230,25 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
             {(p.g.length > 0 || p.u.length > 0) && (
               <p class="mt-1 text-xs text-pine-600">
                 Student authors: {[...p.g, ...p.u].join(", ")}
+              </p>
+            )}
+            {p.f.length > 0 && (
+              <p class="mt-0.5 text-xs text-gold-700">
+                SES faculty:{" "}
+                {p.f.map((label, i) => {
+                  const meta = facultyMeta[label];
+                  const name = meta?.n ?? label;
+                  return (
+                    <span key={label}>
+                      {i > 0 && ", "}
+                      {meta?.u ? (
+                        <a href={meta.u} class="hover:underline">{name}</a>
+                      ) : (
+                        name
+                      )}
+                    </span>
+                  );
+                })}
               </p>
             )}
           </article>

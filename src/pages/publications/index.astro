@@ -20,6 +20,20 @@ const facultyOptions = getFacultyRecords()
     label: r.label,
     name: `${r.first_name || r.first_initial} ${r.last_name}`,
   }));
+
+// label -> display name + profile url, for the faculty byline on each result
+const facultyMeta: Record<string, { n: string; u?: string }> = {};
+for (const r of getFacultyRecords()) {
+  if (!labelsInData.has(r.label)) continue;
+  facultyMeta[r.label] = {
+    n: r.first_name ? `${r.first_name} ${r.last_name}` : r.label,
+    ...(r.profile === "current"
+      ? { u: `/faculty-profiles/${r.slug}/` }
+      : r.profile === "archived"
+        ? { u: `/archived-profiles/${r.slug}/` }
+        : {}),
+  };
+}
 ---
 
 <Base
@@ -34,6 +48,7 @@ const facultyOptions = getFacultyRecords()
     <PublicationExplorer
       client:load
       facultyOptions={facultyOptions}
+      facultyMeta={facultyMeta}
       minYear={minYear}
       maxYear={maxYear}
     />

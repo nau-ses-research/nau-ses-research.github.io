@@ -1,11 +1,24 @@
 ---
 /** One publication in a server-rendered list (profile pages, news). */
-import type { Publication } from "../lib/publications";
+import { getFacultyRecords, type Publication } from "../lib/publications";
 
 interface Props {
   pub: Publication;
 }
 const { pub } = Astro.props;
+
+const facultyByLabel = new Map(getFacultyRecords().map((r) => [r.label, r]));
+const facAuthors = pub.ses_faculty.map((label) => {
+  const rec = facultyByLabel.get(label);
+  const name = rec && rec.first_name ? `${rec.first_name} ${rec.last_name}` : label;
+  const url =
+    rec?.profile === "current"
+      ? `/faculty-profiles/${rec.slug}/`
+      : rec?.profile === "archived"
+        ? `/archived-profiles/${rec.slug}/`
+        : undefined;
+  return { name, url };
+});
 const scholarUrl = pub.doi
   ? `https://doi.org/${pub.doi}`
   : pub.pubid
@@ -34,6 +47,20 @@ const scholarUrl = pub.doi
   {(pub.ses_grad_students.length > 0 || pub.ses_undergrad_students.length > 0) && (
     <p class="mt-1 text-xs text-pine-600">
       Student authors: {[...pub.ses_grad_students, ...pub.ses_undergrad_students].join(", ")}
+    </p>
+  )}
+  {facAuthors.length > 0 && (
+    <p class="mt-0.5 text-xs text-gold-700">
+      SES faculty: {facAuthors.map((f, i) => (
+        <>
+          {i > 0 && ", "}
+          {f.url ? (
+            <a href={f.url} class="hover:underline">{f.name}</a>
+          ) : (
+            f.name
+          )}
+        </>
+      ))}
     </p>
   )}
 </article>

@@ -45,7 +45,8 @@
       "Bash(python3 ~/GitHub/obsidianVault/scripts/sync-ses-faculty-notes.py)",
       "Bash(npm run *)",
       "Bash(python3 -c ' *)",
-      "Bash(git commit -q -m 'Matchers: handle Crossref '\\\\''First M. Last'\\\\'' author style *)"
+      "Bash(git commit -q -m 'Matchers: handle Crossref '\\\\''First M. Last'\\\\'' author style *)",
+      "Bash(git commit -q -m 'List SES faculty authors below student authors on publication items *)"
     ]
   }
 }
