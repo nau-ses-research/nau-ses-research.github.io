@@ -17,6 +17,7 @@ interface Pub {
   u: string[]; // undergrads
   p: string; // scholar pubid
   d: string; // doi
+  sf: boolean; // student is first author
 }
 
 interface Props {
@@ -33,6 +34,7 @@ function readParams() {
     search: q.get("q") ?? "",
     faculty: q.get("faculty") ?? "",
     students: q.get("students") === "1",
+    firstAuthor: q.get("first") === "1",
     from: q.get("from") ?? "",
     to: q.get("to") ?? "",
     sort: (q.get("sort") as SortKey) ?? "year",
@@ -45,6 +47,7 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
   const [search, setSearch] = useState("");
   const [faculty, setFaculty] = useState("");
   const [students, setStudents] = useState(false);
+  const [firstAuthor, setFirstAuthor] = useState(false);
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [sort, setSort] = useState<SortKey>("year");
@@ -55,6 +58,7 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
     setSearch(p.search);
     setFaculty(p.faculty);
     setStudents(p.students);
+    setFirstAuthor(p.firstAuthor);
     setFrom(p.from);
     setTo(p.to);
     setSort(p.sort === "citations" ? "citations" : "year");
@@ -71,12 +75,13 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
     if (search) q.set("q", search);
     if (faculty) q.set("faculty", faculty);
     if (students) q.set("students", "1");
+    if (firstAuthor) q.set("first", "1");
     if (from) q.set("from", from);
     if (to) q.set("to", to);
     if (sort !== "year") q.set("sort", sort);
     const qs = q.toString();
     history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
-  }, [search, faculty, students, from, to, sort]);
+  }, [search, faculty, students, firstAuthor, from, to, sort]);
 
   const filtered = useMemo(() => {
     if (!pubs) return [];
@@ -88,6 +93,7 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
       if (p.y === null && (from || to)) return false;
       if (faculty && !p.f.includes(faculty)) return false;
       if (students && p.g.length === 0 && p.u.length === 0) return false;
+      if (firstAuthor && !p.sf) return false;
       if (needle) {
         const hay = `${p.t} ${p.a} ${p.j}`.toLowerCase();
         if (!hay.includes(needle)) return false;
@@ -100,7 +106,7 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
         : (a, b) => b.c - a.c || (b.y ?? 0) - (a.y ?? 0),
     );
     return out;
-  }, [pubs, search, faculty, students, from, to, sort]);
+  }, [pubs, search, faculty, students, firstAuthor, from, to, sort]);
 
   const totalCites = useMemo(
     () => filtered.reduce((s, p) => s + p.c, 0),
@@ -170,6 +176,15 @@ export default function PublicationExplorer({ facultyOptions, minYear, maxYear }
               class="h-4 w-4 accent-pine-700"
             />
             <span class="text-slate-600">Student authors only</span>
+          </label>
+          <label class="flex items-center gap-1.5">
+            <input
+              type="checkbox"
+              checked={firstAuthor}
+              onChange={(e) => setFirstAuthor((e.target as HTMLInputElement).checked)}
+              class="h-4 w-4 accent-pine-700"
+            />
+            <span class="text-slate-600">Student first author</span>
           </label>
           <label class="ml-auto flex items-center gap-1.5">
             <span class="text-slate-600">Sort by</span>

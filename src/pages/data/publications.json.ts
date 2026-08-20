@@ -3,7 +3,7 @@
  * ~1,100 records; regenerated at every build from data/publications.csv.
  */
 import type { APIRoute } from "astro";
-import { getPublications } from "../../lib/publications";
+import { getPublications, studentFirstAuthor } from "../../lib/publications";
 
 export const GET: APIRoute = () => {
   const pubs = getPublications().map((p) => ({
@@ -18,6 +18,7 @@ export const GET: APIRoute = () => {
     u: p.ses_undergrad_students,
     p: p.pubid,
     d: p.doi,
+    sf: studentFirstAuthor(p),
   }));
   return new Response(JSON.stringify(pubs), {
     headers: { "Content-Type": "application/json" },

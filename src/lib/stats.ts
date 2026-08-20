@@ -5,6 +5,16 @@
  */
 import { getPublications, type Publication } from "./publications";
 
+/**
+ * Excluded from the time-series CHARTS only (never from tables, lists,
+ * or headline totals): mega-cited IPCC syntheses whose citation counts
+ * swamp the y-axis and hide every other year's signal.
+ */
+export const CHART_EXCLUDED_IDS = new Set([
+  "technicalsummary-2021", // IPCC AR6 WG1 Technical Summary (23k+ citations)
+  "intergovernmentalpanelonclimatechangeipc-2023", // IPCC AR6 SYR SPM
+]);
+
 export interface YearSeries {
   year: number;
   faculty: number; // pubs with >=1 SES faculty author
@@ -71,7 +81,7 @@ export function getStats(): SiteStats {
   }
   for (const p of pubs) {
     const s = years.get(p.year!);
-    if (!s) continue;
+    if (!s || CHART_EXCLUDED_IDS.has(p.id)) continue;
     if (p.ses_faculty.length > 0) {
       s.faculty++;
       s.citations += p.citations;

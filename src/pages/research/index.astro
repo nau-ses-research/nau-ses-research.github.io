@@ -7,11 +7,11 @@ import HBarChart from "../../components/HBarChart.astro";
 import { getStats, fmt } from "../../lib/stats";
 
 const s = getStats();
-// exclude the current partial year from the time series so the last bar
-// doesn't misread as a collapse
+// the current year is included as a visibly partial bar (see BarChart's
+// partialLast treatment) rather than hidden
 const nowYear = new Date().getFullYear();
-const byYear = s.byYear.filter((r) => r.year < nowYear);
-const years = byYear.map((r) => r.year);
+const byYear = s.byYear;
+const years = byYear.map((r) => (r.year === nowYear ? `${r.year}*` : r.year));
 const sinceYears = nowYear - 2009;
 ---
 
@@ -61,6 +61,7 @@ const sinceYears = nowYear - 2009;
         ]}
         seriesNames={["Faculty only", "With student authors"]}
         stacked
+        partialLast
       />
       <BarChart
         title="Citations to each year's publications"
@@ -68,8 +69,15 @@ const sinceYears = nowYear - 2009;
         labels={years}
         series={[byYear.map((r) => r.citations)]}
         seriesNames={["Citations"]}
+        partialLast
       />
     </div>
+
+    <p class="mt-3 text-xs text-slate-500">
+      *{nowYear} is in progress. Charts exclude two IPCC synthesis reports whose
+      {"25,000+"} combined citations would swamp the scale; they are included in
+      every total, list, and table on this site.
+    </p>
 
     <div class="mt-6">
       <HBarChart

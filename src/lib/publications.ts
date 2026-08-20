@@ -93,6 +93,23 @@ export function publicationsByFaculty(label: string): Publication[] {
   return getPublications().filter((p) => p.ses_faculty.includes(label));
 }
 
+/** Heuristic: is the paper's first author one of its tagged SES students? */
+export function studentFirstAuthor(p: Publication): boolean {
+  const students = [...p.ses_grad_students, ...p.ses_undergrad_students];
+  if (students.length === 0 || !p.authors) return false;
+  const first = p.authors.split(",")[0].toLowerCase();
+  const tokens = first.replace(/[^a-z\s-]/g, "").split(/[\s-]+/).filter(Boolean);
+  return students.some((name) => {
+    const parts = name.toLowerCase().split(/\s+/);
+    const surname = parts[parts.length - 1];
+    const initial = parts[0]?.[0];
+    return (
+      tokens.includes(surname) &&
+      (!initial || tokens.some((t) => t !== surname && t.startsWith(initial)))
+    );
+  });
+}
+
 /** Map profile slug -> faculty record (for profile pages). */
 export function facultyBySlug(slug: string): FacultyRecord | undefined {
   return getFacultyRecords().find((r) => r.slug === slug);
