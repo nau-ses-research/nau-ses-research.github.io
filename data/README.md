@@ -35,6 +35,19 @@ ascending (keep this sort; it makes weekly diffs line-scoped).
 
 Multi-value fields use `"; "` separators, never bare commas.
 
+**Line endings:** `publications.csv` uses CRLF (`\r\n`) line endings because
+the pipeline writes with Python's csv defaults. Any other tool editing the
+file must preserve CRLF; writing LF rewrites every line and turns a
+one-row fix into a whole-file diff.
+
+**Surname collisions:** the matcher tags faculty by `first_initial` +
+`last_name`, so common surnames can mis-tag papers by unrelated authors
+(a 2026-08 audit found 8 such rows tagged for "R Anderson" that belonged
+to three different Andersons elsewhere). When reviewing new rows, if a tag
+looks off-field for that person, check the paper's real author list via its
+DOI (Crossref gives full given names) before trusting it; fix by editing
+the row and noting the reason in `additional_notes`.
+
 ### `faculty.csv`
 
 One row per faculty member ever mined. `first_initial` + `last_name` drive
@@ -52,8 +65,9 @@ Graduate student roster (snapshot of the old Google Sheet, now hand-maintained
 here). `status` is `current` or `alumni`; `start_year` rejects author matches on
 papers published before the student plausibly started (alumni heuristic:
 PhD = graduation year - 5, MS = - 2, otherwise - 3), and `end_year`
-(graduation year, alumni only) rejects matches more than one year after
-graduation, so long-gone alumni can't be tagged on new papers.
+(graduation year, alumni only) rejects matches more than **three years**
+after graduation (Nick's policy, 2026-08: covers thesis-lag papers while
+keeping long-gone alumni off new papers).
 Faculty who also appear in old rosters (Nicholas McKay, Lisa Thompson) are
 excluded and must stay excluded.
 
