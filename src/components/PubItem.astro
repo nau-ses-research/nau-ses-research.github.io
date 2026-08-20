@@ -44,23 +44,30 @@ const scholarUrl = pub.doi
       </span>
     )}
   </p>
-  {(pub.ses_grad_students.length > 0 || pub.ses_undergrad_students.length > 0) && (
-    <p class="mt-1 text-xs text-pine-600">
-      Student authors: {[...pub.ses_grad_students, ...pub.ses_undergrad_students].join(", ")}
-    </p>
-  )}
-  {facAuthors.length > 0 && (
-    <p class="mt-0.5 text-xs text-gold-700">
-      SES faculty: {facAuthors.map((f, i) => (
+  {(pub.ses_grad_students.length > 0 || pub.ses_undergrad_students.length > 0 || facAuthors.length > 0) && (
+    <p class="mt-1.5 flex flex-wrap items-center gap-1.5">
+      {(pub.ses_grad_students.length > 0 || pub.ses_undergrad_students.length > 0) && (
         <>
-          {i > 0 && ", "}
-          {f.url ? (
-            <a href={f.url} class="hover:underline">{f.name}</a>
-          ) : (
-            f.name
+          <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Students</span>
+          {[...pub.ses_grad_students, ...pub.ses_undergrad_students].map((n) => (
+            <span class="rounded-full bg-pine-50 px-2 py-0.5 text-xs text-pine-700">{n}</span>
+          ))}
+        </>
+      )}
+      {facAuthors.length > 0 && (
+        <>
+          <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Faculty</span>
+          {facAuthors.map((f) =>
+            f.url ? (
+              <a href={f.url} class="rounded-full bg-gold-50 px-2 py-0.5 text-xs text-gold-700 hover:bg-gold-300/40">
+                {f.name}
+              </a>
+            ) : (
+              <span class="rounded-full bg-gold-50 px-2 py-0.5 text-xs text-gold-700">{f.name}</span>
+            ),
           )}
         </>
-      ))}
+      )}
     </p>
   )}
 </article>

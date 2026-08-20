@@ -227,28 +227,44 @@ export default function PublicationExplorer({ facultyOptions, facultyMeta, minYe
               {p.y && <span class="text-slate-500"> · {p.y}</span>}
               {p.c > 0 && <span class="text-slate-500"> · {p.c.toLocaleString()} {p.c === 1 ? "citation" : "citations"}</span>}
             </p>
-            {(p.g.length > 0 || p.u.length > 0) && (
-              <p class="mt-1 text-xs text-pine-600">
-                Student authors: {[...p.g, ...p.u].join(", ")}
-              </p>
-            )}
-            {p.f.length > 0 && (
-              <p class="mt-0.5 text-xs text-gold-700">
-                SES faculty:{" "}
-                {p.f.map((label, i) => {
-                  const meta = facultyMeta[label];
-                  const name = meta?.n ?? label;
-                  return (
-                    <span key={label}>
-                      {i > 0 && ", "}
-                      {meta?.u ? (
-                        <a href={meta.u} class="hover:underline">{name}</a>
-                      ) : (
-                        name
-                      )}
+            {(p.g.length > 0 || p.u.length > 0 || p.f.length > 0) && (
+              <p class="mt-1.5 flex flex-wrap items-center gap-1.5">
+                {(p.g.length > 0 || p.u.length > 0) && (
+                  <>
+                    <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                      Students
                     </span>
-                  );
-                })}
+                    {[...p.g, ...p.u].map((n) => (
+                      <span key={n} class="rounded-full bg-pine-50 px-2 py-0.5 text-xs text-pine-700">
+                        {n}
+                      </span>
+                    ))}
+                  </>
+                )}
+                {p.f.length > 0 && (
+                  <>
+                    <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                      Faculty
+                    </span>
+                    {p.f.map((label) => {
+                      const meta = facultyMeta[label];
+                      const name = meta?.n ?? label;
+                      return meta?.u ? (
+                        <a
+                          key={label}
+                          href={meta.u}
+                          class="rounded-full bg-gold-50 px-2 py-0.5 text-xs text-gold-700 hover:bg-gold-300/40"
+                        >
+                          {name}
+                        </a>
+                      ) : (
+                        <span key={label} class="rounded-full bg-gold-50 px-2 py-0.5 text-xs text-gold-700">
+                          {name}
+                        </span>
+                      );
+                    })}
+                  </>
+                )}
               </p>
             )}
           </article>
