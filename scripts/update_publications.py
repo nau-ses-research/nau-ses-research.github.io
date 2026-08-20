@@ -87,8 +87,11 @@ def fetch_faculty_pubs(faculty_rows: list[dict], current_year: int) -> tuple[lis
         got = None
         for attempt in range(3):
             try:
-                author = scholarly.search_author_id(row["scholar_id"])
-                got = scholarly.fill(author, sections=["publications"])
+                got = run_with_timeout(
+                    lambda: scholarly.fill(
+                        scholarly.search_author_id(row["scholar_id"]),
+                        sections=["publications"]),
+                    timeout_s=180)
                 break
             except Exception as e:  # noqa: BLE001 - Scholar scraping is messy
                 log(f"  {label}: attempt {attempt + 1} failed ({type(e).__name__}: {e})")
@@ -147,13 +150,14 @@ def fill_publication(raw: dict) -> dict:
     }
 
 
-def fill_with_timeout(raw: dict, timeout_s: int = 90) -> dict:
-    """Run fill_publication with a hard wall-clock cap.
+def run_with_timeout(fn, timeout_s: int):
+    """Run fn() with a hard wall-clock cap.
 
     scholarly can park inside a CAPTCHA handler that waits up to 7 DAYS for
     a human (observed live via py-spy: WebDriverWait, timeout=604800). A
-    daemon thread + join(timeout) bounds every candidate; a timed-out fetch
-    is treated like any other failed fill and deferred to the next run.
+    daemon thread + join(timeout) bounds every Scholar call; a timed-out
+    call raises like any other failure and gets the normal retry/defer
+    treatment.
     """
     import threading
 
@@ -161,7 +165,7 @@ def fill_with_timeout(raw: dict, timeout_s: int = 90) -> dict:
 
     def target():
         try:
-            result["value"] = fill_publication(raw)
+            result["value"] = fn()
         except Exception as e:  # noqa: BLE001 - surfaced to caller below
             result["error"] = e
 
@@ -169,10 +173,14 @@ def fill_with_timeout(raw: dict, timeout_s: int = 90) -> dict:
     t.start()
     t.join(timeout_s)
     if t.is_alive():
-        raise TimeoutError(f"detail fetch exceeded {timeout_s}s (CAPTCHA wait?)")
+        raise TimeoutError(f"Scholar call exceeded {timeout_s}s (CAPTCHA wait?)")
     if "error" in result:
         raise result["error"]
     return result["value"]
+
+
+def fill_with_timeout(raw: dict, timeout_s: int = 90) -> dict:
+    return run_with_timeout(lambda: fill_publication(raw), timeout_s)
 
 
 def build_new_row(cand: dict, details: dict, faculty: list[Faculty],
