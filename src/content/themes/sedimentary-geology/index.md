@@ -9,7 +9,7 @@ interests:
   - Geomorphology
   - Surface Processes
   - Landscape Evolution
-image_caption: Sedimentary Geology and Geomorphology Research
+image_caption: Reading tilted strata on a geology field trip
 ---
 
 ## Research Focus

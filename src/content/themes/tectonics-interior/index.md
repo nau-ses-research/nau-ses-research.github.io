@@ -9,7 +9,7 @@ interests:
   - Structural Geology
   - Geophysics
   - Earth's Interior
-image_caption: Tectonics and Earth Interior Research
+image_caption: Geophysical fieldwork among the cinder cones of the San Francisco volcanic field
 ---
 
 ## Research Focus

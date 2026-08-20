@@ -5,7 +5,7 @@ summary: >-
   sciences, and sustainability studies preparing students for professional
   careers and graduate study.
 weight: 10
-image_caption: SES Undergraduate Programs
+image_caption: Environmental science undergraduates with their experiments at Oak Creek
 ---
 
 This entry's frontmatter feeds the Programs overview card and navigation; the

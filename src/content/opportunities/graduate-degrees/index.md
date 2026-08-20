@@ -4,7 +4,7 @@ summary: >-
   Advanced graduate degree programs including Master's and PhD options in
   geology, environmental sciences, climate science, and sustainability research.
 weight: 20
-image_caption: SES Graduate Programs
+image_caption: Graduate researchers reviewing field data at a backcountry camp
 ---
 
 ## Graduate Degree Programs

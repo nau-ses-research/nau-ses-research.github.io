@@ -3,12 +3,12 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import AnnouncementBanner from "../components/AnnouncementBanner.astro";
-import { getPublications } from "../lib/publications";
+import { getPublications, studentFirstAuthor } from "../lib/publications";
 import { getUpcomingEvents, fmtEventDate } from "../lib/events";
 import heroImg from "../assets/media/place/hero-mogollon-rim.jpg";
 import undergradImg from "../assets/media/undergraduate-field-experience.jpg";
 import gradImg from "../assets/media/graduate-research.jpg";
-import researchImg from "../assets/media/sediment-cores.jpg";
+import researchImg from "../assets/media/core-processing.jpg";
 import canyonRiverImg from "../assets/media/place/grand-canyon-river.jpg";
 import sedonaClassImg from "../assets/media/place/sedona-class.jpg";
 import streamEcologyImg from "../assets/media/place/stream-ecology.jpg";
@@ -32,9 +32,20 @@ const news = (await getCollection("news"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-// The pulse: what's new this week, derived at build time
-const latestPubs = [...getPublications()]
-  .sort((a, b) => b.date_added.localeCompare(a.date_added) || b.citations - a.citations || (b.year ?? 0) - (a.year ?? 0))
+// The pulse: what's new this week, derived at build time.
+// Within a batch of same-day additions, student-led papers come first,
+// then papers with any student author, then citations break remaining ties.
+const allPubs = getPublications();
+const studentRank = (p: (typeof allPubs)[number]) =>
+  studentFirstAuthor(p) ? 0 : p.ses_grad_students.length + p.ses_undergrad_students.length > 0 ? 1 : 2;
+const latestPubs = [...allPubs]
+  .sort(
+    (a, b) =>
+      b.date_added.localeCompare(a.date_added) ||
+      studentRank(a) - studentRank(b) ||
+      b.citations - a.citations ||
+      (b.year ?? 0) - (a.year ?? 0),
+  )
   .slice(0, 3);
 const upcoming = await getUpcomingEvents(3);
 
@@ -162,7 +173,7 @@ const programs = [
       >
         <Image
           src={researchImg}
-          alt="Sediment cores from lake-bed drilling"
+          alt="Researchers processing a fresh sediment core on a mountain lakeshore"
           width={800}
           height={480}
           class="aspect-[5/3] w-full object-cover transition group-hover:scale-[1.02]"

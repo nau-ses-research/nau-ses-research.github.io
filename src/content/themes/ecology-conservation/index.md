@@ -9,7 +9,7 @@ interests:
   - Conservation
   - Biodiversity
   - Wildlife Management
-image_caption: Ecology and Conservation Research
+image_caption: Surveying grassland plots near the San Francisco Peaks
 ---
 
 ## Research Focus

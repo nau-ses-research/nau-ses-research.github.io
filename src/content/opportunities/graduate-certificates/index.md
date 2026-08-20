@@ -4,7 +4,7 @@ summary: >-
   Skills-based online certificate program designed to build expertise in carbon
   accounting.
 weight: 40
-image_caption: SES Graduate Certificate Programs
+image_caption: Students working in the mineralogy lab
 ---
 
 ### Program Overview

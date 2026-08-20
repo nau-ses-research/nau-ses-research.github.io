@@ -9,7 +9,7 @@ interests:
   - Hydrology
   - Water Policy
   - Water Resources
-image_caption: Water Management Policy and Science Research
+image_caption: Surveying the channel below Glen Canyon Dam
 ---
 
 ## Research Focus

@@ -9,7 +9,7 @@ interests:
   - Paleoclimatology
   - Climate Modeling
   - Climate Impacts
-image_caption: Climate Change Research
+image_caption: Reviewing sonar data while surveying a lake in the Kenai Mountains, Alaska
 ---
 
 ## Research Focus

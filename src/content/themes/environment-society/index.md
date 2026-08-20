@@ -9,7 +9,7 @@ interests:
   - Sustainability
   - Human-Environment Interaction
   - Social Science
-image_caption: Environment and Society Research
+image_caption: Volunteers salvaging biological soil crust ahead of construction
 ---
 
 ## Research Focus
