@@ -23,7 +23,8 @@ FACULTY = [KAUFMAN, MCKAY, SMITH_KONTER, SHORT]
 BARANSKY = Student("Eva", "Baransky", start_year=2020)
 HANCOCK = Student("Chris", "Hancock", start_year=2019)
 CAPS = Student("STEPHANIE", "ARCUSA", start_year=2015)
-STUDENTS = [BARANSKY, HANCOCK, CAPS]
+OLD_ALUM = Student("REGINALD", "REID", start_year=1974, end_year=1976)
+STUDENTS = [BARANSKY, HANCOCK, CAPS, OLD_ALUM]
 
 
 class TestSimpleTitle:
@@ -99,6 +100,16 @@ class TestStudentMatching:
 
     def test_wrong_initial_no_match(self):
         assert match_grad_students("Q Baransky", 2022, STUDENTS) == []
+
+    def test_end_year_rejects_post_graduation_papers(self):
+        # "Mary R. Reid" contains "R Reid"; a 1976 alum must not match a
+        # 2026 paper (the Reginald Reid false positive, caught 2026-08-20)
+        assert match_grad_students("Ryan Porter, Eric Kiser, Mary R. Reid", 2026, STUDENTS) == []
+
+    def test_end_year_allows_publication_lag(self):
+        # 3-year post-graduation grace for thesis-work publication lag
+        assert match_grad_students("R Reid, A Colleague", 1979, STUDENTS) == ["Reginald Reid"]
+        assert match_grad_students("R Reid, A Colleague", 1980, STUDENTS) == []
 
     def test_no_match_without_last_name(self):
         assert match_grad_students("Eva Smith", 2022, STUDENTS) == []

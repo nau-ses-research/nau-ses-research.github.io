@@ -78,6 +78,7 @@ class Student:
     first: str
     last: str
     start_year: int | None = None
+    end_year: int | None = None  # graduation year for alumni; None = current
 
     @property
     def display_name(self) -> str:
@@ -119,6 +120,10 @@ def match_grad_students(
             rf"\b{re.escape(last)}\s*,\s*{fi}[a-z]\b",        # "Baransky, EJ"
         )
         if any(re.search(p, cleaned) for p in patterns):
-            if s.start_year is None or pub_year is None or pub_year >= s.start_year:
+            after_start = s.start_year is None or pub_year is None or pub_year >= s.start_year
+            # 3-year grace: thesis work commonly publishes up to a few
+            # years after graduation (policy set by Nick, 2026-08-20)
+            before_end = s.end_year is None or pub_year is None or pub_year <= s.end_year + 3
+            if after_start and before_end:
                 matches.append(s.display_name)
     return list(dict.fromkeys(matches))

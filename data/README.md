@@ -49,9 +49,11 @@ this column, so keep it current when faculty arrive or leave.
 ### `students.csv`
 
 Graduate student roster (snapshot of the old Google Sheet, now hand-maintained
-here). `status` is `current` or `alumni`; `start_year` is used to reject
-author matches on papers published before the student plausibly started
-(alumni heuristic: PhD = graduation year - 5, MS = - 2, otherwise - 3).
+here). `status` is `current` or `alumni`; `start_year` rejects author matches on
+papers published before the student plausibly started (alumni heuristic:
+PhD = graduation year - 5, MS = - 2, otherwise - 3), and `end_year`
+(graduation year, alumni only) rejects matches more than one year after
+graduation, so long-gone alumni can't be tagged on new papers.
 Faculty who also appear in old rosters (Nicholas McKay, Lisa Thompson) are
 excluded and must stay excluded.
 

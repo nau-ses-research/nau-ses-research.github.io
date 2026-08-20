@@ -33,7 +33,7 @@ THEME_SLUGS = {
 }
 STUDENT_COLS = [
     "first", "last", "full_name", "degree", "program", "advisor",
-    "start_year", "status", "notes",
+    "start_year", "end_year", "status", "notes",
 ]
 
 errors: list[str] = []

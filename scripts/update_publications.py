@@ -280,7 +280,8 @@ def main() -> int:
     faculty = [Faculty(r["first_initial"], r["last_name"]) for r in faculty_rows]
     students = [
         Student(r["first"], r["last"],
-                int(r["start_year"]) if r["start_year"] else None)
+                int(r["start_year"]) if r["start_year"] else None,
+                int(r["end_year"]) if r.get("end_year") else None)
         for r in student_rows
     ]
 
