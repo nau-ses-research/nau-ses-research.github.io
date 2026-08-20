@@ -47,7 +47,9 @@
       "Bash(python3 -c ' *)",
       "Bash(git commit -q -m 'Matchers: handle Crossref '\\\\''First M. Last'\\\\'' author style *)",
       "Bash(git commit -q -m 'List SES faculty authors below student authors on publication items *)",
-      "Bash(git commit -q -m 'Author bylines become chips *)"
+      "Bash(git commit -q -m 'Author bylines become chips *)",
+      "Bash(git commit -q -m 'Order author chips by position in the paper'\\\\''s author list *)",
+      "Bash(git commit -q -m 'Sense of place: real photos, field experiences page, place-forward home *)"
     ]
   }
 }

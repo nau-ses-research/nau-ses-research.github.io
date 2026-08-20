@@ -16,6 +16,15 @@ videos:
 
 An interdisciplinary degree exploring environmental problems and solutions through scientific approaches. Students gain hands-on learning experiences and specialize through an emphasis area.
 
+## Where you'll learn
+
+From campus you can reach desert, grassland, ponderosa forest, and alpine
+tundra within about an hour, one of the steepest ecological gradients in
+North America. Courses take advantage: stream ecology classes wade local
+creeks with nets and sensors, and field methods courses work the forests,
+springs, and canyons of the Colorado Plateau. See
+[Field Experiences](/student-opportunities/field-experiences/).
+
 ## Emphasis Areas
 
 - Environmental Geology

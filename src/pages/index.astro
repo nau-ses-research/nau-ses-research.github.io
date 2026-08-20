@@ -5,10 +5,15 @@ import Base from "../layouts/Base.astro";
 import AnnouncementBanner from "../components/AnnouncementBanner.astro";
 import { getPublications } from "../lib/publications";
 import { getUpcomingEvents, fmtEventDate } from "../lib/events";
-import heroImg from "../assets/media/home.jpg";
+import heroImg from "../assets/media/place/hero-mogollon-rim.jpg";
 import undergradImg from "../assets/media/undergraduate-field-experience.jpg";
 import gradImg from "../assets/media/graduate-research.jpg";
 import researchImg from "../assets/media/sediment-cores.jpg";
+import canyonRiverImg from "../assets/media/place/grand-canyon-river.jpg";
+import sedonaClassImg from "../assets/media/place/sedona-class.jpg";
+import streamEcologyImg from "../assets/media/place/stream-ecology.jpg";
+import dunesImg from "../assets/media/place/death-valley-dunes.jpg";
+import pinesSnowImg from "../assets/media/place/pines-and-snow.jpg";
 import ugProgramsImg from "../assets/media/coders.jpg";
 import gradProgramsImg from "../assets/media/graduate-graduation.jpg";
 import certProgramsImg from "../assets/media/climate-science-work.jpg";
@@ -62,11 +67,11 @@ const programs = [
     <Image
       src={heroImg}
       alt=""
-      class="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+      class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
       width={1920}
       loading="eager"
     />
-    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-pine-950/70 to-pine-900/80"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-pine-950/90 via-pine-950/65 to-pine-950/25"></div>
     <div class="mx-auto max-w-6xl px-4 py-24 sm:py-32">
       <p class="text-sm font-semibold uppercase tracking-widest text-gold-400">
         Northern Arizona University
@@ -229,6 +234,43 @@ const programs = [
           </a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Place: the Colorado Plateau as classroom -->
+  <section class="bg-pine-950 text-white">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-widest text-gold-400">Flagstaff, Arizona</p>
+        <h2 class="mt-3 font-serif text-3xl font-bold leading-tight sm:text-4xl">
+          Your classroom is the Colorado Plateau
+        </h2>
+        <p class="mt-4 leading-relaxed text-pine-100">
+          We work at 7,000 feet in the world's first International Dark Sky City, at the edge
+          of the largest ponderosa pine forest on the continent. The Grand Canyon is a day
+          trip. So are Sedona's red rocks, the San Francisco volcanic field, and desert,
+          forest, and alpine ecosystems stacked within an hour of campus. Our courses use all
+          of it.
+        </p>
+        <a
+          href="/student-opportunities/field-experiences/"
+          class="mt-6 inline-block rounded-lg bg-gold-400 px-5 py-2.5 font-semibold text-pine-950 hover:bg-gold-300"
+        >
+          See where our courses go
+        </a>
+      </div>
+      <Image
+        src={canyonRiverImg}
+        alt="The Colorado River in the depths of the Grand Canyon"
+        width={900}
+        class="w-full rounded-xl shadow-lg"
+      />
+    </div>
+    <div class="mx-auto grid max-w-6xl grid-cols-2 gap-3 px-4 pb-16 sm:grid-cols-4">
+      <Image src={sedonaClassImg} alt="Geology class on Sedona red rock" width={480} height={360} class="aspect-[4/3] w-full rounded-lg object-cover" />
+      <Image src={streamEcologyImg} alt="Students sampling a stream in waders" width={480} height={360} class="aspect-[4/3] w-full rounded-lg object-cover" />
+      <Image src={dunesImg} alt="Students climbing dunes at Death Valley" width={480} height={360} class="aspect-[4/3] w-full rounded-lg object-cover" />
+      <Image src={pinesSnowImg} alt="Snowy ponderosa pines in Flagstaff" width={480} height={360} class="aspect-[4/3] w-full rounded-lg object-cover" />
     </div>
   </section>
 

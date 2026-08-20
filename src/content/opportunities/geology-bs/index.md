@@ -16,6 +16,16 @@ videos:
 
 Develops interdisciplinary knowledge to understand the physical and biological history of the Earth. This program emphasizes field and laboratory experiences that prepare students for professional careers in geology.
 
+## Where you'll learn
+
+Flagstaff sits on the Colorado Plateau at 7,000 feet, surrounded by the
+Grand Canyon, Sedona's red rocks, the San Francisco volcanic field, and
+Meteor Crater. Geology courses use all of it: introductory field trips read
+the stratigraphy at Sedona and East Clear Creek, upper-division courses map
+in southern Utah and run the San Juan River's canyons, and capstone work
+ranges from Death Valley to the Greek islands. See
+[Field Experiences](/student-opportunities/field-experiences/) for a look.
+
 ## Key Features
 
 - Extensive field and laboratory experiences

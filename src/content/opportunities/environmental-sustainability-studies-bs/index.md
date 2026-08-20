@@ -16,6 +16,15 @@ videos:
 
 Integrates natural sciences, social sciences, and humanities to address complex environmental and sustainability challenges, with an emphasis on scientific and technical approaches to real-world solutions.
 
+## Where you'll learn
+
+Flagstaff is a working laboratory for sustainability: a mountain town of
+75,000 that manages its forests for fire, its aquifer for drought, and its
+skies for darkness (the world's first International Dark Sky City), set
+among tribal nations, public lands, and fast-growing Sun Belt cities.
+Courses engage those communities and landscapes directly. See
+[Field Experiences](/student-opportunities/field-experiences/).
+
 ## Accelerated Options
 
 - 4+1 MA in Sustainable Communities
