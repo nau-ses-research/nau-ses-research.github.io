@@ -117,6 +117,93 @@ def lookup_doi(title: str, year: str, authors: str = "",
     return None
 
 
+def resolve_work(title: str, year: str, authors_hint: str = "") -> dict | None:
+    """Full bibliographic record for a title+year: Crossref first, OpenAlex
+    fallback, same conservative matching as lookup_doi (plus the loose tier
+    gated on first-author surname when an authors hint is available).
+
+    Returns {authors, journal, number, doi} with authors as
+    "Given Family, Given Family, ..." — or None when unmatched.
+    """
+    want = norm(title)
+    surname = first_surname(authors_hint)
+    q = urllib.parse.quote(title[:250])
+    # --- Crossref
+    url = f"https://api.crossref.org/works?query.bibliographic={q}&rows=3"
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            items = json.load(r)["message"]["items"]
+        for it in items:
+            # Supplements/datasets carry near-identical titles ("component"
+            # type, e.g. 10.1130/geol.s.*); only real publications qualify.
+            if it.get("type") not in ("journal-article", "proceedings-article",
+                                      "book-chapter", "book", "monograph"):
+                continue
+            got = norm((it.get("title") or [""])[0])
+            got_year = (it.get("issued", {}).get("date-parts", [[None]]) or [[None]])[0][0]
+            got_surnames = {
+                re.sub(r"[^a-z]", "", (a.get("family") or "").lower())
+                for a in it.get("author", [])
+            }
+            if _accept(want, got, year, got_year) or _accept_loose(
+                    want, got, year, got_year, surname, got_surnames):
+                authors = ", ".join(
+                    f"{a.get('given', '')} {a.get('family', '')}".strip()
+                    for a in it.get("author", []))
+                number = it.get("volume", "") or ""
+                if it.get("issue"):
+                    number += f" ({it['issue']})"
+                if it.get("page"):
+                    number += f", {it['page']}" if number else it["page"]
+                return {
+                    "authors": authors,
+                    "journal": (it.get("container-title") or [""])[0],
+                    "number": number,
+                    "doi": it.get("DOI") or "",
+                }
+    except Exception as e:  # noqa: BLE001 - fall through to OpenAlex
+        print(f"  crossref error ({type(e).__name__})", flush=True)
+        time.sleep(2)
+    # --- OpenAlex fallback
+    url = f"https://api.openalex.org/works?search={q}&per-page=3"
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            results = json.load(r).get("results", [])
+        for w in results:
+            if w.get("type") not in ("article", "review", "book-chapter", "book"):
+                continue
+            got = norm(w.get("title") or w.get("display_name") or "")
+            got_surnames = {
+                re.sub(r"[^a-z]", "", (a.get("author", {}).get("display_name", "")
+                                        .split()[-1] if a.get("author", {}).get("display_name") else "").lower())
+                for a in w.get("authorships", [])
+            }
+            if _accept(want, got, year, w.get("publication_year")) or _accept_loose(
+                    want, got, year, w.get("publication_year"), surname, got_surnames):
+                authors = ", ".join(
+                    a.get("author", {}).get("display_name", "")
+                    for a in w.get("authorships", []) if a.get("author"))
+                bib = w.get("biblio") or {}
+                number = bib.get("volume") or ""
+                if bib.get("issue"):
+                    number += f" ({bib['issue']})"
+                pages = "-".join(filter(None, [bib.get("first_page"), bib.get("last_page")]))
+                if pages:
+                    number += f", {pages}" if number else pages
+                src = ((w.get("primary_location") or {}).get("source") or {})
+                return {
+                    "authors": authors,
+                    "journal": src.get("display_name") or "",
+                    "number": number,
+                    "doi": (w.get("doi") or "").replace("https://doi.org/", ""),
+                }
+    except Exception as e:  # noqa: BLE001
+        print(f"  openalex error ({type(e).__name__})", flush=True)
+    return None
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, help="only process the first N missing-DOI rows")

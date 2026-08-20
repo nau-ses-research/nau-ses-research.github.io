@@ -17,10 +17,14 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
    ```
    (First time: `uv sync` to install dependencies. Plain
    `python3 scripts/update_publications.py` works in any env with `scholarly`.)
-   A normal week takes 5–15 minutes; a backlog/catch-up run can take
-   **30–90 minutes** because every new publication needs a detail fetch and a
-   DOI lookup with polite delays. The pipeline aborts by itself (writing
-   nothing) if Scholar looks blocked or the numbers look wrong.
+   A normal week takes 5–15 minutes; a backlog/catch-up run takes
+   **20–40 minutes**. Google Scholar is contacted only for the ~40 profile
+   pages (discovery + citation counts); per-paper metadata comes from
+   Crossref/OpenAlex, which are batch-friendly. Papers those APIs haven't
+   indexed yet are deferred to the next run automatically. The pipeline
+   aborts by itself (writing nothing) if Scholar looks blocked or the
+   numbers look wrong, and every network call has a hard timeout, so it can
+   never hang.
 
    **If your execution environment kills long commands** (agent tool
    timeouts, flaky sessions), run it detached and follow the log instead:

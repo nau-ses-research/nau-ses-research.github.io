@@ -7,10 +7,15 @@ Run from the repo root, ideally via uv:
     uv run scripts/update_publications.py [--dry-run] [--summary-file PATH]
 
 What it does (see data/README.md for the curation contract):
-1. Fetches every faculty Scholar profile listed in data/faculty.csv.
+1. Fetches every faculty Scholar profile listed in data/faculty.csv
+   (profile stubs only: titles, years, citation counts, Scholar pubids).
+   Google Scholar is used ONLY for this discovery + citation pass.
 2. Updates `citations` on existing rows of data/publications.csv.
-3. Appends genuinely new publications from the last two calendar years,
-   with SES faculty and grad-student co-authors auto-tagged.
+3. Appends genuinely new publications from the last two calendar years.
+   Full metadata (author list, journal, volume/pages, DOI) comes from
+   Crossref/OpenAlex via enrich_dois.resolve_work — batch-friendly APIs,
+   no Scholar per-paper requests, no CAPTCHA exposure. Candidates the
+   APIs haven't indexed yet defer to the next run.
 4. Aborts without writing if guard rails fail (Scholar block detected,
    suspicious row/citation swings, or validator errors).
 
@@ -31,7 +36,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from enrich_dois import lookup_doi  # noqa: E402
+from enrich_dois import resolve_work  # noqa: E402
 from matchers import (  # noqa: E402
     Faculty, Student, is_excluded_journal, match_faculty,
     match_grad_students, simple_title,
@@ -185,10 +190,7 @@ def fill_with_timeout(raw: dict, timeout_s: int = 90) -> dict:
 
 def build_new_row(cand: dict, details: dict, faculty: list[Faculty],
                   students: list[Student], existing_ids: set[str]) -> dict:
-    try:
-        doi = lookup_doi(cand["title"], str(cand["year"])) or ""
-    except Exception:  # noqa: BLE001 - DOI is best-effort enrichment
-        doi = ""
+    doi = details.get("doi", "")
     fac = match_faculty(details["authors"], faculty)
     # Union with the profiles the pub was fetched from (mirrors the R
     # pipeline, which trusted the source profile even without a text match).
@@ -357,14 +359,20 @@ def main() -> int:
                 f"the remaining {len(remaining)} candidates to the next run")
             break
         try:
-            details = fill_with_timeout(cand["_raw"])
-        except Exception as e:  # noqa: BLE001 - Scholar throttling mid-run
+            details = run_with_timeout(
+                lambda: resolve_work(cand["title"], str(cand["year"]),
+                                     authors_hint=cand["faculty_labels"][0]),
+                timeout_s=90)
+        except Exception as e:  # noqa: BLE001 - API hiccups defer the row
+            details = None
+            log(f"  skip (resolver error {type(e).__name__}): {cand['title'][:70]}")
+        if details is None:
             skipped_fills.append(cand["title"])
-            log(f"  skip (detail fetch failed, will retry next run): "
-                f"{cand['title'][:70]} ({type(e).__name__})")
-            time.sleep(random.uniform(10, 15))
+            log(f"  defer (not yet in Crossref/OpenAlex): {cand['title'][:70]}")
+            time.sleep(0.5)
             continue
-        time.sleep(random.uniform(2, 5))
+        details["pubid"] = cand["_raw"].get("author_pub_id", "")
+        time.sleep(random.uniform(0.5, 1.5))
         journal = details["journal"]
         if is_excluded_journal(journal):
             log(f"  skip (journal filter): {cand['title'][:70]} [{journal[:40]}]")
