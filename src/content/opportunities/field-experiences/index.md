@@ -1,7 +1,7 @@
 ---
 title: Field Experiences
 nav_title: Field Experiences
-summary: Our courses leave the classroom constantly, from Sedona's red rocks and the Mogollon Rim to Death Valley, the San Juan River, and the Greek islands.
+summary: Our courses leave the classroom constantly, from Sedona's red rocks and the Mogollon Rim to Death Valley, the canyons of the Yampa River, and the frozen lakes of Arctic Alaska.
 weight: 70
 image_caption: Students on a geology field trip
 ---
@@ -47,15 +47,25 @@ measure sections, run instruments, and defend interpretations on the outcrop.
 ![A trail winding through red rock canyon country](canyon-trail.jpg)
 *Canyon-country transit between field stops.*
 
-## Farther afield
+## Expeditions
 
-![Students on a boat in the Santorini caldera](santorini-boat.jpg)
-*Surveying the Santorini caldera by boat, from the NAU in Greece program.*
+![A loaded raft on the Yampa River beneath canyon walls](yampa-raft.jpg)
+*Running the Yampa River through the canyons of Dinosaur National Monument.*
 
-Field courses have at times ranged well beyond the Southwest; past programs
-took geology students as far as Greece to map the volcanic stratigraphy of
-Santorini. Where courses travel varies year to year with the curriculum;
-the constant is that the destinations are working field sites, not tours.
+Some field experiences run longer than a day trip. Multi-day river
+expeditions carry students and faculty through the canyons of Dinosaur
+National Monument on the Yampa and Green rivers: reading a billion years of
+rock from the water by day, camping on river beaches at night.
+
+![A campfire under a starry sky](yampa-campfire.jpg)
+*Camp under the dark skies of Dinosaur National Monument.*
+
+Fieldwork also extends into research. Undergraduate and graduate students
+join faculty expeditions well beyond the Southwest, like coring frozen lakes
+in Arctic Alaska to recover records of past climate.
+
+![Researchers coring a frozen lake ringed by snowy mountains](alaska-coring.jpg)
+*SES researchers coring a frozen lake in Arctic Alaska.*
 
 ## The point
 
