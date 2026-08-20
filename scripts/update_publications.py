@@ -147,6 +147,34 @@ def fill_publication(raw: dict) -> dict:
     }
 
 
+def fill_with_timeout(raw: dict, timeout_s: int = 90) -> dict:
+    """Run fill_publication with a hard wall-clock cap.
+
+    scholarly can park inside a CAPTCHA handler that waits up to 7 DAYS for
+    a human (observed live via py-spy: WebDriverWait, timeout=604800). A
+    daemon thread + join(timeout) bounds every candidate; a timed-out fetch
+    is treated like any other failed fill and deferred to the next run.
+    """
+    import threading
+
+    result: dict = {}
+
+    def target():
+        try:
+            result["value"] = fill_publication(raw)
+        except Exception as e:  # noqa: BLE001 - surfaced to caller below
+            result["error"] = e
+
+    t = threading.Thread(target=target, daemon=True)
+    t.start()
+    t.join(timeout_s)
+    if t.is_alive():
+        raise TimeoutError(f"detail fetch exceeded {timeout_s}s (CAPTCHA wait?)")
+    if "error" in result:
+        raise result["error"]
+    return result["value"]
+
+
 def build_new_row(cand: dict, details: dict, faculty: list[Faculty],
                   students: list[Student], existing_ids: set[str]) -> dict:
     try:
@@ -217,6 +245,13 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true",
                     help="report changes but do not modify data/publications.csv")
+    ap.add_argument("--citations-only", action="store_true",
+                    help="skip new-publication processing entirely; update "
+                         "citations (and nothing else) from the profile pass")
+    ap.add_argument("--detail-budget", type=int, default=3600,
+                    help="max seconds for the whole new-publication detail "
+                         "phase; remaining candidates defer to the next run "
+                         "(default %(default)s)")
     ap.add_argument("--max-new-rows", type=int, default=MAX_NEW_ROWS,
                     help="override the new-row guard for supervised catch-up "
                          "runs (default %(default)s; do not raise casually)")
@@ -298,16 +333,28 @@ def main() -> int:
     skipped_fills = []
     existing_ids = {r["id"] for r in db}
     n_cands = len(candidates)
+    if args.citations_only and candidates:
+        log(f"--citations-only: deferring all {n_cands} new-publication "
+            "candidates to a future run")
+        skipped_fills = [c["title"] for c in candidates.values()]
+        candidates = {}
+    detail_start = time.monotonic()
     for ci, cand in enumerate(candidates.values(), 1):
         if ci % 10 == 0:
             log(f"  [{ci}/{n_cands} candidates processed]")
+        if time.monotonic() - detail_start > args.detail_budget:
+            remaining = [c["title"] for c in list(candidates.values())[ci - 1:]]
+            skipped_fills.extend(remaining)
+            log(f"  DETAIL BUDGET EXHAUSTED ({args.detail_budget}s): deferring "
+                f"the remaining {len(remaining)} candidates to the next run")
+            break
         try:
-            details = fill_publication(cand["_raw"])
+            details = fill_with_timeout(cand["_raw"])
         except Exception as e:  # noqa: BLE001 - Scholar throttling mid-run
             skipped_fills.append(cand["title"])
             log(f"  skip (detail fetch failed, will retry next run): "
                 f"{cand['title'][:70]} ({type(e).__name__})")
-            time.sleep(random.uniform(20, 30))
+            time.sleep(random.uniform(10, 15))
             continue
         time.sleep(random.uniform(2, 5))
         journal = details["journal"]
