@@ -8,7 +8,18 @@ interface Props {
 const { pub } = Astro.props;
 
 const facultyByLabel = new Map(getFacultyRecords().map((r) => [r.label, r]));
-const facAuthors = pub.ses_faculty.map((label) => {
+
+/** Position of a person (by surname) in the paper's author string. */
+const authorPos = (surname: string) => {
+  const i = pub.authors.toLowerCase().indexOf(surname.toLowerCase());
+  return i === -1 ? Number.MAX_SAFE_INTEGER : i;
+};
+const studentNames = [...pub.ses_grad_students, ...pub.ses_undergrad_students].sort(
+  (a, b) => authorPos(a.split(" ").pop() ?? a) - authorPos(b.split(" ").pop() ?? b),
+);
+const facAuthors = [...pub.ses_faculty]
+  .sort((a, b) => authorPos(a.split(" ").pop() ?? a) - authorPos(b.split(" ").pop() ?? b))
+  .map((label) => {
   const rec = facultyByLabel.get(label);
   const name = rec && rec.first_name ? `${rec.first_name} ${rec.last_name}` : label;
   const url =
@@ -49,7 +60,7 @@ const scholarUrl = pub.doi
       {(pub.ses_grad_students.length > 0 || pub.ses_undergrad_students.length > 0) && (
         <>
           <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Students</span>
-          {[...pub.ses_grad_students, ...pub.ses_undergrad_students].map((n) => (
+          {studentNames.map((n) => (
             <span class="rounded-full bg-pine-50 px-2 py-0.5 text-xs text-pine-700">{n}</span>
           ))}
         </>

@@ -234,7 +234,15 @@ export default function PublicationExplorer({ facultyOptions, facultyMeta, minYe
                     <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
                       Students
                     </span>
-                    {[...p.g, ...p.u].map((n) => (
+                    {[...p.g, ...p.u]
+                      .sort((a, b) => {
+                        const pos = (x: string) => {
+                          const i = p.a.toLowerCase().indexOf((x.split(" ").pop() ?? x).toLowerCase());
+                          return i === -1 ? Number.MAX_SAFE_INTEGER : i;
+                        };
+                        return pos(a) - pos(b);
+                      })
+                      .map((n) => (
                       <span key={n} class="rounded-full bg-pine-50 px-2 py-0.5 text-xs text-pine-700">
                         {n}
                       </span>
@@ -246,7 +254,15 @@ export default function PublicationExplorer({ facultyOptions, facultyMeta, minYe
                     <span class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
                       Faculty
                     </span>
-                    {p.f.map((label) => {
+                    {[...p.f]
+                      .sort((a, b) => {
+                        const pos = (x: string) => {
+                          const i = p.a.toLowerCase().indexOf((x.split(" ").pop() ?? x).toLowerCase());
+                          return i === -1 ? Number.MAX_SAFE_INTEGER : i;
+                        };
+                        return pos(a) - pos(b);
+                      })
+                      .map((label) => {
                       const meta = facultyMeta[label];
                       const name = meta?.n ?? label;
                       return meta?.u ? (
