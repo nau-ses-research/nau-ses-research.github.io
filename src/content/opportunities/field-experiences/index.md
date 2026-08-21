@@ -65,7 +65,7 @@ join faculty expeditions well beyond the Southwest, like coring frozen lakes
 in Arctic Alaska to recover records of past climate.
 
 ![Researchers coring a frozen lake ringed by snowy mountains](alaska-coring.jpg)
-*SES researchers coring a frozen lake in Arctic Alaska.*
+*SES researchers deploying a sediment trap into a frozen lake in Arctic Alaska.*
 
 ## The point
 
