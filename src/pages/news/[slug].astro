@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
 import Base from "../../layouts/Base.astro";
 import PubItem from "../../components/PubItem.astro";
 import { getPublications } from "../../lib/publications";
@@ -11,6 +12,11 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const newsImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/news/*/featured.{jpg,jpeg,png,webp}",
+);
+const newsImageKey = Object.keys(newsImages).find((key) => key.includes(`/${entry.id}/`));
+const newsImage = newsImageKey ? (await newsImages[newsImageKey]()).default : undefined;
 const pub = entry.data.publication_id
   ? getPublications().find((p) => p.id === entry.data.publication_id)
   : undefined;
@@ -50,6 +56,20 @@ const articleJsonLd = {
   <div class="h-1.5 bg-gold-400"></div>
 
   <article class="mx-auto max-w-3xl px-4 py-10">
+    {newsImage && (
+      <figure class="mb-10">
+        <Image
+          src={newsImage}
+          alt={entry.data.image_caption ?? ""}
+          width={1200}
+          class="w-full rounded-xl shadow-lg"
+        />
+        {entry.data.image_caption && (
+          <figcaption class="mt-2 text-sm text-slate-500">{entry.data.image_caption}</figcaption>
+        )}
+      </figure>
+    )}
+
     <div class="prose-ses max-w-none">
       <Content />
     </div>
