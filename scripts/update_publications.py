@@ -73,7 +73,10 @@ def fetch_faculty_pubs(faculty_rows: list[dict], current_year: int) -> tuple[lis
     CACHE.mkdir(parents=True, exist_ok=True)
     pubs: list[dict] = []
     failed: list[str] = []
-    targets = [r for r in faculty_rows if r["scholar_id"]]
+    # active=false faculty (emeriti, departed) keep their scholar_id on
+    # record but are excluded from the weekly profile sweep; their papers
+    # still enter via co-authors' profiles and the name matcher.
+    targets = [r for r in faculty_rows if r["scholar_id"] and r["active"] == "true"]
     processed = 0
     for row in targets:
         # Circuit breaker: if the first several profiles ALL fail, Scholar is

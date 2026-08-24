@@ -51,9 +51,13 @@ the row and noting the reason in `additional_notes`.
 ### `faculty.csv`
 
 One row per faculty member ever mined. `first_initial` + `last_name` drive
-author matching; `scholar_id` (blank = no Scholar profile) drives fetching;
-`start_year`/`end_year` bound which publication years count for that person
-(blank `end_year` = still active, and `active` mirrors that); `slug` +
+author matching; the weekly pipeline fetches a Scholar profile only when
+`scholar_id` is non-blank AND `active` is `true`, so setting
+`active=false` (emeriti, departed, infrequent publishers; Nick's call
+2026-08-24 for Umhoefer and Wasylenki) drops someone from the weekly
+sweep while keeping their id on record and their name matchable on
+co-authored papers. `start_year`/`end_year` bound which publication years
+count for that person (blank `end_year` = no upper bound); `slug` +
 `profile` (`current` / `archived` / `none`) link names to profile pages on the
 site. `themes` holds `"; "`-separated research-theme slugs (matching
 `src/content/themes/`); theme pages derive their people and publications from
