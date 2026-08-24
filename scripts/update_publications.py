@@ -45,6 +45,28 @@ from matchers import (  # noqa: E402
 REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "data"
 PUB_CSV = DATA / "publications.csv"
+DEFERRED_CSV = DATA / "deferred.csv"
+# A candidate whose Crossref/OpenAlex resolve fails on this many separate
+# runs is parked: skipped forever after (abstracts, datasets, and posters
+# those APIs will never index). Unpark by deleting its row in deferred.csv.
+PARK_AFTER = 3
+DEFERRED_FIELDS = ["simple_title", "title", "year", "fail_count",
+                   "first_seen", "last_tried", "status"]
+
+
+def load_deferred() -> dict[str, dict]:
+    if not DEFERRED_CSV.exists():
+        return {}
+    with open(DEFERRED_CSV, newline="") as f:
+        return {r["simple_title"]: r for r in csv.DictReader(f)}
+
+
+def save_deferred(state: dict[str, dict]) -> None:
+    rows = sorted(state.values(), key=lambda r: (r["status"], r["simple_title"]))
+    with open(DEFERRED_CSV, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=DEFERRED_FIELDS, quoting=csv.QUOTE_MINIMAL)
+        w.writeheader()
+        w.writerows(rows)
 CACHE = REPO / ".cache" / "scholar"
 
 MAX_NEW_ROWS = 150
@@ -332,6 +354,15 @@ def main() -> int:
         if p["scholar_id"] not in c["scholar_ids"]:
             c["scholar_ids"].append(p["scholar_id"])
 
+    # Skip candidates parked in data/deferred.csv (repeatedly unresolvable).
+    deferred_state = load_deferred()
+    parked_now = [st for st in candidates
+                  if deferred_state.get(st, {}).get("status") == "parked"]
+    for st in parked_now:
+        del candidates[st]
+    if parked_now:
+        log(f"Parked (skipped, see data/deferred.csv): {len(parked_now)}")
+
     # Preliminary summary written up front: the detail-fetch loop below can
     # run 30-90 minutes on a backlog, and if this process is killed mid-loop
     # (agent exec timeouts, ssh drops) the operator still gets the counts.
@@ -345,6 +376,7 @@ def main() -> int:
 
     new_rows = []
     skipped_fills = []
+    newly_parked = []
     existing_ids = {r["id"] for r in db}
     n_cands = len(candidates)
     if args.citations_only and candidates:
@@ -371,10 +403,26 @@ def main() -> int:
             details = None
             log(f"  skip (resolver error {type(e).__name__}): {cand['title'][:70]}")
         if details is None:
-            skipped_fills.append(cand["title"])
-            log(f"  defer (not yet in Crossref/OpenAlex): {cand['title'][:70]}")
+            today = datetime.date.today().isoformat()
+            ent = deferred_state.setdefault(cand["simple_title"], {
+                "simple_title": cand["simple_title"], "title": cand["title"],
+                "year": str(cand["year"]), "fail_count": "0",
+                "first_seen": today, "last_tried": today, "status": "retry",
+            })
+            if ent["last_tried"] != today or ent["fail_count"] == "0":
+                ent["fail_count"] = str(int(ent["fail_count"]) + 1)
+            ent["last_tried"] = today
+            if int(ent["fail_count"]) >= PARK_AFTER:
+                ent["status"] = "parked"
+                newly_parked.append(cand["title"])
+                log(f"  park (unresolved {ent['fail_count']} runs): {cand['title'][:70]}")
+            else:
+                skipped_fills.append(cand["title"])
+                log(f"  defer (not yet in Crossref/OpenAlex, "
+                    f"try {ent['fail_count']}/{PARK_AFTER}): {cand['title'][:70]}")
             time.sleep(0.5)
             continue
+        deferred_state.pop(cand["simple_title"], None)
         details["pubid"] = cand["_raw"].get("author_pub_id", "")
         time.sleep(random.uniform(0.5, 1.5))
         journal = details["journal"]
@@ -411,18 +459,33 @@ def main() -> int:
         f"- Citation updates: {len(citation_updates)}",
         f"- New publications: {len(new_rows)}",
     ]
+    for r in new_rows:
+        summary.append(f"  - {r['title']} ({r['year']}) — {r['ses_faculty']}"
+                       + (f"; grad: {r['ses_grad_students']}" if r["ses_grad_students"] else ""))
     if skipped_fills:
         summary.append(
             f"- Deferred (detail fetch throttled, retry next run): {len(skipped_fills)}")
         for t in skipped_fills:
             summary.append(f"  - {t}")
-    for r in new_rows:
-        summary.append(f"  - {r['title']} ({r['year']}) — {r['ses_faculty']}"
-                       + (f"; grad: {r['ses_grad_students']}" if r["ses_grad_students"] else ""))
+    if newly_parked:
+        summary.append(
+            f"- Newly parked (unresolved {PARK_AFTER} runs; no further retries, "
+            f"see data/deferred.csv): {len(newly_parked)}")
+        for t in newly_parked:
+            summary.append(f"  - {t}")
+    n_parked_total = sum(1 for e in deferred_state.values() if e["status"] == "parked")
+    if n_parked_total:
+        summary.append(f"- Parked total: {n_parked_total}")
     summary_text = "\n".join(summary)
     log("\n" + summary_text)
     if args.summary_file:
         args.summary_file.write_text(summary_text + "\n")
+
+    # Persist deferral/parking state (pipeline-owned; commit alongside
+    # publications.csv). Guard aborts above return before this point, and
+    # dry runs leave it untouched.
+    if not args.dry_run:
+        save_deferred(deferred_state)
 
     if not citation_updates and not new_rows:
         log("\nNo changes this week.")

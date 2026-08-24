@@ -52,7 +52,7 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
 3. **If it succeeded with changes:**
    ```bash
    git checkout -b data-update-$(date +%Y-%m-%d)
-   git add data/publications.csv
+   git add data/publications.csv data/deferred.csv
    git commit -m "Weekly publications update $(date +%Y-%m-%d)"
    git push -u origin HEAD
    gh pr create --title "Weekly publications update $(date +%Y-%m-%d)" \
@@ -63,7 +63,11 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
    PRs need no human review; see `.github/CODEOWNERS`). Confirm within the
    hour that it merged and that https://ses-nau.org/research/ shows fresh
    numbers after the deploy.
-4. **If it reported "No changes this week":** nothing else to do.
+4. **If it reported "No changes this week":** usually nothing else to do,
+   but if `git status` shows `data/deferred.csv` changed (deferral counts
+   advanced), commit and PR just that file the same way; it auto-merges
+   like any data-only PR. Never leave a modified tracked file uncommitted,
+   or next week's `git pull` will conflict.
 5. **If it ABORTED (guard failure or crash):** do **not** commit, do not
    retry more than once, and do not edit data by hand. Open an issue:
    ```bash
@@ -77,7 +81,11 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
 - The pipeline may only change `citations` and append rows. If a diff shows
   anything else changing, that is a bug: abort, revert, open an issue.
 - A publication whose detail-fetch was throttled is skipped with a "deferred"
-  note in the summary; it will be picked up automatically next week.
+  note in the summary; it will be picked up automatically next week. If it
+  still can't be resolved after 3 runs it is **parked** in
+  `data/deferred.csv` and never retried (these are abstracts, datasets, and
+  posters that Crossref/OpenAlex will never index). A human can unpark one
+  by deleting its row.
 - New rows arrive with `verified=false`. Nick periodically reviews and
   verifies them (or asks Guy to propose corrections in a separate,
   reviewable PR).

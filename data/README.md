@@ -63,6 +63,17 @@ site. `themes` holds `"; "`-separated research-theme slugs (matching
 `src/content/themes/`); theme pages derive their people and publications from
 this column, so keep it current when faculty arrive or leave.
 
+### `deferred.csv`
+
+Pipeline-owned ledger of new-publication candidates whose metadata could
+not be resolved via Crossref/OpenAlex. Each row tracks
+`fail_count`/`first_seen`/`last_tried`; after 3 failed runs `status`
+becomes `parked` and the pipeline stops retrying (typically conference
+abstracts, datasets, posters, and award records those APIs never index).
+Humans interact with this file only to **unpark** something (delete its
+row; the pipeline re-attempts next run) — everything else is written by
+the pipeline and committed alongside `publications.csv` in the weekly PR.
+
 ### `students.csv`
 
 Graduate student roster (snapshot of the old Google Sheet, now hand-maintained
