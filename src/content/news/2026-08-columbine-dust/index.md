@@ -1,6 +1,6 @@
 ---
 title: "A lake's dust record shifts the timeline of landscape change in the Southwest"
-date: 2026-09-15
+date: 2026-08-28
 summary: "A 3,400-year sediment record led by Frank Telles points to a major Southwestern dust-regime shift during 17th-century Spanish colonial settlement."
 publication_id: spanishcolonizationtriggered17thcenturyl-2026
 students:
