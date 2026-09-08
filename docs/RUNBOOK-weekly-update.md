@@ -89,10 +89,25 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
       matches a name in the row's `ses_grad_students`. **Report every one of
       these**, even if there are several: Nick wants to know about all
       student-led papers, and expects to write stories about most of them.
-   2. **SES faculty lead author in a high-profile journal.**
-   3. **SES faculty lead author** in any other journal.
-   4. **SES coauthorship on a high-profile paper** (an SES person is on the
-      author list but not first).
+   2. **SES faculty first author, high-profile journal.**
+   3. **SES faculty first author**, any other journal.
+   4. **SES coauthorship on a high-profile paper**: an SES person is on the
+      author list but is *not* the first author.
+
+   Skip anything that is not a research paper: conference abstracts, posters,
+   datasets, corrections, and program documents such as IODP prospectuses and
+   cruise reports. If the row would be parked in `data/deferred.csv`, it is
+   not a story.
+
+   Two rules are deliberate; don't re-raise them each week. Only *first*
+   authorship makes a paper student-led (a student in the middle of an author
+   list does not), and only current-year papers are candidates (a
+   late-indexed older paper is catalog work, not news).
+
+   If two papers tie on criterion, prefer the one where the SES person is
+   first or last author over a middle author, then the one with the clearer
+   hook for a general reader, then the one whose SES authors have not been
+   featured on the site recently.
 
    Treat as high-profile: *Nature*, *Science*, *PNAS*, and the Nature- and
    Science-family journals (*Nature Geoscience*, *Nature Climate Change*,
