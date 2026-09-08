@@ -67,3 +67,8 @@ the published story says.
 Across all four: no invented quotes, no "groundbreaking", no claim the story
 itself doesn't make, and no tagging or @-mentioning anyone whose handle you
 had to guess.
+
+Each draft is finished copy, ready to paste. Verify the Bluesky length
+yourself, but keep the number and every other working note out of what you
+send: a checklist artifact inside the copy is both noise and one more thing
+that can be wrong.
