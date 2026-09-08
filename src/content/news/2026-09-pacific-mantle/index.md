@@ -3,8 +3,9 @@ title: "Local seafloor records reveal how the Pacific plate and mantle move"
 date: 2026-09-08
 summary: "Dr. Joey Phillips and his co-authors used ocean-bottom seismometers to show how the Pacific plate preserves its formation history while the mantle beneath it responds to present-day motion and deeper flow."
 publication_id: multiscalespatialvariationsinpacificmant-2026
-image: ./featured.jpg
-image_caption: "Dr. Phillips with ocean-bottom seismometer packages aboard the R/V Roger Revelle in the Pacific. Photo courtesy of Joey Phillips."
+image_caption: "Dr. Phillips with ocean-bottom seismometer packages aboard the R/V Roger Revelle in the Pacific."
+image_alt: "Joey Phillips on a research vessel deck beside orange ocean-bottom seismometer packages."
+image_credit: "Photo courtesy of Joey Phillips."
 students:
   - Joseph H. Phillips
 faculty:

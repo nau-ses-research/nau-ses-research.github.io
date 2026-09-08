@@ -375,7 +375,7 @@ const programs = [
             {img && (
               <Image
                 src={img}
-                alt={n.data.image_caption ?? ""}
+                alt={n.data.image_alt ?? n.data.image_caption ?? ""}
                 width={800}
                 height={480}
                 class="aspect-[5/3] w-full object-cover transition group-hover:scale-[1.02]"

@@ -61,6 +61,8 @@ const news = defineCollection({
     students: z.array(z.string()).default([]),
     faculty: z.array(z.string()).default([]),
     image_caption: z.string().optional(),
+    image_alt: z.string().optional(), // describes the photo; falls back to image_caption
+    image_credit: z.string().optional(),
   }),
 });
 

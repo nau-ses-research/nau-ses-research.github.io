@@ -7,7 +7,9 @@ students:
   - Caelum Mroczek
 faculty:
   - Abraham Springer
-image_caption: "Caelum Mroczek and advisor Abraham Springer atop Sulzfluh during a field trip at the 2024 IAH World Groundwater Congress in Switzerland. Photo courtesy of Caelum Mroczek."
+image_caption: "Caelum Mroczek and advisor Abraham Springer atop Sulzfluh during a field trip at the 2024 IAH World Groundwater Congress in Switzerland."
+image_alt: "Caelum Mroczek and Abraham Springer standing on a rocky alpine summit."
+image_credit: "Photo courtesy of Caelum Mroczek."
 ---
 
 Western U.S. headwater streams are projected to carry substantially less groundwater-supported flow by the end of the century, with more of that water arriving earlier in the year. In a new study, Caelum Mroczek, a recent graduate of NAU’s Earth Sciences and Environmental Sustainability Ph.D. program who completed the degree in May 2026, and his colleagues found that annual base flow could decline by roughly 45% to 65% across the region under two future climate scenarios. Mroczek is now a postdoctoral researcher at the University of Arizona’s Arizona Institute for Resilience. The projected changes threaten the late-summer flows that sustain ecosystems, communities, and downstream water users.

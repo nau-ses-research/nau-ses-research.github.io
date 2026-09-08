@@ -61,8 +61,19 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
   is the sole credit line. Do not add an `author` key back to the frontmatter
   (the schema has no such field, so one would simply be ignored), and do not
   sign a story in the prose.
-- Optional image: `featured.jpg` in the same folder (photo from the student,
-  with their permission, or a relevant field/lab photo we have rights to).
+- Optional image: `featured.jpg` (or `.png`) in the same folder, picked up
+  automatically; there is no `image:` frontmatter key. Use a photo from the
+  student, with their permission, or a relevant field/lab photo we have
+  rights to. Describe it in frontmatter:
+
+  ```yaml
+  image_alt: "What is literally visible, for screen readers."
+  image_caption: "The sentence readers see under the photo."
+  image_credit: "Photo courtesy of Full Name."
+  ```
+
+  `image_alt` describes the picture; `image_caption` says what it means to
+  the story. Don't put the credit in either one.
 - `npm run build` must pass locally (the page renders the linked paper
   automatically from `publication_id`).
 

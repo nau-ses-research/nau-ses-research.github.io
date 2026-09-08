@@ -7,10 +7,9 @@ students:
   - Franklyn Telles
 faculty:
   - Nicholas McKay
-image: ./featured.jpg
 image_alt: "Frank Telles stands before the Juan de Oñate monument in Albuquerque."
 image_caption: "Frank Telles stands in front of the Juan de Oñate monument in Albuquerque, representing the 1598 onset of Spanish colonization in the Southwest. As the Columbine Lake record reveals, the extractive agricultural practices and exotic livestock introduced during this era destroyed the native vegetation blanket, ultimately triggering the unprecedented 1667 CE dust regime shift."
-image_credit: "Photo courtesy of Frank Telles"
+image_credit: "Photo courtesy of Frank Telles."
 ---
 
 For more than 3,000 years, sediment settling at the bottom of Colorado's Columbine Lake recorded the region's changing dust burden. A new study led by Franklyn Telles, a 2026 PhD graduate in Earth Sciences and Environmental Sustainability at Northern Arizona University, finds that the most important sustained shift began around 1667, during Spanish colonial settlement, rather than during the 19th-century American expansion often identified as the main turning point.
