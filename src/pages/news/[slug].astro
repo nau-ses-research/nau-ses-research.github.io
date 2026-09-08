@@ -64,12 +64,19 @@ const articleJsonLd = {
       <figure class="mb-10">
         <Image
           src={newsImage}
-          alt={entry.data.image_caption ?? ""}
+          alt={entry.data.image_alt ?? entry.data.image_caption ?? ""}
           width={1200}
           class="w-full rounded-xl shadow-lg"
         />
-        {entry.data.image_caption && (
-          <figcaption class="mt-2 text-sm text-slate-500">{entry.data.image_caption}</figcaption>
+        {(entry.data.image_caption || entry.data.image_credit) && (
+          <figcaption class="mt-2 text-sm text-slate-500">
+            {entry.data.image_caption}
+            {entry.data.image_credit && (
+              <span class="text-slate-400">
+                {entry.data.image_caption ? " " : ""}{entry.data.image_credit}
+              </span>
+            )}
+          </figcaption>
         )}
       </figure>
     )}
