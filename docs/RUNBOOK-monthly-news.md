@@ -8,7 +8,9 @@ the student's explicit approval of their quotes.
 
 ## 1. Select the paper
 
-From `data/publications.csv`, find candidates where ALL hold:
+Start from the weekly news-story suggestions emailed to Nick (step 6 of
+`docs/RUNBOOK-weekly-update.md`) and from Nick's replies to them. Otherwise,
+from `data/publications.csv`, find candidates where ALL hold:
 
 - `ses_grad_students` is non-empty AND the **first-listed author** matches one
   of those grad students (student-led, not just student-involved);

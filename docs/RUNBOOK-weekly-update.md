@@ -76,6 +76,47 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
    ```
    Then stop. Nick (or a later supervised run) takes it from there.
 
+6. **Suggest a news story** (after a successful run from step 3 that added
+   new publications; skip entirely after step 4 or 5).
+   Once the data PR is open, look at the new rows from *this* run whose
+   `year` is the current year (a backfilled older paper is not news). If
+   there are none, do nothing: no email, no "nothing this week" note.
+
+   Rank the candidates by these criteria, in order:
+
+   1. **Student lead author.** The first-listed author matches a person in
+      `data/students.csv` (grad or undergrad, current or recent alumni), or
+      matches a name in the row's `ses_grad_students`. **Report every one of
+      these**, even if there are several: Nick wants to know about all
+      student-led papers, and expects to write stories about most of them.
+   2. **SES faculty lead author in a high-profile journal.**
+   3. **SES faculty lead author** in any other journal.
+   4. **SES coauthorship on a high-profile paper** (an SES person is on the
+      author list but not first).
+
+   Treat as high-profile: *Nature*, *Science*, *PNAS*, and the Nature- and
+   Science-family journals (*Nature Geoscience*, *Nature Climate Change*,
+   *Nature Communications*, *Science Advances*, and similar), plus the
+   flagship journal of the paper's own field. If a call is borderline, say so
+   in the email rather than deciding silently.
+
+   Email Nick **one** message with the student-led papers (all of them) plus
+   **a single best suggestion** from tiers 2–4 if any exist:
+
+   ```bash
+   printf '%s\n' "..." | ses-send nick.mckay2@gmail.com \
+     "News story suggestion, week of $(date +%Y-%m-%d)"
+   ```
+
+   For each paper give: title, authors as listed (mark the SES people), journal,
+   DOI, the `id` from `data/publications.csv`, which criterion it met, and one or
+   two sentences on why it would make a good story. Skip any paper whose `id`
+   already appears as `publication_id` in `src/content/news/*/index.md`.
+
+   This is a suggestion only. Do not contact students or authors, and do not
+   start drafting; Nick picks, and the story itself then follows
+   `docs/RUNBOOK-monthly-news.md`.
+
 ## Notes
 
 - The pipeline may only change `citations` and append rows. If a diff shows
