@@ -34,6 +34,8 @@ community. Smart readers, not specialists.
 - Title: the finding, not the process ("Tracking mercury through a Ghanaian
   lake's past", not "SES student publishes paper").
 - `summary` frontmatter: one sentence, plain, no colon-splice headlines.
+- No byline, and no first-person: stories are unsigned, published by the
+  school rather than by a named reporter.
 - Student's full name on first mention, then first name.
 - Include program and advisor once: "a PhD candidate in Earth Sciences and
   Environmental Sustainability advised by ...".

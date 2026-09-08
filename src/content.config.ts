@@ -61,7 +61,6 @@ const news = defineCollection({
     students: z.array(z.string()).default([]),
     faculty: z.array(z.string()).default([]),
     image_caption: z.string().optional(),
-    author: z.string().default("Guy Clawdsen"),
   }),
 });
 

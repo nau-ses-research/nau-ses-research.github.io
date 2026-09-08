@@ -57,6 +57,10 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
   ---
   ```
 
+- **No byline.** Stories carry no `author` field and render none; the school
+  is the sole credit line. Do not add an `author` key back to the frontmatter
+  (the schema has no such field, so one would simply be ignored), and do not
+  sign a story in the prose.
 - Optional image: `featured.jpg` in the same folder (photo from the student,
   with their permission, or a relevant field/lab photo we have rights to).
 - `npm run build` must pass locally (the page renders the linked paper

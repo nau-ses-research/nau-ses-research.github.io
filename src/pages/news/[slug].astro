@@ -33,7 +33,11 @@ const articleJsonLd = {
   headline: entry.data.title,
   description: entry.data.summary,
   datePublished: entry.data.date.toISOString().slice(0, 10),
-  author: { "@type": "Organization", name: entry.data.author },
+  author: {
+    "@type": "CollegeOrUniversity",
+    name: "School of Earth and Sustainability, Northern Arizona University",
+    url: "https://ses-nau.org/",
+  },
   publisher: {
     "@type": "CollegeOrUniversity",
     name: "School of Earth and Sustainability, Northern Arizona University",
@@ -80,9 +84,5 @@ const articleJsonLd = {
         <PubItem pub={pub} />
       </aside>
     )}
-
-    <p class="mt-8 text-sm text-slate-500">
-      Reported by {entry.data.author} for the School of Earth and Sustainability.
-    </p>
   </article>
 </Base>
