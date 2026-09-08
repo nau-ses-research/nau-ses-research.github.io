@@ -3,6 +3,7 @@ title: "Local seafloor records reveal how the Pacific plate and mantle move"
 date: 2026-09-08
 summary: "Dr. Joey Phillips and his co-authors used ocean-bottom seismometers to show how the Pacific plate preserves its formation history while the mantle beneath it responds to present-day motion and deeper flow."
 publication_id: multiscalespatialvariationsinpacificmant-2026
+image: ./featured.jpg
 students:
   - Joseph H. Phillips
 faculty:
@@ -27,3 +28,8 @@ The shallow asthenosphere, the weaker layer beneath the rigid lithosphere, showe
 Dr. Phillips said his training and collaboration with James Gaherty and the broader NAU research group helped him connect detailed surface-wave observations and seismic inversions to questions about geodynamics. The project brought together ocean-bottom seismology, mantle dynamics, tomography and plate tectonics. That combination was important because anisotropy does not point to one process by itself. Its meaning emerges by comparing seismic observations with plate history, mantle velocity, attenuation and convection.
 
 For Dr. Phillips, the regional variations are not a problem for global models. They are the reason to use both scales of observation. Broad models show the framework, while dense local arrays reveal the processes hidden inside it.
+
+<figure>
+  <img src="./featured.jpg" alt="Dr. Joey Phillips with ocean-bottom seismometer packages aboard the R/V Roger Revelle in the Pacific." />
+  <figcaption>Dr. Phillips with ocean-bottom seismometer packages aboard the <em>R/V Roger Revelle</em> in the Pacific.</figcaption>
+</figure>
