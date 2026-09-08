@@ -77,6 +77,52 @@ gh pr create --title "News: <title>" \
 The PR blocks on Nick's review (CODEOWNERS). After merge, confirm the story
 is live at https://ses-nau.org/news/ and appears in the RSS feed.
 
+## 5. After it's live
+
+Do not start this step until the story actually renders at
+`https://ses-nau.org/news/<yyyy-mm>-<short-slug>/`. The deploy runs a few
+minutes behind the merge, so fetch the URL and confirm you see the finished
+story, not a 404 or a stale index. If it hasn't appeared within ~15 minutes,
+check the Actions run before doing anything else.
+
+**a. Thank the person you interviewed.** One short email, via `ses-send`
+(Nick is CC'd automatically):
+
+```bash
+printf '%s\n' "..." | ses-send <their address> "Your story is live on the SES site"
+```
+
+Tell them it's published, give the full link, thank them for the time they
+put into the interview, and say they're welcome to share it. Keep it to a few
+sentences; no new questions, no requests.
+
+**b. Draft social copy and send it to Donna.** SES posts on **LinkedIn,
+Bluesky, Instagram, and Facebook**. Write one draft per platform in that
+platform's own voice, following the social section of
+`docs/news-style-guide.md`, and email all four to
+**donna.shillington@nau.edu** (`ses-send` CCs Nick automatically):
+
+```bash
+printf '%s\n' "..." | ses-send donna.shillington@nau.edu \
+  "Social drafts: <story title>"
+```
+
+- Label each draft with its platform, and keep them clearly separated so any
+  one can be copied out on its own.
+- **Every draft links back to the story** at
+  `https://ses-nau.org/news/<yyyy-mm>-<short-slug>/`. On Instagram, where a
+  caption link isn't clickable, still give the URL and note it needs to go in
+  the bio or story.
+- Say which image goes with each post, and include alt text for it. If the
+  photo came from the person you interviewed, repeat the credit and confirm
+  they cleared it for use.
+- Draw only on the published story and the approved quotes. No new claims, no
+  quotes that didn't survive approval, no superlatives the story doesn't
+  support.
+
+**You draft; you do not post.** Guy has no social accounts and must not
+create any. Donna decides what runs, when, and in what form.
+
 ## Boundaries
 
 - Quote only what the student wrote or explicitly approved; never invent or

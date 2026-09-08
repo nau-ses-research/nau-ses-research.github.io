@@ -37,3 +37,31 @@ community. Smart readers, not specialists.
 - Student's full name on first mention, then first name.
 - Include program and advisor once: "a PhD candidate in Earth Sciences and
   Environmental Sustainability advised by ...".
+
+## Social drafts
+
+After a story is live, each one gets copy for all four SES platforms (step 5
+of `docs/RUNBOOK-monthly-news.md`). Same facts, four different registers.
+Every one carries the story link, names the researcher, and stays inside what
+the published story says.
+
+- **LinkedIn** (~100-180 words): the professional register. Lead with the
+  finding, name the person, their program, and their advisor or co-authors,
+  then one sentence on why the result matters. Two or three hashtags at most,
+  and only real ones (#NAU, the field). Link on its own line at the end.
+- **Bluesky** (under 300 characters including the link): one idea, one
+  sentence or two, plain and specific. No hashtag pileup; one is plenty. The
+  link is part of the character count, so write to fit.
+- **Instagram** (~80-150 words): the image carries the post, so say which one
+  and give its alt text. Front-load the hook into the first line, since
+  captions truncate. Warm and conversational, second person is fine. Links
+  aren't clickable in captions: give the URL and flag it for the bio or a
+  story sticker. Five to ten relevant hashtags at the end, not in the body.
+- **Facebook** (~50-100 words): conversational and a little longer-form than
+  Bluesky, written for an audience of alumni, families, and community
+  members. The link preview does the visual work, so no hashtags and no
+  "link in bio".
+
+Across all four: no invented quotes, no "groundbreaking", no claim the story
+itself doesn't make, and no tagging or @-mentioning anyone whose handle you
+had to guess.
