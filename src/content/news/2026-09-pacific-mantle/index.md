@@ -8,7 +8,6 @@ students:
   - Joseph H. Phillips
 faculty:
   - James B. Gaherty
-author: SES Research Highlights
 ---
 
 Seismic records from two parts of the Pacific Ocean show that the mantle beneath the Pacific plate is shaped by more than one process. Dr. Joey Phillips and his co-authors found that the rigid plate preserves clues from its formation, while the softer mantle beneath it responds to the plate's present motion and to deeper internal flow.
