@@ -123,6 +123,14 @@ printf '%s\n' "..." | ses-send donna.shillington@nau.edu \
 - Draw only on the published story and the approved quotes. No new claims, no
   quotes that didn't survive approval, no superlatives the story doesn't
   support.
+- Names, degrees, programs, emphases, titles, and affiliations come from
+  `data/`, the published story, the site's own pages, or the person's own
+  words. **A person approving a draft does not turn a detail you invented in
+  that draft into a sourced fact**; if you wrote it first, it still needs a
+  source. Program names in particular are easy to get almost right: check the
+  exact wording rather than reconstructing it.
+- Send Donna the copy and nothing else. Your own working notes (character
+  counts, checklists, reasoning about the specs) stay out of the drafts.
 
 **You draft; you do not post.** Guy has no social accounts and must not
 create any. Donna decides what runs, when, and in what form.
