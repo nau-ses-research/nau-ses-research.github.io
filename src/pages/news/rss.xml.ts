@@ -9,7 +9,7 @@ export const GET: APIRoute = async (context) => {
   return rss({
     title: "NAU School of Earth and Sustainability — News",
     description:
-      "Research stories from the School of Earth and Sustainability, including monthly spotlights on graduate-student-led publications.",
+      "Research stories from the School of Earth and Sustainability, including spotlights on graduate-student-led publications.",
     site: context.site!,
     items: news.map((n) => ({
       title: n.data.title,

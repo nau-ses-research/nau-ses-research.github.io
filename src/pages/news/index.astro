@@ -21,19 +21,19 @@ const dateFmt = (d: Date) =>
 
 <Base
   title="News"
-  description="Research news from NAU's School of Earth and Sustainability, including monthly spotlights on graduate-student-led publications."
+  description="Research news from NAU's School of Earth and Sustainability, including spotlights on graduate-student-led publications."
 >
   <PageHero
     title="News"
-    lede="Research stories from the School of Earth and Sustainability, with a monthly spotlight on new graduate-student-led papers."
+    lede="Research stories from the School of Earth and Sustainability, spotlighting new graduate-student-led papers."
   />
   <div class="mx-auto max-w-4xl px-4 py-12">
     {news.length === 0 ? (
       <div class="rounded-xl border border-dashed border-slate-300 p-10 text-center text-slate-500">
         <p class="font-serif text-xl text-pine-900">Stories coming soon</p>
         <p class="mt-2 text-sm">
-          Starting this fall, we'll publish a monthly spotlight on a new graduate-student-led
-          paper. Meanwhile, browse
+          We publish a spotlight on a new graduate-student-led paper as the research
+          lands. Meanwhile, browse
           <a href="/publications/" class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2">
             the full publication database
           </a>.
