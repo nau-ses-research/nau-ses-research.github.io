@@ -9,6 +9,7 @@ interests:
   - Data Science
   - Climate Informatics
   - Holocene Climate
+email: Nicholas.McKay@nau.edu
 image_caption: Professor Nicholas McKay
 ---
 

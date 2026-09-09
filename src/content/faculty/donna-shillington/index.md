@@ -11,6 +11,7 @@ interests:
   - Active-Source Seismology
   - Continental Rifting
   - Subduction Zones
+email: Donna.Shillington@nau.edu
 image_caption: Professor Donna Shillington
 ---
 

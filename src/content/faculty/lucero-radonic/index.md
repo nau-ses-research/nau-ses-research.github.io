@@ -12,6 +12,7 @@ interests:
   - Climate Adaptation
   - Environmental Justice
   - Participatory Methods
+email: Lucero.Radonic@nau.edu
 image_caption: Professor Lucero Radonic
 ---
 

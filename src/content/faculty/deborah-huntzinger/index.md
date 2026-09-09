@@ -13,6 +13,7 @@ interests:
   - Greenhouse Gas Accounting
   - Remote Sensing
   - Climate Change
+email: Deborah.Huntzinger@nau.edu
 image_caption: Professor Deborah Huntzinger
 ---
 

@@ -11,6 +11,7 @@ interests:
   - Aquifer Health
   - Climate Change Refugia
   - Groundwater Resources
+email: Abe.Springer@nau.edu
 image_caption: Professor Abraham Springer
 ---
 

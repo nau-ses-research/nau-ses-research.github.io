@@ -11,6 +11,7 @@ interests:
   - Mineralogy
   - Igneous Petrology
   - Volcanic Systems
+email: Casey.Tierney@nau.edu
 image_caption: Professor Casey Tierney
 ---
 

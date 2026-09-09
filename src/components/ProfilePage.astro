@@ -72,6 +72,14 @@ const personJsonLd = {
           class="w-full max-w-xs rounded-xl shadow"
         />
       )}
+      {entry.data.email && (
+        <a
+          href={`mailto:${entry.data.email}`}
+          class="mt-6 block text-sm text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800"
+        >
+          {entry.data.email}
+        </a>
+      )}
       {entry.data.interests.length > 0 && (
         <div class="mt-6">
           <h2 class="text-sm font-semibold uppercase tracking-wide text-pine-700">

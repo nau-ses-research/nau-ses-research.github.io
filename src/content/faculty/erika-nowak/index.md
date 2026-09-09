@@ -13,6 +13,7 @@ interests:
   - Reptile Behavior
   - Captive Breeding and Husbandry
   - Wildlife Management
+email: Erika.Nowak@nau.edu
 image_caption: Professor Erika Nowak
 ---
 

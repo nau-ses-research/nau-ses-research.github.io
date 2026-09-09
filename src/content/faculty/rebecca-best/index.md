@@ -13,6 +13,7 @@ interests:
   - Riparian Ecosystems
   - Phylogenetics
   - Conservation Biology
+email: Rebecca.Best@nau.edu
 image_caption: Professor Rebecca Best
 ---
 

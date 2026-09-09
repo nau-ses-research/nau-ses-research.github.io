@@ -12,6 +12,7 @@ interests:
   - Degrowth
   - Social Theory
   - Environmental Policy
+email: Diana.Stuart@nau.edu
 image_caption: Professor Diana Stuart
 ---
 

@@ -11,6 +11,7 @@ interests:
   - Dryland Ecosystems
   - Spatial Analysis
   - Vegetation Mapping
+email: Temuulen.Sankey@nau.edu
 image_caption: Professor Temuulen Sankey
 ---
 

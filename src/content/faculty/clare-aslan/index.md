@@ -11,6 +11,7 @@ interests:
   - Plant-Animal Interactions
   - Pollinator Conservation
   - Seed Dispersal
+email: Clare.Aslan@nau.edu
 image_caption: Professor Clare Aslan
 ---
 
