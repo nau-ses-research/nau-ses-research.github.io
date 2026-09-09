@@ -11,6 +11,7 @@ interests:
   - Community-based Learning
   - Sustainable Food Systems
   - Experiential Education
+email: Rosemary.Logan@nau.edu
 image_caption: Professor Rosemary Logan
 ---
 

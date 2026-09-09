@@ -14,6 +14,7 @@ interests:
   - Indigenous Knowledge
   - Traditional Ecological Knowledge
   - Restoration Ecology
+email: Sara.Souther@nau.edu
 image_caption: Professor Sara Souther
 ---
 

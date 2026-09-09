@@ -11,6 +11,7 @@ const profileSchema = z.object({
   summary: z.string().optional(),
   interests: z.array(z.string()).default([]),
   image_caption: z.string().optional(),
+  email: z.string().email().optional(),
   weight: z.number().default(0),
 });
 

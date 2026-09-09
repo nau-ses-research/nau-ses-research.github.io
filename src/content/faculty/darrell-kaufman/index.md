@@ -11,6 +11,7 @@ interests:
   - Quaternary Science
   - Lake Sediments
   - Geochronology
+email: Darrell.Kaufman@nau.edu
 image_caption: Professor Darrell Kaufman
 ---
 

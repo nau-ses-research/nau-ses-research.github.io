@@ -15,6 +15,7 @@ interests:
   - Arid Land River Systems
   - Humid Tropical River Systems
   - Dam Removal
+email: Taylor.Joyal@nau.edu
 image_caption: Professor Taylor Joyal
 ---
 

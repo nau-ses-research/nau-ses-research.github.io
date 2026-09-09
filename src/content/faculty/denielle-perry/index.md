@@ -12,6 +12,7 @@ interests:
   - Colorado River Basin
   - Conservation Policy
   - Indigenous Water Rights
+email: Denielle.Perry@nau.edu
 image_caption: Professor Denielle Perry
 ---
 

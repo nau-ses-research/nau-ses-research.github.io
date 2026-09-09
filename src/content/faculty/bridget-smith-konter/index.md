@@ -15,6 +15,7 @@ interests:
   - Planetary Geology
   - Crustal Deformation
   - Remote Sensing
+email: Bridget.Konter@nau.edu
 image_caption: Professor Bridget Smith-Konter
 ---
 

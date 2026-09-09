@@ -11,6 +11,7 @@ interests:
   - Paleoclimate
   - Climate Science
   - Arctic Research
+email: John.Fegyveresi@nau.edu
 image_caption: Professor John Fegyveresi
 ---
 

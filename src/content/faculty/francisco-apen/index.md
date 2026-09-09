@@ -12,6 +12,7 @@ interests:
   - Continental Lithosphere
   - Thermochronology
   - Deep Time
+email: Francisco.Apen@nau.edu
 image_caption: Professor Francisco Apen
 ---
 

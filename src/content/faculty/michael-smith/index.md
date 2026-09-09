@@ -10,6 +10,7 @@ interests:
   - Geochronology of Terrestrial Basins
   - Geomorphology of Submarine Canyons
   - Paleolandscape Records of Tectonics
+email: Michael.E.Smith@nau.edu
 image_caption: Professor Michael Smith
 ---
 

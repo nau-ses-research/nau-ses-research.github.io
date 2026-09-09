@@ -11,6 +11,7 @@ interests:
   - Fault Processes
   - Tectonic Geomorphology
   - Crustal Deformation
+email: Christine.Regalla@nau.edu
 image_caption: Professor Christine Regalla
 ---
 

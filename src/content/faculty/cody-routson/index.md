@@ -11,6 +11,7 @@ interests:
   - Drought Research
   - Holocene Climate
   - Climate Variability
+email: Cody.Routson@nau.edu
 image_caption: Professor Cody Routson
 ---
 

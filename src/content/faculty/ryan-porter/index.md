@@ -15,6 +15,7 @@ interests:
   - Seismic Anisotropy
   - Debris Flows
   - Planetary Geophysics
+email: Ryan.Porter@nau.edu
 image_caption: Professor Ryan Porter
 ---
 

@@ -12,6 +12,7 @@ interests:
   - Collective Action
   - Environmental Policy
   - Natural Resource Management
+email: Pranay.Ranjan@nau.edu
 image_caption: Professor Pranay Ranjan
 ---
 

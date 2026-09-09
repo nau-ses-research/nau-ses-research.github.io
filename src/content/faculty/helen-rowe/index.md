@@ -13,6 +13,7 @@ interests:
   - Long-term Monitoring
   - Climate Change Adaptation
   - Sonoran Desert
+email: Helen.Rowe@nau.edu
 image_caption: Professor Helen Rowe
 ---
 

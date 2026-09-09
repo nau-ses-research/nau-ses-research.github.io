@@ -13,6 +13,7 @@ interests:
   - Pressure-Temperature Paths
   - Garnet Geochronology
   - Sevier Orogenesis
+email: Suzanne.Affinati@nau.edu
 image_caption: Professor Suzanne Affinati
 ---
 

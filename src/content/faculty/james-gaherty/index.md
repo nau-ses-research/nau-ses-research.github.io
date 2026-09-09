@@ -11,6 +11,7 @@ interests:
   - Tectonic Processes
   - Continental Rifting
   - Seismic Imaging
+email: James.Gaherty@nau.edu
 image_caption: Professor James Gaherty
 ---
 

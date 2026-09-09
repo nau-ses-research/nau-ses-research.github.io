@@ -12,6 +12,7 @@ interests:
   - Natural Resources Management
   - Environmental Economics
   - Indigenous Communities
+email: Erik.Nielsen@nau.edu
 image_caption: Professor Erik Nielsen
 ---
 
