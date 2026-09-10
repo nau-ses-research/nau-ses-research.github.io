@@ -35,6 +35,11 @@ const isActive = (href: string) =>
 const researchActive = research.some((i) => isActive(i.href));
 const programsActive = path.startsWith("/student-opportunities/");
 const currentActive = path.startsWith("/current-students/");
+const people = [
+  { name: "Faculty", href: "/faculty-profiles/" },
+  { name: "Research Staff", href: "/research-staff/" },
+];
+const peopleActive = people.some((i) => isActive(i.href));
 ---
 
 <header class="sticky top-0 z-40 bg-pine-900 text-white shadow-md">
@@ -100,7 +105,23 @@ const currentActive = path.startsWith("/current-students/");
           ))}
         </ul>
       </li>
-      <li><a href="/faculty-profiles/" class:list={["nav-link", isActive("/faculty-profiles/") && "nav-active"]}>Faculty</a></li>
+      <li class="group relative">
+        <button
+          class:list={["nav-link nav-btn", peopleActive && "nav-active"]}
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          People
+          <svg class="chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <ul class="dropdown">
+          {people.map((i) => (
+            <li><a href={i.href} class:list={["dropdown-link", isActive(i.href) && "dropdown-active"]}>{i.name}</a></li>
+          ))}
+        </ul>
+      </li>
       <li><a href="/news/" class:list={["nav-link", isActive("/news/") && "nav-active"]}>News</a></li>
       <li><a href="/alumni/" class:list={["nav-link", isActive("/alumni/") && "nav-active"]}>Alumni</a></li>
       <li><a href="/contact/" class:list={["nav-link", isActive("/contact/") && "nav-active"]}>Contact</a></li>
@@ -131,7 +152,8 @@ const currentActive = path.startsWith("/current-students/");
     {currentStudents.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>)}
     <p class="mobile-heading">Research</p>
     {research.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>)}
-    <a href="/faculty-profiles/" class="mobile-link">Faculty</a>
+    <p class="mobile-heading">People</p>
+    {people.map((i) => <a href={i.href} class="mobile-link pl-4">{i.name}</a>) }
     <a href="/news/" class="mobile-link">News</a>
     <a href="/alumni/" class="mobile-link">Alumni</a>
     <a href="/contact/" class="mobile-link">Contact</a>
