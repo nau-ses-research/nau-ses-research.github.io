@@ -1,0 +1,79 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+
+const staff = [
+  {
+    name: "Katie Chapman",
+    title: "Research Associate",
+    email: "Katie.Chapman@nau.edu",
+    interests: "Sandbar studies in the Colorado River",
+  },
+  {
+    name: "Gabe Epstein",
+    title: "Research Associate",
+    email: "Gabe.Epstein@nau.edu",
+    interests: "Chemical geodynamics of convergent margins, metamorphic petrology, stable and noble gas isotopes",
+  },
+  {
+    name: "Jennifer Holmes",
+    title: "Senior Wildlife Biologist",
+    email: "Jennifer.Holmes@nau.edu",
+    interests: "Wildlife habitat on the Colorado Plateau",
+  },
+  {
+    name: "Yiran Huang",
+    title: "Postdoctoral Researcher",
+    email: "Yiran.Huang@nau.edu",
+    interests: "Seismology, geodynamics, tectonics",
+  },
+  {
+    name: "Matthew Johnson",
+    title: "Senior Research Associate",
+    email: "Matthew.Johnson@nau.edu",
+    interests: "Colorado Plateau ecosystems",
+  },
+  {
+    name: "Leah Marshall",
+    title: "Research Associate",
+    email: "lpm75@nau.edu",
+    interests: "Past climate and environmental changes, carbon storage and cycling in Arctic environments",
+  },
+];
+---
+
+<Base
+  title="Research Staff"
+  description="Meet the research staff of NAU's School of Earth and Sustainability."
+>
+  <PageHero
+    title="Research Staff"
+    lede="Our research staff support field, laboratory, data, and community-based work across the School of Earth and Sustainability."
+  />
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {staff.map((person) => (
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h2 class="font-serif text-xl font-semibold text-pine-900">{person.name}</h2>
+          <p class="mt-2 font-medium text-pine-700">{person.title}</p>
+          <a
+            href={`mailto:${person.email}`}
+            class="mt-3 block text-sm text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800"
+          >
+            {person.email}
+          </a>
+          <p class="mt-4 text-sm leading-6 text-slate-600">{person.interests}</p>
+        </article>
+      ))}
+    </div>
+    <p class="mt-10 text-sm text-slate-500">
+      Staff information is based on the
+      <a
+        href="https://in.nau.edu/school-earth-sustainability/faculty-in-the-school-of-earth-sustainability/"
+        class="text-pine-700 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-900"
+      >
+        NAU School of Earth and Sustainability directory
+      </a>.
+    </p>
+  </div>
+</Base>
