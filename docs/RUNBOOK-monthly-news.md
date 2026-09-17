@@ -18,6 +18,16 @@ from `data/publications.csv`, find candidates where ALL hold:
   year for papers added in a backfill);
 - not already featured: its `id` appears in no `publication_id` frontmatter
   under `src/content/news/*/index.md`;
+- **not already asked about**: its `id` appears nowhere in Guy's interview
+  register (`workspace/interview-register.tsv` on his machine, private because
+  it holds personal addresses; this repo is public, so it is never copied
+  here, not even as a bare list of ids, which would still say who was asked
+  and imply who said no). If you are running this by hand rather than as Guy,
+  read it over SSH (`cut -f1,2,7 ~/.openclaw-guy/workspace/interview-register.tsv`
+  gives id, person and status) or ask Guy to run the check. Do not skip it. Every request ever made is in there as
+  published, waiting or declined, and a paper listed in *any* of those states is
+  finished business. A different paper by an author already in the register is
+  still a fair candidate; note their earlier outcome when proposing it;
 - prefer `verified=true` rows, papers in strong venues, and students who have
   not been featured before.
 
@@ -34,8 +44,15 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
   that helps run the SES website, invited by the school to feature their
   paper; say Nick is cc'd; ask the questions from
   `docs/interview-template.md` (pick 4–6, tailored to the paper).
-- Iterate at most twice more (follow-ups, clarifications). Be gracious if the
-  student declines; pick another candidate.
+- **Add the register row as you send that first email**, not later: the paper's
+  `publication_id`, the person, their address, the paper title, today's date,
+  and `waiting`. The register is what stops this paper being proposed again, so
+  a request that is never recorded will come back around.
+- Iterate at most twice more (follow-ups, clarifications), updating
+  `last_contact` in the register each time. Be gracious if the student
+  declines: set their row to `declined`, say in the notes that it is closed,
+  and pick another candidate. A decline is recorded so nobody asks again, and
+  for no other purpose; do not carry the reason into anything public.
 - Before publishing: send the student the exact quotes you plan to use (or
   the full draft) and get their **explicit OK in writing**. No OK, no story.
 
@@ -93,6 +110,10 @@ The PR blocks on Nick's review (CODEOWNERS). After merge, confirm the story
 is live at https://ses-nau.org/news/ and appears in the RSS feed.
 
 ## 5. After it's live
+
+**Close the register row first:** set the person's status to `published`, fill
+in the story URL, and set `last_contact` to today. Everything below assumes
+that is done.
 
 Do not start this step until the story actually renders at
 `https://ses-nau.org/news/<yyyy-mm>-<short-slug>/`. The deploy runs a few
