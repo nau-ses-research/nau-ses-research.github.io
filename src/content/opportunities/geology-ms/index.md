@@ -1,21 +1,21 @@
 ---
-title: Master of Science in Geology | NAU Earth Sciences
+title: Master of Science (MS) in Geosciences | NAU Earth Sciences
 summary: >-
-  MS Geology degree at NAU with 90% employment rate. Research opportunities in
+  MS Geosciences degree at NAU with 90% employment rate. Research opportunities in
   sedimentary, igneous, metamorphic rocks, tectonics, and water resources.
   Funding available.
 weight: 100
 ---
 
-## Master of Science in Geology
+## Master of Science (MS) in Geosciences
 
 ### Program Overview
 
-The Master of Science in Geology at Northern Arizona University's School of Earth and Sustainability provides students with advanced training in geological sciences through hands-on research and comprehensive coursework. Our program has an excellent track record of success, with **about 90% of graduates employed** in environmental consulting, the energy industry, teaching, and government agencies.
+The Master of Science (MS) in Geosciences at Northern Arizona University's School of Earth and Sustainability provides students with advanced training in geological sciences through hands-on research and comprehensive coursework. Our program has an excellent track record of success, with **about 90% of graduates employed** in environmental consulting, the energy industry, teaching, and government agencies.
 
 ### Research Opportunities
 
-Our MS in Geology program offers diverse research opportunities across multiple geological disciplines:
+Our MS in Geosciences program offers diverse research opportunities across multiple geological disciplines:
 
 #### **Core Research Areas**
 - **Sedimentary Rocks** - Depositional systems, diagenesis, and basin analysis
@@ -91,7 +91,7 @@ Our geology faculty are internationally recognized researchers with expertise sp
 
 ### Career Outcomes
 
-Our MS in Geology graduates have excellent employment prospects, with **about 90% finding positions** in their chosen career paths:
+Our MS in Geosciences graduates have excellent employment prospects, with **about 90% finding positions** in their chosen career paths:
 
 #### **Environmental Consulting (30-40%)**
 - Environmental site assessment and remediation
@@ -248,4 +248,4 @@ Take the first step toward your graduate education in geology:
 
 ---
 
-*The MS in Geology program combines rigorous academic training with hands-on research experience, preparing graduates for successful careers in industry, government, education, and academia.*
+*The MS in Geosciences program combines rigorous academic training with hands-on research experience, preparing graduates for successful careers in industry, government, education, and academia.*

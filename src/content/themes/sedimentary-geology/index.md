@@ -74,8 +74,8 @@ Students gain experience in:
 ## For Students
 
 Students can pursue degrees in:
-- **Bachelor's degree (BS)** in Geology
-- **Master's degree (MS)** in Geology
+- **Bachelor of Science (BS)** in Geosciences
+- **Master of Science (MS)** in Geosciences
 - **PhD** in Earth Sciences & Environmental Sustainability
 
 ## Contact Information

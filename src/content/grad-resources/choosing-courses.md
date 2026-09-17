@@ -15,7 +15,7 @@ Work with your thesis or dissertation advisor to choose your classes. A few grou
 
 **MS Climate Science and Solutions:** follow your [handbook](/current-students/).
 
-**MS Geology:** EES 605 and 606 are required in year 1. EES 699 (thesis credits) is allowed only after your proposal defense.
+**MS Geosciences:** EES 605 and 606 are required in year 1. EES 699 (thesis credits) is allowed only after your proposal defense.
 
 **MS Environmental Sciences and Policy:** EES 605 and 606 plus ENV 555 in year 1. EES 699 is allowed only after your proposal defense.
 

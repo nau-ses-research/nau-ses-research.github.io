@@ -1,10 +1,10 @@
 ---
-title: Geology Bachelor of Science (BS)
-nav_title: Geology BS
-summary: Field-intensive training in the physical and biological history of the Earth, preparing students for professional geology careers and graduate study.
+title: Bachelor of Science (BS) in Geosciences
+nav_title: Geosciences BS
+summary: Field-intensive training in the physical and biological history of the Earth, preparing students for professional geosciences careers and graduate study.
 weight: 100
 videos:
-  - title: BS in Geology at NAU
+  - title: BS in Geosciences at NAU
     youtube_id: ZXtzmhcfcgM
 ---
 
