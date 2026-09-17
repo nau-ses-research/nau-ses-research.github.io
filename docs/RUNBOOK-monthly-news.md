@@ -34,14 +34,21 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
   that helps run the SES website, invited by the school to feature their
   paper; say Nick is cc'd; ask the questions from
   `docs/interview-template.md` (pick 4–6, tailored to the paper).
-- **Say "the School of Earth and Sustainability", not "NAU" or "Northern
-  Arizona University", anywhere in your own prose in an email.** guy@ses-nau.org
-  is not a university address, and mail that brands itself with the university's
-  name from a domain resembling `nau.edu` gets filtered as impersonation by
-  exactly the mail systems our recipients use. This applies to how you introduce
-  yourself and sign off, not to anything you quote: a story draft sent for
-  approval keeps the wording it will be published with, since that is what the
-  person is approving. The site keeps its NAU branding; this is about email.
+- **In the email's own prose, say "the School of Earth and Sustainability",
+  not "NAU" or "Northern Arizona University".** guy@ses-nau.org is not a
+  university address, and mail that brands itself with the university's name
+  from a domain resembling `nau.edu` gets filtered as impersonation by exactly
+  the mail systems our recipients use. This covers how you introduce yourself,
+  frame what you are sending, and sign off.
+
+  It does **not** cover material the email is *carrying* for publication
+  somewhere else. A story draft sent for approval keeps the wording it will
+  publish with, because that is the text the person is approving, and the
+  social drafts in step 5b keep their intended branding, including the `#NAU`
+  hashtag that `docs/news-style-guide.md` calls for on LinkedIn. Never weaken
+  copy that is bound for the site or for social media to satisfy a mail-filter
+  rule, and never edit a quote at all. The site keeps its NAU branding
+  throughout; this is about the words you write as the sender.
 - Iterate at most twice more (follow-ups, clarifications). Be gracious if the
   student declines; pick another candidate.
 - Before publishing: send the student the exact quotes you plan to use (or
