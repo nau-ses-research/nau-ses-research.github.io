@@ -18,6 +18,12 @@ from `data/publications.csv`, find candidates where ALL hold:
   year for papers added in a backfill);
 - not already featured: its `id` appears in no `publication_id` frontmatter
   under `src/content/news/*/index.md`;
+- **not already asked about**: its `id` appears nowhere in Guy's interview
+  register (`workspace/interview-register.tsv` on his machine, private because
+  it holds personal addresses). Every request ever made is in there as
+  published, waiting or declined, and a paper listed in *any* of those states is
+  finished business. A different paper by an author already in the register is
+  still a fair candidate; note their earlier outcome when proposing it;
 - prefer `verified=true` rows, papers in strong venues, and students who have
   not been featured before.
 

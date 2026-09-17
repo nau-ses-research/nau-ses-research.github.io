@@ -126,7 +126,11 @@ to `data/publications.csv`, then get the change merged so the site redeploys.
    For each paper give: title, authors as listed (mark the SES people), journal,
    DOI, the `id` from `data/publications.csv`, which criterion it met, and one or
    two sentences on why it would make a good story. Skip any paper whose `id`
-   already appears as `publication_id` in `src/content/news/*/index.md`.
+   already appears as `publication_id` in `src/content/news/*/index.md`, or
+   anywhere in the interview register (`workspace/interview-register.tsv`):
+   a paper already asked about is settled, whatever the answer was. If the
+   author appears in the register for a *different* paper, the new paper is
+   still worth proposing; say what happened last time.
 
    This is a suggestion only. Do not contact students or authors, and do not
    start drafting; Nick picks, and the story itself then follows
