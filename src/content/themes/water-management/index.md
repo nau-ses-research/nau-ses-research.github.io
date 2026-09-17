@@ -83,8 +83,8 @@ Specialization in:
 ## For Students
 
 Students can pursue degrees in:
-- **Bachelor's (BS)** in Environmental Sciences or Geology
-- **Master's (MS)** in Environmental Sciences and Policy or Geology
+- **Bachelor of Science (BS)** in Environmental Sciences or Geosciences
+- **Master of Science (MS)** in Environmental Sciences and Policy or Geosciences
 - **PhD** in Earth Sciences & Environmental Sustainability
 
 ## Contact Information

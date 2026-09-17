@@ -83,9 +83,9 @@ Our research informs:
 
 Students can pursue degrees in:
 - **BS** in Environmental Sciences
-- **BS** in Geology
+- **BS** in Geosciences
 - **MS** in Environmental Sciences and Policy
-- **MS** in Geology
+- **MS** in Geosciences
 - **MS** in Climate Science & Solutions
 - **PhD** in Earth Sciences & Environmental Sustainability (Climate & Environmental Change emphasis)
 

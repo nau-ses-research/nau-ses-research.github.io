@@ -1,7 +1,7 @@
 ---
 title: Undergraduate Degree Programs
 summary: >-
-  Comprehensive undergraduate degree programs in geology, environmental
+  Comprehensive undergraduate degree programs in geosciences, environmental
   sciences, and sustainability studies preparing students for professional
   careers and graduate study.
 weight: 10

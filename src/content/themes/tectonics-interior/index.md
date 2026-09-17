@@ -85,8 +85,8 @@ Special emphasis on:
 ## For Students
 
 Students can pursue degrees in:
-- **Undergraduate: BS** in Geology
-- **Master's: Geology MS** (thesis-based)
+- **Undergraduate: BS** in Geosciences
+- **Master's: MS in Geosciences** (thesis-based)
 - **PhD:** Earth Sciences & Environmental Sustainability with Earth Systems emphasis
 
 ## Contact Information

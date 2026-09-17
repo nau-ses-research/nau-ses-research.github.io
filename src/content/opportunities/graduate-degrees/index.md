@@ -2,7 +2,7 @@
 title: Graduate Degree Programs
 summary: >-
   Advanced graduate degree programs including Master's and PhD options in
-  geology, environmental sciences, climate science, and sustainability research.
+  geosciences, environmental sciences, climate science, and sustainability research.
 weight: 20
 image_caption: Graduate researchers reviewing field data at a backcountry camp
 ---
@@ -13,7 +13,7 @@ The School of Earth and Sustainability offers four comprehensive graduate degree
 
 Already an SES grad student? Head to [Current Students](/current-students/) for handbooks, course planning, defense procedures, and funding.
 
-## Master of Science in Geology (MS)
+## Master of Science (MS) in Geosciences
 
 **[Complete Program Details](/student-opportunities/geology-ms/)**
 
