@@ -147,7 +147,7 @@ Already an SES grad student? Head to [Current Students](/current-students/) for 
 
 # Guidance for applying to NAU’s graduate school to pursue an advanced degrees in SES
 
-First, if you plan to apply to a thesis-based program (ESP MS, GLG MS, and ESES PhD), [get to know our faculty](/faculty-profiles/) and [review current opportunities for students](/student-opportunities/). **It is very important that you reach out to faculty members you would be interested in working with before you apply**. Faculty expect to receive emails from prospective students and will be happy to hear from you about your specific interests. They can also tell you more about their research and if they have space available in their labs.
+First, if you plan to apply to a thesis-based program (ESP MS, GLG MS, and ESES PhD), see [which faculty are recruiting students now](/student-opportunities/find-an-advisor/), and [get to know our faculty](/faculty-profiles/) more broadly. **It is very important that you reach out to faculty members you would be interested in working with before you apply**. Faculty expect to receive emails from prospective students and will be happy to hear from you about your specific interests. They can also tell you more about their research and if they have space available in their labs.
 
 Second, entry into any SES Graduate Program requires an online application through the Office of Graduate and Professional Studies. A completed application for admission will include:
 
