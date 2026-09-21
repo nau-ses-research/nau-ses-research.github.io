@@ -1,0 +1,265 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "../../../layouts/Base.astro";
+import PageHero from "../../../components/PageHero.astro";
+import { facultyBySlug } from "../../../lib/publications";
+import { PROGRAMS, type ProgramKey } from "../../../lib/advisors";
+
+const themeEntries = await getCollection("themes");
+const themeTitle = (slug: string) =>
+  themeEntries.find((t) => t.id === slug)?.data.title ?? slug;
+
+const portraits = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/faculty/*/featured.{jpg,jpeg,png}",
+);
+async function portraitFor(slug: string) {
+  const key = Object.keys(portraits).find((k) => k.includes(`/${slug}/`));
+  return key ? (await portraits[key]()).default : undefined;
+}
+
+// One card per recruiting advisor. Everything except the recruiting details
+// themselves is pulled from the profile and faculty data we already maintain,
+// so this page cannot drift from the rest of the site.
+const advisors = await Promise.all(
+  (await getCollection("advisors")).map(async (a) => {
+    const profile = await getEntry("faculty", a.data.faculty);
+    if (!profile) throw new Error(`advisors/${a.id}: no faculty profile "${a.data.faculty}"`);
+    const record = facultyBySlug(a.data.faculty);
+    return {
+      entry: a,
+      name: profile.data.name,
+      lastName: profile.data.last_name,
+      title: profile.data.title,
+      interests: profile.data.interests.slice(0, 4),
+      themes: record?.themes ?? [],
+      portrait: await portraitFor(a.data.faculty),
+      hasDetail: (a.body ?? "").trim().length > 0,
+    };
+  }),
+);
+advisors.sort((a, b) => a.lastName.localeCompare(b.lastName));
+
+const cycle = advisors[0]?.entry.data.cycle ?? "2027/28";
+const usedThemes = [...new Set(advisors.flatMap((a) => a.themes))].sort((a, b) =>
+  themeTitle(a).localeCompare(themeTitle(b)),
+);
+const programKeys = Object.keys(PROGRAMS) as ProgramKey[];
+const countFor = (p: ProgramKey) =>
+  advisors.filter((a) => a.entry.data.programs.includes(p)).length;
+---
+
+<Base
+  title="Find an Advisor"
+  description={`Faculty in the School of Earth and Sustainability recruiting graduate students for ${cycle}, the programs they are recruiting into, and how to reach them.`}
+>
+  <PageHero
+    title="Find an Advisor"
+    lede={`Graduate students are admitted to work with a specific advisor, so the best first step is to find the faculty whose work interests you and write to them. These faculty are recruiting for ${cycle}.`}
+  />
+
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <div class="rounded-xl bg-pine-50 p-5 text-sm text-slate-700">
+      <p>
+        <strong class="text-pine-900">Contact advisors before you apply.</strong> An
+        email introducing yourself, your research interests, and your background
+        is expected and welcome. Faculty can tell you whether they have funding
+        and whether your interests fit the work they have underway, which is
+        hard to judge from an application alone.
+      </p>
+      <p class="mt-2">
+        Not seeing a fit here? The
+        <a href="/faculty-profiles/" class="text-pine-700 underline decoration-gold-400 decoration-2 underline-offset-2">full faculty directory</a>
+        lists everyone in the school. Faculty not listed on this page may still
+        consider students in a given year.
+      </p>
+    </div>
+
+    <!-- Filters. Progressive enhancement: with JS off, every advisor is shown. -->
+    <div class="mt-8 border-y border-slate-200 py-5" data-filters>
+      <div class="flex flex-wrap items-baseline gap-x-3 gap-y-2">
+        <span class="text-sm font-semibold text-pine-900">Program</span>
+        {programKeys.map((p) => (
+          <button
+            type="button"
+            data-filter="program"
+            data-value={p}
+            class="rounded-full border border-slate-300 px-3 py-1 text-sm text-slate-700 transition hover:border-pine-500 hover:text-pine-800 aria-pressed:border-pine-700 aria-pressed:bg-pine-700 aria-pressed:text-white"
+            aria-pressed="false"
+          >
+            {PROGRAMS[p].short}
+            <span class="opacity-70">({countFor(p)})</span>
+          </button>
+        ))}
+      </div>
+      <div class="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-2">
+        <span class="text-sm font-semibold text-pine-900">Research area</span>
+        {usedThemes.map((t) => (
+          <button
+            type="button"
+            data-filter="theme"
+            data-value={t}
+            class="rounded-full border border-slate-300 px-3 py-1 text-sm text-slate-700 transition hover:border-pine-500 hover:text-pine-800 aria-pressed:border-pine-700 aria-pressed:bg-pine-700 aria-pressed:text-white"
+            aria-pressed="false"
+          >
+            {themeTitle(t)}
+          </button>
+        ))}
+        <button
+          type="button"
+          data-clear
+          class="ml-auto text-sm text-slate-500 underline underline-offset-2 hover:text-pine-700"
+        >
+          Clear filters
+        </button>
+      </div>
+      <p class="mt-3 text-sm text-slate-600" data-count aria-live="polite">
+        Showing all {advisors.length} advisors.
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-2" data-cards>
+      {advisors.map((a) => (
+        <article
+          class="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+          data-advisor
+          data-programs={a.entry.data.programs.join(" ")}
+          data-themes={a.themes.join(" ")}
+        >
+          <div class="flex items-start gap-4">
+            {a.portrait && (
+              <Image
+                src={a.portrait}
+                alt=""
+                width={112}
+                height={112}
+                class="h-20 w-20 shrink-0 rounded-full object-cover object-[50%_25%]"
+              />
+            )}
+            <div class="min-w-0">
+              <h2 class="font-serif text-xl font-semibold text-pine-900">
+                <a href={`/faculty-profiles/${a.entry.data.faculty}/`} class="hover:text-pine-700">
+                  {a.name}
+                </a>
+              </h2>
+              {a.title && <p class="text-sm text-slate-600">{a.title}</p>}
+              <p class="mt-1 flex flex-wrap gap-1.5">
+                {a.entry.data.programs.map((p) => (
+                  <a
+                    href={PROGRAMS[p].href}
+                    class="rounded bg-pine-50 px-2 py-0.5 text-xs font-medium text-pine-800 hover:bg-pine-100"
+                    title={PROGRAMS[p].long}
+                  >
+                    {PROGRAMS[p].short}
+                  </a>
+                ))}
+              </p>
+            </div>
+          </div>
+
+          <p class="mt-4 text-slate-700">{a.entry.data.summary}</p>
+
+          {a.entry.data.seeking && (
+            <p class="mt-2 text-sm text-slate-600">
+              <span class="font-medium text-pine-900">Seeking:</span> {a.entry.data.seeking}
+            </p>
+          )}
+          {a.entry.data.apply_by && (
+            <p class="mt-1 text-sm text-slate-600">
+              <span class="font-medium text-pine-900">To apply:</span> {a.entry.data.apply_by}
+            </p>
+          )}
+          {a.entry.data.details_pending && (
+            <p class="mt-2 text-sm italic text-slate-500">
+              A fuller project description is still to come. Email is the best way
+              to ask what they have in mind.
+            </p>
+          )}
+
+          {a.interests.length > 0 && (
+            <p class="mt-3 flex flex-wrap gap-1.5">
+              {a.interests.map((i) => (
+                <span class="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{i}</span>
+              ))}
+            </p>
+          )}
+
+          <div class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 text-sm">
+            {a.hasDetail && (
+              <a
+                href={`/student-opportunities/find-an-advisor/${a.entry.id}/`}
+                class="font-medium text-pine-700 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-900"
+              >
+                Position details →
+              </a>
+            )}
+            {a.entry.data.contact && (
+              <a href={`mailto:${a.entry.data.contact}`} class="text-pine-700 hover:text-pine-900">
+                Email {a.lastName}
+              </a>
+            )}
+            {a.entry.data.links.map((l) => (
+              <a href={l.url} class="text-pine-700 hover:text-pine-900" rel="noopener">
+                {l.label} ↗
+              </a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-8 hidden text-slate-600" data-empty>
+      No advisor matches every filter at once. Try clearing one: most faculty
+      recruit into a single program.
+    </p>
+  </div>
+
+  <script>
+    const root = document.querySelector("[data-filters]");
+    const cards = [...document.querySelectorAll<HTMLElement>("[data-advisor]")];
+    const count = document.querySelector("[data-count]")!;
+    const empty = document.querySelector("[data-empty]")!;
+    const active = { program: new Set<string>(), theme: new Set<string>() };
+
+    function apply() {
+      let shown = 0;
+      for (const card of cards) {
+        const programs = (card.dataset.programs ?? "").split(" ");
+        const themes = (card.dataset.themes ?? "").split(" ");
+        const okProgram =
+          active.program.size === 0 || programs.some((p) => active.program.has(p));
+        const okTheme =
+          active.theme.size === 0 || themes.some((t) => active.theme.has(t));
+        const show = okProgram && okTheme;
+        card.classList.toggle("hidden", !show);
+        if (show) shown++;
+      }
+      const filtered = active.program.size > 0 || active.theme.size > 0;
+      count.textContent = filtered
+        ? `Showing ${shown} of ${cards.length} advisors.`
+        : `Showing all ${cards.length} advisors.`;
+      empty.classList.toggle("hidden", shown > 0);
+    }
+
+    root?.addEventListener("click", (e) => {
+      const el = (e.target as HTMLElement).closest<HTMLElement>("button");
+      if (!el) return;
+      if (el.hasAttribute("data-clear")) {
+        active.program.clear();
+        active.theme.clear();
+        root.querySelectorAll("[aria-pressed]").forEach((b) =>
+          b.setAttribute("aria-pressed", "false"),
+        );
+        apply();
+        return;
+      }
+      const kind = el.dataset.filter as "program" | "theme" | undefined;
+      const value = el.dataset.value;
+      if (!kind || !value) return;
+      const on = el.getAttribute("aria-pressed") === "true";
+      el.setAttribute("aria-pressed", on ? "false" : "true");
+      on ? active[kind].delete(value) : active[kind].add(value);
+      apply();
+    });
+  </script>
+</Base>

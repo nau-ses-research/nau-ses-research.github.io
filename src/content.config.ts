@@ -67,6 +67,26 @@ const news = defineCollection({
   }),
 });
 
+/** Faculty recruiting graduate students in a given cycle. One file per advisor,
+ *  named for their slug in the faculty collection. Frontmatter drives the cards
+ *  and the filters; the body, when present, is the full position description. */
+const advisors = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/advisors" }),
+  schema: z.object({
+    faculty: z.string(), // slug in the faculty collection
+    cycle: z.string().default("2027/28"),
+    programs: z.array(z.enum(["geosciences-ms", "esp-ms", "eses-phd"])).min(1),
+    seeking: z.string().optional(), // how many students, as the advisor put it
+    summary: z.string(), // what they are recruiting for, in their own words
+    contact: z.string().email().optional(),
+    links: z
+      .array(z.object({ label: z.string(), url: z.string().url() }))
+      .default([]),
+    apply_by: z.string().optional(),
+    details_pending: z.boolean().default(false), // said yes, description still to come
+  }),
+});
+
 const gradResources = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/grad-resources" }),
   schema: z.object({
@@ -85,4 +105,5 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { faculty, archivedFaculty, themes, opportunities, news, gradResources, pages };
+export const collections = {
+  advisors, faculty, archivedFaculty, themes, opportunities, news, gradResources, pages };
