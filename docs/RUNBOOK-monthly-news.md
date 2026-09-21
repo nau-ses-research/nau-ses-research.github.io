@@ -44,6 +44,23 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
   that helps run the SES website, invited by the school to feature their
   paper; say Nick is cc'd; ask the questions from
   `docs/interview-template.md` (pick 4–6, tailored to the paper).
+- **In the email's own prose, say "the School of Earth and Sustainability",
+  not "NAU" or "Northern Arizona University".** guy@ses-nau.org is not a
+  university address, and mail that brands itself with the university's name
+  from a domain resembling `nau.edu` gets filtered as impersonation by exactly
+  the mail systems our recipients use. This covers how you introduce yourself,
+  frame what you are sending, and sign off.
+
+  It does **not** cover material the email is *carrying* for publication
+  somewhere else. A story draft sent for approval keeps the wording it will
+  publish with, because that is the text the person is approving, and the
+  social drafts in step 5b keep their intended branding, including the `#NAU`
+  hashtag that `docs/news-style-guide.md` calls for on LinkedIn. Never weaken
+  copy that is bound for the site or for social media to satisfy a mail-filter
+  rule, and never edit a quote at all. The site keeps its NAU branding
+  throughout; this is about the words you write as the sender.
+- Iterate at most twice more (follow-ups, clarifications). Be gracious if the
+  student declines; pick another candidate.
 - **Add the register row as you send that first email**, not later: the paper's
   `publication_id`, the person, their address, the paper title, today's date,
   and `waiting`. The register is what stops this paper being proposed again, so
