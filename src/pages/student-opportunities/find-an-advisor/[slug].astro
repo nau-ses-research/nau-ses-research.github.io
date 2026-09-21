@@ -18,6 +18,16 @@ const { Content } = await render(entry);
 const profile = await getEntry("faculty", entry.data.faculty);
 if (!profile) throw new Error(`advisors/${entry.id}: no faculty profile "${entry.data.faculty}"`);
 
+// Others who advise the positions described here, so a student sees both names.
+const coAdvisors = await Promise.all(
+  (await getCollection("advisors"))
+    .filter((o) => o.data.co_advises.includes(entry.id))
+    .map(async (o) => {
+      const p = await getEntry("faculty", o.data.faculty);
+      return { slug: o.data.faculty, name: p?.data.name ?? o.data.faculty };
+    }),
+);
+
 const portraits = import.meta.glob<{ default: ImageMetadata }>(
   "/src/content/faculty/*/featured.{jpg,jpeg,png}",
 );
@@ -59,6 +69,25 @@ const portrait = key ? (await portraits[key]()).default : undefined;
 
   <article class="mx-auto max-w-3xl px-4 py-10">
     <dl class="grid gap-4 rounded-xl bg-pine-50 p-5 text-sm sm:grid-cols-2">
+      {coAdvisors.length > 0 && (
+        <div>
+          <dt class="font-semibold text-pine-900">Advisors</dt>
+          <dd class="mt-1 text-slate-700">
+            {profile.data.name}
+            {coAdvisors.map((c) => (
+              <>
+                {", "}
+                <a
+                  href={`/faculty-profiles/${c.slug}/`}
+                  class="text-pine-700 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-900"
+                >
+                  {c.name}
+                </a>
+              </>
+            ))}
+          </dd>
+        </div>
+      )}
       <div>
         <dt class="font-semibold text-pine-900">Programs</dt>
         <dd class="mt-1 space-y-1">

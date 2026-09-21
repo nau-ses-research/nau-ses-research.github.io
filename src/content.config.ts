@@ -84,6 +84,10 @@ const advisors = defineCollection({
       .default([]),
     apply_by: z.string().optional(),
     details_pending: z.boolean().default(false), // said yes, description still to come
+    // Slugs of other advisor entries whose positions this person also advises.
+    // The description lives once, on the entry that owns it, and both cards
+    // show it; programs are unioned across the two for filtering.
+    co_advises: z.array(z.string()).default([]),
   }),
 });
 

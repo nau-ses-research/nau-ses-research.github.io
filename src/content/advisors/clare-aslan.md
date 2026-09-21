@@ -12,4 +12,6 @@ links:
   - label: Lab of Conservation Ecology
     url: https://labofconservationecology.com/
 details_pending: true
+co_advises:
+  - sara-souther
 ---
