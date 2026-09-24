@@ -139,6 +139,45 @@ def sort_key(r: dict):
 if pubs != sorted(pubs, key=sort_key):
     err("publications.csv: rows are not sorted by year desc, simple_title asc")
 
+# ------------------------------------------------------ grad_students.csv
+# Rebuilt wholesale by scripts/update_grad_students.py from the Marketing
+# folder, so these checks are about that script having behaved, not about
+# anyone's hand edits.
+GRAD_COLS = ["slug", "first", "last", "full_name", "program", "program_label",
+             "degree", "advisor", "email", "council_rep", "cohort", "has_photo"]
+GRAD_PROGRAMS = {"phd", "glg", "esp", "css"}
+grads = read("grad_students.csv", GRAD_COLS)
+
+faculty_surnames = {r["last_name"].lower() for r in faculty}
+seen_slugs: set[str] = set()
+photo_dir = REPO / "src" / "assets" / "grad-students"
+for i, r in enumerate(grads, start=2):
+    if not r["slug"]:
+        err(f"grad_students.csv line {i}: empty slug")
+    if r["slug"] in seen_slugs:
+        err(f"grad_students.csv line {i}: duplicate slug {r['slug']!r}")
+    seen_slugs.add(r["slug"])
+    if r["program"] not in GRAD_PROGRAMS:
+        err(f"grad_students.csv line {i}: program={r['program']!r} not one of {sorted(GRAD_PROGRAMS)}")
+    if r["email"] and "@" not in r["email"]:
+        err(f"grad_students.csv line {i}: email={r['email']!r} is not an address")
+    if not r["email"]:
+        warn(f"grad_students.csv line {i}: {r['full_name']} has no email in the source sheet")
+    # A portrait claimed in the data but missing on disk renders as a silent gap.
+    if r["has_photo"] == "true" and not (photo_dir / f"{r['slug']}.jpg").is_file():
+        err(f"grad_students.csv line {i}: has_photo=true but no src/assets/grad-students/{r['slug']}.jpg")
+    for name in filter(None, (a.strip() for a in r["advisor"].split("/"))):
+        if name.lower() not in faculty_surnames:
+            warn(f"grad_students.csv line {i}: advisor {name!r} has no row in faculty.csv, "
+                 "so their name will render without a link")
+check_bool(grads, "grad_students.csv", "council_rep")
+check_bool(grads, "grad_students.csv", "has_photo")
+
+if photo_dir.is_dir():
+    for f in sorted(photo_dir.glob("*.jpg")):
+        if f.stem not in seen_slugs:
+            err(f"src/assets/grad-students/{f.name}: portrait for nobody in grad_students.csv")
+
 # ------------------------------------------------------------------- report
 for w in warnings:
     print(f"WARNING: {w}")
@@ -147,5 +186,5 @@ if errors:
         print(f"ERROR: {e}")
     print(f"\nFAILED: {len(errors)} error(s), {len(warnings)} warning(s)")
     sys.exit(1)
-print(f"OK: publications={len(pubs)} faculty={len(faculty)} students={len(students)}, "
-      f"{len(warnings)} warning(s)")
+print(f"OK: publications={len(pubs)} faculty={len(faculty)} students={len(students)} "
+      f"grad_students={len(grads)}, {len(warnings)} warning(s)")

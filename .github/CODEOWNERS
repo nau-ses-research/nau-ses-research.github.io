@@ -7,3 +7,8 @@
 # data/ is deliberately unowned (the bare pattern below clears ownership):
 # weekly pipeline PRs touch only data/ and auto-merge on green checks.
 data/
+
+# ...with one exception. The graduate student directory is generated into data/,
+# but it publishes named students' photographs and email addresses, so it is
+# owned and cannot auto-merge. Later patterns win, so this must stay last.
+data/grad_students.csv @nickmckay

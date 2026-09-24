@@ -11,6 +11,29 @@ every PR that touches `data/`).
 
 ## Files
 
+### `grad_students.csv`
+
+**Generated, not curated.** One row per current graduate student, rebuilt
+wholesale by `scripts/update_grad_students.py` from the SES Marketing folder on
+OneDrive (`Grad_Student_Info_4Web/`), which is the single source of truth. Hand
+edits here are lost on the next run: fix the spreadsheet or the photo filename
+instead, and rerun.
+
+| column | meaning |
+|---|---|
+| `slug` | `first-last`, slugified. Also the portrait filename in `src/assets/grad-students/`. |
+| `first`, `last`, `full_name` | As spelled in the spreadsheet. |
+| `program` | `phd`, `glg`, `esp` or `css`, from which sheet the row came. |
+| `program_label`, `degree` | Display strings for that program. |
+| `advisor` | Surnames as written, `/`-separated for co-advising. Resolved to faculty profiles at build time by surname. |
+| `email` | NAU address; may be empty if the sheet has none. |
+| `council_rep` | `true` when the sheet's Leaders column is filled: this year's grad student council representative. |
+| `cohort` | Only the CSS sheet carries one. |
+| `has_photo` | Whether `src/assets/grad-students/<slug>.jpg` exists. |
+
+Portraits are resized to 900px on the long edge and stripped of EXIF (the
+originals carry camera metadata, and these are photographs of people).
+
 ### `publications.csv`
 
 One row per publication, sorted by `year` descending then `simple_title`

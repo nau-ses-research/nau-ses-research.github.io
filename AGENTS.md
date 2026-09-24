@@ -28,6 +28,10 @@ working here.
    pick a recent grad-student-led paper, interview the student by email, and
    publish a news article. **Always a PR requiring Nick's review; never a
    direct commit.**
+3. **Graduate-student directory refresh** (`docs/RUNBOOK-grad-students.md`):
+   rebuild `data/grad_students.csv` and the portraits from the SES Marketing
+   folder on OneDrive when that source changes. The spreadsheet is the source of
+   truth; nothing in this repo is hand-edited.
 
 ## Hard rules
 
