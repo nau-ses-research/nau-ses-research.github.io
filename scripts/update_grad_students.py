@@ -22,6 +22,7 @@ import argparse
 import csv
 import difflib
 import re
+import shutil
 import sys
 import unicodedata
 from pathlib import Path
@@ -82,16 +83,35 @@ def read_students(xlsx):
     import openpyxl
 
     wb = openpyxl.load_workbook(xlsx, data_only=True)
-    unknown = [s.title for s in wb.worksheets if s.title not in PROGRAMS]
-    if unknown:
-        sys.exit(f"ABORT: unexpected sheet(s) {unknown}. Expected {list(PROGRAMS)}. "
-                 "If a program was added or renamed, this script needs updating.")
+    titles = {s.title for s in wb.worksheets}
+    unknown = sorted(titles - set(PROGRAMS))
+    missing = sorted(set(PROGRAMS) - titles)
+    # Both directions matter: an unexpected sheet means a program we would ignore,
+    # and a missing one means a program that would vanish from the site while the
+    # remaining sheets still cleared MIN_STUDENTS.
+    if unknown or missing:
+        detail = []
+        if missing:
+            detail.append(f"missing sheet(s) {missing}")
+        if unknown:
+            detail.append(f"unexpected sheet(s) {unknown}")
+        sys.exit(f"ABORT: {'; '.join(detail)}. Expected exactly {list(PROGRAMS)}. "
+                 "If a program was added, renamed or retired, this script needs updating "
+                 "before the directory can be rebuilt.")
     students = []
     for ws in wb.worksheets:
         code, label, degree = PROGRAMS[ws.title]
         rows = [r for r in ws.iter_rows(values_only=True) if any(c not in (None, "") for c in r)]
+        if not rows:
+            sys.exit(f"ABORT: sheet {ws.title!r} is empty.")
         header = [str(c or "").strip().lower() for c in rows[0]]
         idx = {name: header.index(name) for name in header if name}
+        # Without these two columns every row parses as blank and the whole
+        # program disappears silently, which the total-count guard cannot catch.
+        missing_cols = [c for c in ("last", "first") if c not in idx]
+        if missing_cols:
+            sys.exit(f"ABORT: sheet {ws.title!r} has no {missing_cols} column(s). "
+                     f"Found headers: {[h for h in header if h]}. Fix the spreadsheet.")
 
         def cell(row, *names):
             for n in names:
@@ -180,33 +200,47 @@ def match_photos(students, photo_dir, notes):
 
 
 def write_photos(students, dry_run, notes):
+    """Build every portrait into a temporary directory, then swap it in.
+
+    A source image that turns out to be unreadable aborts the run, and the
+    checkout is left exactly as it was: no half-refreshed set of portraits
+    sitting next to an unchanged CSV.
+    """
     from PIL import Image
 
-    if not dry_run:
-        OUT_PHOTOS.mkdir(parents=True, exist_ok=True)
-    written = set()
+    wanted = []
     for s in students:
         src = s.pop("photo", "")
-        s["has_photo"] = "false"
-        if not src:
-            continue
-        dest = OUT_PHOTOS / f"{s['slug']}.jpg"
-        s["has_photo"] = "true"
-        written.add(dest.name)
-        if dry_run:
-            continue
-        with Image.open(src) as im:
-            im = im.convert("RGB")
-            im.thumbnail((PHOTO_MAX, PHOTO_MAX), Image.LANCZOS)
-            # save() without an exif= argument drops EXIF, which is the point:
-            # these are photos of people and may carry camera GPS.
-            im.save(dest, "JPEG", quality=85, optimize=True)
-    if not dry_run and OUT_PHOTOS.is_dir():
-        for stale in OUT_PHOTOS.glob("*.jpg"):
-            if stale.name not in written:
-                stale.unlink()
+        s["has_photo"] = "true" if src else "false"
+        if src:
+            wanted.append((s["slug"], src))
+    if dry_run:
+        return len(wanted)
+
+    tmp = OUT_PHOTOS.parent / (OUT_PHOTOS.name + ".tmp")
+    if tmp.exists():
+        shutil.rmtree(tmp)
+    tmp.mkdir(parents=True)
+    try:
+        for slug, src in wanted:
+            with Image.open(src) as im:
+                im = im.convert("RGB")
+                im.thumbnail((PHOTO_MAX, PHOTO_MAX), Image.LANCZOS)
+                # save() without an exif= argument drops EXIF, which is the point:
+                # these are photos of people and may carry camera GPS.
+                im.save(tmp / f"{slug}.jpg", "JPEG", quality=85, optimize=True)
+    except Exception as exc:  # unreadable or truncated source image
+        shutil.rmtree(tmp, ignore_errors=True)
+        sys.exit(f"ABORT: could not process {src}: {exc}. Nothing was written.")
+
+    if OUT_PHOTOS.is_dir():
+        kept = {f"{slug}.jpg" for slug, _ in wanted}
+        for stale in sorted(OUT_PHOTOS.glob("*.jpg")):
+            if stale.name not in kept:
                 notes.append(f"removed portrait no longer in the source: {stale.name}")
-    return len(written)
+        shutil.rmtree(OUT_PHOTOS)
+    tmp.replace(OUT_PHOTOS)
+    return len(wanted)
 
 
 def main():
