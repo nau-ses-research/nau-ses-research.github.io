@@ -90,7 +90,11 @@ const cards = await Promise.all(
                 </span>
               )}
               <div class="min-w-0">
-                <h3 class="font-medium text-pine-900">{s.full_name}</h3>
+                <h3 class="font-medium text-pine-900">
+                  <a href={`/graduate-students/${s.slug}/`} class="hover:text-pine-700 hover:underline">
+                    {s.full_name}
+                  </a>
+                </h3>
                 {s.advisors.length > 0 && (
                   <p class="mt-0.5 text-sm text-slate-600">
                     Advised by{" "}
