@@ -5,6 +5,8 @@ description = "Weekly Google Scholar update pipeline for the SES publications si
 requires-python = ">=3.11"
 dependencies = [
     "scholarly>=1.7",
+    "openpyxl>=3.1",  # reads the grad-student spreadsheet from the Marketing folder
+    "pillow>=10",     # resizes portraits and strips their EXIF
 ]
 
 [dependency-groups]

@@ -1,0 +1,57 @@
+slug,first,last,full_name,program,program_label,degree,advisor,email,council_rep,cohort,has_photo
+lance-adams,Lance,Adams,Lance Adams,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Aslan,lha45@nau.edu,true,,true
+hunter-allen,Hunter,Allen,Hunter Allen,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Kaufman,hta42@nau.edu,false,,true
+grace-atkinson,Grace,Atkinson,Grace Atkinson,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Gaherty,gca63@nau.edu,true,,false
+patrick-chindandali,Patrick,Chindandali,Patrick Chindandali,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Shillington,prc65@nau.edu,false,,true
+christopher-finney,Christopher,Finney,Christopher Finney,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Ranjan,cwf5@nau.edu,false,,false
+kylie-greiner,Kylie,Greiner,Kylie Greiner,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Gaherty/Porter/Shillington,krg485@nau.edu,false,,false
+aubrey-laplante,Aubrey,LaPlante,Aubrey LaPlante,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Regalla/Shillington,aal382@nau.edu,false,,true
+rayni-lewis,Rayni,Lewis,Rayni Lewis,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Sankey,rpl49@nau.edu,false,,false
+darwin-mayhew,Darwin,Mayhew,Darwin Mayhew,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Biggs,dsm366@nau.edu,false,,false
+laura-nicholson,Laura,Nicholson,Laura Nicholson,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Souther,lpn23@nau.edu,false,,true
+logan-ozment,Logan,Ozment,Logan Ozment,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Sankey,lo389@nau.edu,false,,false
+emily-renn,Emily,Renn,Emily Renn,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Biggs,ejn6@nau.edu,false,,true
+aden-stern,Aden,Stern,Aden Stern,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Stuart/Souther,as5862@nau.edu,false,,true
+sebastian-tauber,Sebastian,Tauber,Sebastian Tauber,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Porter,st886@nau.edu,false,,false
+maria-uribe,Maria,Uribe,Maria Uribe,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Calvo,mju35@nau.edu,false,,true
+anna-vaughn,Anna,Vaughn,Anna Vaughn,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Stuart/Souther,alv258@nau.edu,false,,false
+tawfic-yakubu,Tawfic,Yakubu,Tawfic Yakubu,phd,PhD Earth Sciences & Environmental Sustainability,PhD,Gaherty,ty235@nau.edu,false,,true
+nolan-chapman,Nolan,Chapman,Nolan Chapman,glg,MS Geosciences,MS,Springer,nmc359@nau.edu,false,,false
+gordon-davies,Gordon,Davies,Gordon Davies,glg,MS Geosciences,MS,Porter,gmd324@nau.edu,false,,false
+heather-elliot,Heather,Elliot,Heather Elliot,glg,MS Geosciences,MS,Joyal,hle6@nau.edu,false,,false
+ryan-ellis,Ryan,Ellis,Ryan Ellis,glg,MS Geosciences,MS,Kaufman,rae249@nau.edu,true,,true
+austin-gessini,Austin,Gessini,Austin Gessini,glg,MS Geosciences,MS,Apen,apg323@nau.edu,false,,false
+liam-houlgate,Liam,Houlgate,Liam Houlgate,glg,MS Geosciences,MS,Springer,lh2339@nau.edu,false,,true
+raymond-hughes,Raymond,Hughes,Raymond Hughes,glg,MS Geosciences,MS,Porter/Gaherty,rh2379@nau.edu,false,,false
+alyssa-iverson,Alyssa,Iverson,Alyssa Iverson,glg,MS Geosciences,MS,Shillington/Regalla,ami232@nau.edu,false,,false
+brice-liedtke,Brice,Liedtke,Brice Liedtke,glg,MS Geosciences,MS,Tierney,bdl235@nau.edu,false,,true
+emily-martin,Emily,Martin,Emily Martin,glg,MS Geosciences,MS,Smith-Konter,egm66@nau.edu,false,,false
+blake-muggli,Blake,Muggli,Blake Muggli,glg,MS Geosciences,MS,Regalla,brm456@nau.edu,true,,false
+morgan-pociask,Morgan,Pociask,Morgan Pociask,glg,MS Geosciences,MS,Smith-Konter,mrp488@nau.edu,false,,false
+jack-whitehouse,Jack,Whitehouse,Jack Whitehouse,glg,MS Geosciences,MS,Springer,John.Whitehouse@nau.edu,false,,false
+eli-allred,Eli,Allred,Eli Allred,esp,MS Environmental Sciences & Policy,MS,McKay,eba46@nau.edu,false,,true
+morgan-andrews,Morgan,Andrews,Morgan Andrews,esp,MS Environmental Sciences & Policy,MS,Aslan,mia57@nau.edu,false,,false
+bryan-carlin,Bryan,Carlin,Bryan Carlin,esp,MS Environmental Sciences & Policy,MS,Nowak,bgc45@nau.edu,false,,false
+ada-cohen,Ada,Cohen,Ada Cohen,esp,MS Environmental Sciences & Policy,MS,Stuart/Radonic,abc625@nau.edu,false,,false
+mariessa-fowler,Mariessa,Fowler,Mariessa Fowler,esp,MS Environmental Sciences & Policy,MS,Radonic,mkf222@nau.edu,false,,false
+taylor-hartness,Taylor,Hartness,Taylor Hartness,esp,MS Environmental Sciences & Policy,MS,Best,ted228@nau.edu,true,,true
+tia-hatton,Tia,Hatton,Tia Hatton,esp,MS Environmental Sciences & Policy,MS,Ranjan,tmh564@nau.edu,false,,true
+aryaana-khan,Aryaana,Khan,Aryaana Khan,esp,MS Environmental Sciences & Policy,MS,Radonic,ak3292@nau.edu,false,,true
+lexi-markoutsis,Lexi,Markoutsis,Lexi Markoutsis,esp,MS Environmental Sciences & Policy,MS,Souther,anm696@nau.edu,true,,true
+joe-moody,Joe,Moody,Joe Moody,esp,MS Environmental Sciences & Policy,MS,Huntzinger,jwm367@nau.edu,false,,false
+ellie-sagebiel,Ellie,Sagebiel,Ellie Sagebiel,esp,MS Environmental Sciences & Policy,MS,Smith,ess276@nau.edu,false,,false
+emily-speckman,Emily,Speckman,Emily Speckman,esp,MS Environmental Sciences & Policy,MS,Springer,ees372@nau.edu,false,,false
+cosmos-ansah,Cosmos,Ansah,Cosmos Ansah,css,MS Climate Science & Solutions,MS,,csa223@nau.edu,false,2025 Cohort,false
+ryan-battles,Ryan,Battles,Ryan Battles,css,MS Climate Science & Solutions,MS,,rb2564@nau.edu,false,2025 Cohort,true
+katie-bednar,Katie,Bednar,Katie Bednar,css,MS Climate Science & Solutions,MS,,kab2368@nau.edu,false,2025 Cohort,true
+johnathan-bowsley,Johnathan,Bowsley,Johnathan Bowsley,css,MS Climate Science & Solutions,MS,,jb3447@nau.edu,false,2025 Cohort,true
+mackenzie-buckley,Mackenzie,Buckley,Mackenzie Buckley,css,MS Climate Science & Solutions,MS,,mjb848@nau.edu,false,2025 Cohort,true
+cameron-carlson,Cameron,Carlson,Cameron Carlson,css,MS Climate Science & Solutions,MS,,cc3943@nau.edu,false,2025 Cohort,true
+lucea-deflorin,Lucea,DeFlorin,Lucea DeFlorin,css,MS Climate Science & Solutions,MS,,led243@nau.edu,true,2025 Cohort,true
+jason-dejolie,Jason,Dejolie,Jason Dejolie,css,MS Climate Science & Solutions,MS,,jtd3@nau.edu,false,2025 Cohort,false
+olivia-drogosz,Olivia,Drogosz,Olivia Drogosz,css,MS Climate Science & Solutions,MS,,omd35@nau.edu,false,2025 Cohort,false
+natasha-goldtooth,Natasha,Goldtooth,Natasha Goldtooth,css,MS Climate Science & Solutions,MS,,ng2246@nau.edu,false,2025 Cohort,true
+starlet-grijalva,Starlet,Grijalva,Starlet Grijalva,css,MS Climate Science & Solutions,MS,,ssg257@nau.edu,false,2025 Cohort,false
+georgia-healey,Georgia,Healey,Georgia Healey,css,MS Climate Science & Solutions,MS,,,false,2025 Cohort,false
+logan-moya,Logan,Moya,Logan Moya,css,MS Climate Science & Solutions,MS,,lam858@nau.edu,false,2025 Cohort,false
+addison-pifer,Addison,Pifer,Addison Pifer,css,MS Climate Science & Solutions,MS,,alp594@nau.edu,false,2025 Cohort,true
