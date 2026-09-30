@@ -1,0 +1,150 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import PubItem from "../../components/PubItem.astro";
+import { getGradStudents, publicationsForStudent } from "../../lib/gradStudents";
+
+export async function getStaticPaths() {
+  return getGradStudents().map((student) => ({
+    params: { slug: student.slug },
+    props: { student },
+  }));
+}
+
+const { student } = Astro.props;
+const pubs = publicationsForStudent(student);
+
+const portraits = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/grad-students/*.jpg",
+);
+const key = Object.keys(portraits).find((k) => k.endsWith(`/${student.slug}.jpg`));
+const portrait = key ? (await portraits[key]()).default : undefined;
+
+// News stories that name this student. None do today (the published stories are
+// about recent alumni), but the link should appear by itself when one does.
+const stories = (await getCollection("news"))
+  .filter((n) => n.data.students.some((s) => s.toLowerCase() === student.full_name.toLowerCase()))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const standing = student.cohort
+  ? student.cohort
+  : student.start_year
+    ? `${student.degree} student since ${student.start_year}`
+    : `${student.degree} student`;
+---
+
+<Base
+  title={student.full_name}
+  description={`${student.full_name}, ${student.program_label} student in NAU's School of Earth and Sustainability.`}
+>
+  <div class="bg-pine-900 py-10">
+    <div class="mx-auto max-w-4xl px-4">
+      <p class="text-sm text-pine-200">
+        <a href="/graduate-students/" class="hover:text-gold-400">Graduate Students</a>
+      </p>
+      <div class="mt-3 flex flex-wrap items-center gap-6">
+        {portrait ? (
+          <Image
+            src={portrait}
+            alt={`${student.full_name}`}
+            width={320}
+            height={320}
+            class="h-36 w-36 shrink-0 rounded-full object-cover object-[50%_20%] shadow-lg sm:h-44 sm:w-44"
+          />
+        ) : (
+          <span
+            class="flex h-36 w-36 shrink-0 items-center justify-center rounded-full bg-pine-700 font-serif text-4xl font-semibold text-pine-100 sm:h-44 sm:w-44"
+            aria-hidden="true"
+          >
+            {student.initials}
+          </span>
+        )}
+        <div>
+          <h1 class="font-serif text-3xl font-bold text-white sm:text-4xl">{student.full_name}</h1>
+          <p class="mt-2 text-lg text-pine-100">{student.program_label}</p>
+          <p class="text-sm text-pine-200">{standing}</p>
+          {student.council_rep && (
+            <p class="mt-2 inline-block rounded bg-gold-400 px-2 py-0.5 text-xs font-semibold text-pine-900">
+              Grad Student Council rep, 2026-27
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h-1.5 bg-gold-400"></div>
+
+  <div class="mx-auto max-w-4xl px-4 py-10">
+    <dl class="grid gap-4 rounded-xl bg-pine-50 p-5 text-sm sm:grid-cols-3">
+      {student.advisors.length > 0 && (
+        <div>
+          <dt class="font-semibold text-pine-900">{student.advisors.length > 1 ? "Advisors" : "Advisor"}</dt>
+          <dd class="mt-1 space-y-0.5">
+            {student.advisors.map((a) => (
+              <div>
+                {a.href ? (
+                  <a href={a.href} class="text-pine-700 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-900">
+                    {a.name}
+                  </a>
+                ) : (
+                  a.name
+                )}
+              </div>
+            ))}
+          </dd>
+        </div>
+      )}
+      {student.email && (
+        <div>
+          <dt class="font-semibold text-pine-900">Email</dt>
+          <dd class="mt-1 break-all">
+            <a href={`mailto:${student.email}`} class="text-pine-700 hover:text-pine-900">
+              {student.email}
+            </a>
+          </dd>
+        </div>
+      )}
+      <div>
+        <dt class="font-semibold text-pine-900">Program</dt>
+        <dd class="mt-1 text-slate-700">{student.program_label}</dd>
+      </div>
+    </dl>
+
+    {pubs.length > 0 && (
+      <section class="mt-10">
+        <h2 class="font-serif text-2xl font-semibold text-pine-900">
+          Publications
+        </h2>
+        <p class="mt-1 text-sm text-slate-600">
+          {pubs.length === 1 ? "One paper" : `${pubs.length} papers`} in the SES
+          publication database crediting {student.first}. See
+          <a href="/publications/" class="text-pine-700 underline decoration-gold-400 decoration-2 underline-offset-2">the full database</a>
+          for everything from the school.
+        </p>
+        <div class="mt-4 space-y-4">
+          {pubs.map((p) => <PubItem pub={p} />)}
+        </div>
+      </section>
+    )}
+
+    {stories.length > 0 && (
+      <section class="mt-10">
+        <h2 class="font-serif text-2xl font-semibold text-pine-900">In the news</h2>
+        <ul class="mt-4 space-y-2">
+          {stories.map((n) => (
+            <li>
+              <a href={`/news/${n.id}/`} class="text-pine-700 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-900">
+                {n.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <p class="mt-12 border-t border-slate-200 pt-5 text-sm text-slate-600">
+      <a href="/graduate-students/" class="text-pine-700 hover:text-pine-900">← All graduate students</a>
+    </p>
+  </div>
+</Base>

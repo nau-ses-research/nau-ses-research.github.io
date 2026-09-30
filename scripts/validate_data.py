@@ -173,10 +173,15 @@ for i, r in enumerate(grads, start=2):
 check_bool(grads, "grad_students.csv", "council_rep")
 check_bool(grads, "grad_students.csv", "has_photo")
 
+with_photo = {r["slug"] for r in grads if r["has_photo"] == "true"}
 if photo_dir.is_dir():
     for f in sorted(photo_dir.glob("*.jpg")):
         if f.stem not in seen_slugs:
             err(f"src/assets/grad-students/{f.name}: portrait for nobody in grad_students.csv")
+        elif f.stem not in with_photo:
+            err(f"src/assets/grad-students/{f.name}: portrait present but the row says "
+                "has_photo=false. The page finds portraits by filename, so this one would "
+                "publish anyway; rerun scripts/update_grad_students.py.")
 
 # ------------------------------------------------------------------- report
 for w in warnings:

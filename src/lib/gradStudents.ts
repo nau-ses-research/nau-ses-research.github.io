@@ -4,7 +4,8 @@
  */
 import { parse } from "csv-parse/sync";
 import { readFileSync } from "node:fs";
-import { getFacultyRecords } from "./publications";
+import { getFacultyRecords, getPublications, type Publication } from "./publications";
+import { readFileSync as _read } from "node:fs";
 
 export interface Advisor {
   name: string; // surname as written in the source
@@ -25,6 +26,7 @@ export interface GradStudent {
   cohort: string;
   has_photo: boolean;
   initials: string;
+  start_year: string; // from students.csv, where we have them
 }
 
 /** Display order: research degrees first, then the professional master's. */
@@ -41,6 +43,15 @@ export function getGradStudents(): GradStudent[] {
   const bySurname = new Map<string, { slug: string; profile: string }>();
   for (const f of faculty) {
     bySurname.set(f.last_name.toLowerCase(), { slug: f.slug, profile: f.profile });
+  }
+
+  // students.csv is the historical roster used for publication matching; it
+  // carries start years that the Marketing spreadsheet does not.
+  const roster = new Map<string, string>();
+  for (const r of parse(readFileSync("data/students.csv", "utf-8"), {
+    columns: true,
+  }) as Record<string, string>[]) {
+    if (r.full_name) roster.set(normalizeName(r.full_name), r.start_year ?? "");
   }
 
   const rows: Record<string, string>[] = parse(
@@ -71,6 +82,7 @@ export function getGradStudents(): GradStudent[] {
     cohort: r.cohort,
     has_photo: r.has_photo === "true",
     initials: (r.first[0] ?? "") + (r.last[0] ?? ""),
+    start_year: roster.get(normalizeName(r.full_name)) ?? "",
   }));
   return _students;
 }
@@ -81,4 +93,25 @@ export function gradStudentsByProgram(): { code: string; label: string; students
     const students = all.filter((s) => s.program === code);
     return { code, label: students[0]?.program_label ?? code, students };
   }).filter((g) => g.students.length > 0);
+}
+
+
+/** Names are spelled inconsistently across the sheets and the publication data
+ *  ("Aubrey LaPlante" vs "Aubrey Laplante"), so compare them flattened. */
+function normalizeName(name: string): string {
+  return name
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z ]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Publications in the database crediting this student, newest first. */
+export function publicationsForStudent(student: GradStudent): Publication[] {
+  const target = normalizeName(student.full_name);
+  return getPublications().filter((p) =>
+    p.ses_grad_students.some((n) => normalizeName(n) === target),
+  );
 }
