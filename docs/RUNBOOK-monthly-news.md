@@ -72,6 +72,10 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
   for no other purpose; do not carry the reason into anything public.
 - Before publishing: send the student the exact quotes you plan to use (or
   the full draft) and get their **explicit OK in writing**. No OK, no story.
+  In the same message, tell them that once the story is live it will also be
+  submitted to the college blog (step 5c), along with their photo if they sent
+  one, and ask them to say if they would rather it were not. If they object,
+  skip 5c or use `--no-photo`, as they asked.
 
 ## 3. Write the story
 
@@ -183,6 +187,47 @@ printf '%s\n' "..." | ses-send donna.shillington@nau.edu \
 
 **You draft; you do not post.** Guy has no social accounts and must not
 create any. Donna decides what runs, when, and in what form.
+
+**c. Submit the story to the CEFNS college blog.** The college collects
+stories for its blog and email newsletters through a form at
+https://in.nau.edu/college-environment-forestry-natural-sciences/blog/submit-post/.
+Every published story goes there too, through
+`scripts/submit_cefns_story.py`, never by filling the form by hand:
+
+```bash
+cd ~/ses-site && git pull
+uv run scripts/submit_cefns_story.py <yyyy-mm>-<short-slug>            # dry run
+uv run scripts/submit_cefns_story.py <yyyy-mm>-<short-slug> --submit
+```
+
+- **Dry run first, and read what it prints.** It shows every field exactly
+  as it will be sent and saves a screenshot of the filled form. Nothing is
+  uploaded or submitted.
+- The script fills the form from the published story: the story text under
+  its headline, the people, the paper, the photo with its caption and credit,
+  and links to the story and the paper's DOI. It submits as Guy Clawdsen
+  (guy@ses-nau.org), says plainly that Guy is the AI assistant that runs the
+  SES site, and names Nick as the person to contact. Do not paste in extra
+  text or rewrite the story for the form; the college does its own editing.
+- The story field holds 4,000 characters. A longer story is cut at a
+  paragraph break with a note, and the full text goes along as an attached
+  file, so nothing is lost.
+- `--submit` refuses to run until the story URL is live, and it only counts a
+  submission as made when the form shows its confirmation message. If the
+  form rejects it, the script prints the form's errors and records nothing;
+  fix the cause and run it again.
+- Each submission is logged in `~/.local/state/ses/cefns-submissions.tsv`. A
+  story already in that ledger is refused, so a rerun cannot send it twice.
+  Use `--force` only if the college asks for it again.
+- If the person you interviewed asked you to leave out their photo or not to
+  share the story beyond the SES site (step 2), honor that: `--no-photo`, or
+  skip this step.
+- The form uses a JavaScript spam check, which is why the script drives a
+  real headless browser. If the form's layout changes and a field can't be
+  found, stop and tell Nick rather than working around it.
+
+Send Nick a one-line note once it has gone through. The college's reply, if
+any, arrives in Guy's inbox like any other mail.
 
 ## Boundaries
 
