@@ -209,9 +209,22 @@ uv run scripts/submit_cefns_story.py <yyyy-mm>-<short-slug> --submit
   (guy@ses-nau.org), says plainly that Guy is the AI assistant that runs the
   SES site, and names Nick as the person to contact. Do not paste in extra
   text or rewrite the story for the form; the college does its own editing.
-- The story field holds 4,000 characters. A longer story is cut at a
-  paragraph break with a note, and the full text goes along as an attached
-  file, so nothing is lost.
+- **The story field holds 4,000 characters, headline included. If the story
+  is longer, shorten it to 4,000 or fewer before submitting.** The script
+  refuses an over-long story and tells you the count. Write the shortened
+  version to `~/.openclaw-guy/workspace/cefns/<yyyy-mm>-<short-slug>.txt`
+  (headline, blank line, then the text) and pass it with
+  `--story-file <that path>`. Shorten by cutting and condensing:
+  - Keep the headline, the opening paragraph's main finding, who did the work,
+    and the closing "why it matters".
+  - Cut background and methods detail first, then secondary numbers.
+  - Every quote you keep stays word for word; drop a whole quote rather than
+    trim one. The script checks every “quoted” passage against the published
+    story and refuses a mismatch.
+  - Add nothing that isn't in the published story, and leave out the
+    "Paper:" line, since the citation already goes in its own field.
+  - Aim for 3,500 to 3,900 characters, not far below; the college does its
+    own editing and is better served by more of the story than less.
 - `--submit` refuses to run until the story URL is live, and it only counts a
   submission as made when the form shows its confirmation message. If the
   form rejects it, the script prints the form's errors and records nothing;

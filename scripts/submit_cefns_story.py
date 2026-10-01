@@ -21,8 +21,10 @@ The dry run prints every field, fills the form without uploading or
 submitting anything, and saves a screenshot. --submit uploads the photo,
 submits, checks for the form's confirmation message, and appends a row to
 the ledger. A slug already in the ledger is refused unless --force, so a
-story is never sent to the college twice. See docs/RUNBOOK-monthly-news.md
-step 5c.
+story is never sent to the college twice. A story over the form's 4,000
+characters needs a shortened version passed with --story-file; the script
+checks its length and that its quotes are verbatim. See
+docs/RUNBOOK-monthly-news.md step 5c.
 
 First run on a new machine: uv run --with playwright playwright install chromium
 """
@@ -96,24 +98,30 @@ def plain_text(md: str) -> str:
     return re.sub(r"\n{3,}", "\n\n", text).strip()
 
 
-def story_field(story: dict) -> tuple[str, bool]:
-    """The story text, cut at a paragraph break if it exceeds the form limit.
+def story_field(story: dict, short_file: Path | None) -> str:
+    """The story text for the form: the published story, or a shortened one.
 
-    Returns (text, truncated). When truncated, the full text goes along as an
-    attached file, and the field says so.
+    A story over the form's limit needs a shortened version written for it
+    (runbook step 5c), passed with --story-file. It must fit, and every quote
+    in it must appear word for word in the published story.
     """
     full = f"{story['title']}\n\n{plain_text(story['body'])}"
-    if len(full) <= STORY_MAX:
-        return full, False
-    tail = (f"\n\n[The story continues. The full text is in the attached file "
-            f"and published at {story['url']}]")
-    paras = full.split("\n\n")
-    kept: list[str] = []
-    for p in paras:
-        if len("\n\n".join(kept + [p])) + len(tail) > STORY_MAX:
-            break
-        kept.append(p)
-    return "\n\n".join(kept) + tail, True
+    if short_file is None:
+        if len(full) > STORY_MAX:
+            sys.exit(f"The story is {len(full)} characters; the form takes {STORY_MAX}. "
+                     "Write a shortened version (runbook step 5c) and pass it "
+                     "with --story-file.")
+        return full
+    short = short_file.read_text(encoding="utf-8").strip()
+    if len(short) > STORY_MAX:
+        sys.exit(f"{short_file} is {len(short)} characters; it must be {STORY_MAX} or fewer.")
+    norm = lambda s: " ".join(s.split())  # noqa: E731
+    altered = [q for q in re.findall(r"“(.+?)”", short, flags=re.S)
+               if norm(q) not in norm(full)]
+    if altered:
+        sys.exit("These quotes in the shortened version are not word for word "
+                 "in the published story:\n" + "\n".join(f"  “{q}”" for q in altered))
+    return short
 
 
 def citation(paper: dict) -> str:
@@ -268,6 +276,8 @@ def main() -> None:
     ap.add_argument("--submit", action="store_true", help="actually submit (default is a dry run)")
     ap.add_argument("--force", action="store_true", help="submit even if the ledger says it was sent")
     ap.add_argument("--no-photo", action="store_true", help="leave the featured image out")
+    ap.add_argument("--story-file", type=Path,
+                    help="shortened story text, required when the story is over 4,000 characters")
     ap.add_argument("--name", default="Guy Clawdsen")
     ap.add_argument("--email", default="guy@ses-nau.org")
     ap.add_argument("--ledger", type=Path, default=DEFAULT_LEDGER)
@@ -279,7 +289,7 @@ def main() -> None:
         sys.exit(f"{args.slug} was already submitted on {sent[-1]['submitted_at']} "
                  f"(ledger {args.ledger}). Use --force only if the college asked for it again.")
 
-    text, truncated = story_field(story)
+    text = story_field(story, args.story_file)
     first, _, last = args.name.partition(" ")
     fields = {
         "first": first, "last": last, "email": args.email, "role": "Other",
@@ -292,14 +302,11 @@ def main() -> None:
     files: list[Path] = []
     if story["image"] and not args.no_photo:
         files.append(story["image"])
-    if truncated:
-        full = workdir / f"{args.slug}-full-story.txt"
-        full.write_text(f"{story['title']}\n\n{plain_text(story['body'])}\n", encoding="utf-8")
-        files.append(full)
 
     for key in ["first", "last", "email", "role", "department", "topics", "audiences", "links"]:
         print(f"{key}: {fields[key]}")
-    print(f"\nstory ({len(text)}/{STORY_MAX} chars{', TRUNCATED' if truncated else ''}):\n{text}")
+    version = f", shortened from {args.story_file}" if args.story_file else ""
+    print(f"\nstory ({len(text)}/{STORY_MAX} chars{version}):\n{text}")
     print(f"\nanything_else:\n{fields['anything_else']}")
     print("\nfiles:", ", ".join(str(f) for f in files) or "none")
 
