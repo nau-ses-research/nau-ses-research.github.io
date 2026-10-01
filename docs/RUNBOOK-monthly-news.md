@@ -231,7 +231,11 @@ uv run scripts/submit_cefns_story.py <yyyy-mm>-<short-slug> --submit
   fix the cause and run it again.
 - Each submission is logged in `~/.local/state/ses/cefns-submissions.tsv`. A
   story already in that ledger is refused, so a rerun cannot send it twice.
-  Use `--force` only if the college asks for it again.
+  Use `--force` only if the college asks for it again. A row goes in as
+  `pending` just before the form is sent and becomes `confirmed` at the
+  thank-you message. If a run dies in between, the story stays blocked: check
+  your inbox for the college's acknowledgement and ask Nick before using
+  `--force`, because the college may already have it.
 - If the person you interviewed asked you to leave out their photo or not to
   share the story beyond the SES site (step 2), honor that: `--no-photo`, or
   skip this step.

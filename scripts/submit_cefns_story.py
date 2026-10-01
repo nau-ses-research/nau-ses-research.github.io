@@ -50,7 +50,7 @@ NEWS = REPO / "src" / "content" / "news"
 STORY_MAX = 4000  # the form's maxlength on "Tell us your story"
 DEFAULT_LEDGER = Path(os.environ.get(
     "CEFNS_LEDGER", "~/.local/state/ses/cefns-submissions.tsv")).expanduser()
-LEDGER_FIELDS = ["slug", "submitted_at", "title", "url", "confirmation"]
+LEDGER_FIELDS = ["slug", "status", "submitted_at", "title", "url", "confirmation"]
 
 DEPARTMENT = "School of Earth & Sustainability"
 AUDIENCES = [
@@ -116,11 +116,11 @@ def story_field(story: dict, short_file: Path | None) -> str:
     if len(short) > STORY_MAX:
         sys.exit(f"{short_file} is {len(short)} characters; it must be {STORY_MAX} or fewer.")
     norm = lambda s: " ".join(s.split())  # noqa: E731
-    altered = [q for q in re.findall(r"“(.+?)”", short, flags=re.S)
-               if norm(q) not in norm(full)]
+    quotes = re.findall(r"“(.+?)”", short, flags=re.S) + re.findall(r'"([^"]+)"', short)
+    altered = [q for q in quotes if norm(q) not in norm(full)]
     if altered:
         sys.exit("These quotes in the shortened version are not word for word "
-                 "in the published story:\n" + "\n".join(f"  “{q}”" for q in altered))
+                 "in the published story:\n" + "\n".join(f"  {q}" for q in altered))
     return short
 
 
@@ -179,17 +179,32 @@ def read_ledger(path: Path) -> list[dict]:
     if not path.exists():
         return []
     with open(path, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f, delimiter="\t"))
+        rows = list(csv.DictReader(f, delimiter="\t"))
+    for r in rows:  # rows from before the status column were all confirmed
+        r["status"] = r.get("status") or "confirmed"
+    return rows
 
 
-def append_ledger(path: Path, row: dict) -> None:
+def set_ledger(path: Path, slug: str, row: dict | None) -> None:
+    """Replace this slug's latest row with `row`, or drop it when row is None.
+
+    A row goes in as `pending` before the form is submitted and becomes
+    `confirmed` only after the thank-you message, so a submission whose
+    outcome is unknown still blocks an ordinary rerun.
+    """
+    rows = read_ledger(path)
+    idx = max((i for i, r in enumerate(rows) if r["slug"] == slug), default=None)
+    if idx is not None and rows[idx]["status"] == "pending":
+        rows.pop(idx)
+    if row is not None:
+        rows.append(row)
     path.parent.mkdir(parents=True, exist_ok=True)
-    new = not path.exists()
-    with open(path, "a", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=LEDGER_FIELDS, delimiter="\t")
-        if new:
-            w.writeheader()
-        w.writerow(row)
+    tmp = path.with_suffix(".tmp")
+    with open(tmp, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=LEDGER_FIELDS, delimiter="\t", extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    tmp.replace(path)
 
 
 def check_live(url: str) -> None:
@@ -202,7 +217,8 @@ def check_live(url: str) -> None:
     sys.exit(f"{url} did not return 200. Submit after the story renders.")
 
 
-def fill_and_submit(fields: dict, files: list[Path], submit: bool, shot: Path) -> str:
+def fill_and_submit(fields: dict, files: list[Path], submit: bool, shot: Path,
+                    before_submit=lambda: None, on_rejected=lambda: None) -> str:
     from playwright.sync_api import sync_playwright
 
     with sync_playwright() as p:
@@ -255,6 +271,7 @@ def fill_and_submit(fields: dict, files: list[Path], submit: bool, shot: Path) -
             browser.close()
             return ""
 
+        before_submit()
         form.locator("#gform_submit_button_16").click()
         page.wait_for_selector(
             ".gform_confirmation_message, .gform_validation_errors, .validation_message",
@@ -264,6 +281,7 @@ def fill_and_submit(fields: dict, files: list[Path], submit: bool, shot: Path) -
         if conf.count() == 0:
             errors = page.locator(".gform_validation_errors, .validation_message").all_inner_texts()
             browser.close()
+            on_rejected()
             sys.exit("The form rejected the submission:\n" + "\n".join(errors))
         text = " ".join(conf.first.inner_text().split())
         browser.close()
@@ -284,9 +302,16 @@ def main() -> None:
     args = ap.parse_args()
 
     story = load_story(args.slug)
+    if args.no_photo:
+        story["image"] = None
     sent = [r for r in read_ledger(args.ledger) if r["slug"] == args.slug]
     if sent and args.submit and not args.force:
-        sys.exit(f"{args.slug} was already submitted on {sent[-1]['submitted_at']} "
+        last = sent[-1]
+        if last["status"] == "pending":
+            sys.exit(f"{args.slug} was submitted on {last['submitted_at']} but never "
+                     "confirmed, so the college may already have it. Check Guy's inbox "
+                     "for their confirmation and ask Nick before rerunning with --force.")
+        sys.exit(f"{args.slug} was already submitted on {last['submitted_at']} "
                  f"(ledger {args.ledger}). Use --force only if the college asked for it again.")
 
     text = story_field(story, args.story_file)
@@ -300,7 +325,7 @@ def main() -> None:
 
     workdir = Path(tempfile.mkdtemp(prefix=f"cefns-{args.slug}-"))
     files: list[Path] = []
-    if story["image"] and not args.no_photo:
+    if story["image"]:
         files.append(story["image"])
 
     for key in ["first", "last", "email", "role", "department", "topics", "audiences", "links"]:
@@ -313,16 +338,19 @@ def main() -> None:
     if args.submit:
         check_live(story["url"])
     shot = workdir / f"{args.slug}.png"
-    conf = fill_and_submit(fields, files, args.submit, shot)
+    row = {"slug": args.slug, "status": "pending",
+           "submitted_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+           "title": story["title"], "url": story["url"], "confirmation": ""}
+    conf = fill_and_submit(
+        fields, files, args.submit, shot,
+        before_submit=lambda: set_ledger(args.ledger, args.slug, row),
+        on_rejected=lambda: set_ledger(args.ledger, args.slug, None))
     print(f"\nscreenshot: {shot}")
     if not args.submit:
         print("Dry run: form filled, nothing uploaded or submitted.")
         return
 
-    append_ledger(args.ledger, {
-        "slug": args.slug, "submitted_at": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "title": story["title"], "url": story["url"], "confirmation": conf,
-    })
+    set_ledger(args.ledger, args.slug, {**row, "status": "confirmed", "confirmation": conf})
     print(f"Submitted. Confirmation: {conf}\nLedger: {args.ledger}")
 
 
