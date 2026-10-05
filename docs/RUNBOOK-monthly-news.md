@@ -72,6 +72,10 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
   for no other purpose; do not carry the reason into anything public.
 - Before publishing: send the student the exact quotes you plan to use (or
   the full draft) and get their **explicit OK in writing**. No OK, no story.
+  In the same message, tell them that once the story is live it will also be
+  submitted to the college blog (step 5c), along with their photo if they sent
+  one, and ask them to say if they would rather it were not. If they object,
+  skip 5c or use `--no-photo`, as they asked.
 
 ## 3. Write the story
 
@@ -183,6 +187,64 @@ printf '%s\n' "..." | ses-send donna.shillington@nau.edu \
 
 **You draft; you do not post.** Guy has no social accounts and must not
 create any. Donna decides what runs, when, and in what form.
+
+**c. Submit the story to the CEFNS college blog.** The college collects
+stories for its blog and email newsletters through a form at
+https://in.nau.edu/college-environment-forestry-natural-sciences/blog/submit-post/.
+Every published story goes there too, through
+`scripts/submit_cefns_story.py`, never by filling the form by hand:
+
+```bash
+cd ~/ses-site && git pull
+uv run scripts/submit_cefns_story.py <yyyy-mm>-<short-slug>            # dry run
+uv run scripts/submit_cefns_story.py <yyyy-mm>-<short-slug> --submit
+```
+
+- **Dry run first, and read what it prints.** It shows every field exactly
+  as it will be sent and saves a screenshot of the filled form. Nothing is
+  uploaded or submitted.
+- The script fills the form from the published story: the story text under
+  its headline, the people, the paper, the photo with its caption and credit,
+  and links to the story and the paper's DOI. It submits as Guy Clawdsen
+  (guy@ses-nau.org), says plainly that Guy is the AI assistant that runs the
+  SES site, and names Nick as the person to contact. Do not paste in extra
+  text or rewrite the story for the form; the college does its own editing.
+- **The story field holds 4,000 characters, headline included. If the story
+  is longer, shorten it to 4,000 or fewer before submitting.** The script
+  refuses an over-long story and tells you the count. Write the shortened
+  version to `~/.openclaw-guy/workspace/cefns/<yyyy-mm>-<short-slug>.txt`
+  (headline, blank line, then the text) and pass it with
+  `--story-file <that path>`. Shorten by cutting and condensing:
+  - Keep the headline, the opening paragraph's main finding, who did the work,
+    and the closing "why it matters".
+  - Cut background and methods detail first, then secondary numbers.
+  - Every quote you keep stays word for word; drop a whole quote rather than
+    trim one. The script checks every “quoted” passage against the published
+    story and refuses a mismatch.
+  - Add nothing that isn't in the published story, and leave out the
+    "Paper:" line, since the citation already goes in its own field.
+  - Aim for 3,500 to 3,900 characters, not far below; the college does its
+    own editing and is better served by more of the story than less.
+- `--submit` refuses to run until the story URL is live, and it only counts a
+  submission as made when the form shows its confirmation message. If the
+  form rejects it, the script prints the form's errors and records nothing;
+  fix the cause and run it again.
+- Each submission is logged in `~/.local/state/ses/cefns-submissions.tsv`. A
+  story already in that ledger is refused, so a rerun cannot send it twice.
+  Use `--force` only if the college asks for it again. A row goes in as
+  `pending` just before the form is sent and becomes `confirmed` at the
+  thank-you message. If a run dies in between, the story stays blocked: check
+  your inbox for the college's acknowledgement and ask Nick before using
+  `--force`, because the college may already have it.
+- If the person you interviewed asked you to leave out their photo or not to
+  share the story beyond the SES site (step 2), honor that: `--no-photo`, or
+  skip this step.
+- The form uses a JavaScript spam check, which is why the script drives a
+  real headless browser. If the form's layout changes and a field can't be
+  found, stop and tell Nick rather than working around it.
+
+Send Nick a one-line note once it has gone through. The college's reply, if
+any, arrives in Guy's inbox like any other mail.
 
 ## Boundaries
 
