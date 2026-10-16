@@ -58,6 +58,9 @@ const news = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     summary: z.string(),
+    // Byline, only for a first-person piece written by its subject (added by
+    // Nick). Guy's reported stories stay unsigned; see RUNBOOK-monthly-news.md.
+    author: z.string().optional(),
     publication_id: z.string().optional(), // id in data/publications.csv
     students: z.array(z.string()).default([]),
     faculty: z.array(z.string()).default([]),

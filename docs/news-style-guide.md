@@ -35,7 +35,9 @@ community. Smart readers, not specialists.
   lake's past", not "SES student publishes paper").
 - `summary` frontmatter: one sentence, plain, no colon-splice headlines.
 - No byline, and no first-person: stories are unsigned, published by the
-  school rather than by a named reporter.
+  school rather than by a named reporter. (The exception is a piece the
+  researcher wrote themselves, which runs in their own voice with an `author`
+  byline; those are added by Nick, not written to this guide.)
 - Student's full name on first mention, then first name.
 - Include program and advisor once: "a PhD candidate in Earth Sciences and
   Environmental Sustainability advised by ...".
