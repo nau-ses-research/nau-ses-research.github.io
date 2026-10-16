@@ -27,6 +27,7 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime
+import html
 import json
 import random
 import re
@@ -231,9 +232,11 @@ def build_new_row(cand: dict, details: dict, faculty: list[Faculty],
     existing_ids.add(pub_id)
     return {
         "id": pub_id,
-        "title": cand["title"],
-        "authors": details["authors"],
-        "journal": details["journal"],
+        # Scholar and Crossref sometimes return HTML entities ("&amp;"), which
+        # the site would then print literally.
+        "title": html.unescape(cand["title"]),
+        "authors": html.unescape(details["authors"]),
+        "journal": html.unescape(details["journal"]),
         "number": details["number"],
         "year": str(cand["year"]),
         "citations": str(cand["cites"]),

@@ -11,11 +11,13 @@ export const GET: APIRoute = async (context) => {
     description:
       "Research stories from the School of Earth and Sustainability, including spotlights on graduate-student-led publications.",
     site: context.site!,
+    xmlns: { dc: "http://purl.org/dc/elements/1.1/" },
     items: news.map((n) => ({
       title: n.data.title,
       description: n.data.summary,
       pubDate: n.data.date,
       link: `/news/${n.id}/`,
+      ...(n.data.author ? { customData: `<dc:creator>${n.data.author}</dc:creator>` } : {}),
     })),
   });
 };

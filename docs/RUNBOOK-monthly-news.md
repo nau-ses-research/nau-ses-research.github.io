@@ -95,10 +95,11 @@ the choice feels ambiguous, email Nick the shortlist and let him pick.
   ---
   ```
 
-- **No byline.** Stories carry no `author` field and render none; the school
-  is the sole credit line. Do not add an `author` key back to the frontmatter
-  (the schema has no such field, so one would simply be ignored), and do not
-  sign a story in the prose.
+- **No byline.** Your stories carry no `author` field and render none; the
+  school is the sole credit line. Do not sign a story in the prose. The schema
+  does have an optional `author` field, but it exists only for a first-person
+  piece written by its own subject and added by Nick (the first was Ellie
+  Stevenson's, 2026-10). Never set it on a story you wrote.
 - Optional image: `featured.jpg` (or `.png`) in the same folder, picked up
   automatically; there is no `image:` frontmatter key. Use a photo from the
   student, with their permission, or a relevant field/lab photo we have
