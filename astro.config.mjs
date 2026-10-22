@@ -3,6 +3,11 @@ import { defineConfig } from "astro/config";
 import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+// Every URL in the old Hugo site's sitemap (backup sitemap_20260817.xml) that
+// has no page on this site, mapped to the closest one: tag pages to a site
+// search for the tag, author pages to the profile, and so on. Google and old
+// links kept sending visitors to these, so they were the site's top 404s.
+import legacyRedirects from "./src/legacy-redirects.json" with { type: "json" };
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,6 +25,7 @@ export default defineConfig({
   // for the retired knitted-Rmd URLs from the old Hugo site, plus profile
   // moves from the 2026-08-20 roster changes.
   redirects: {
+    ...legacyRedirects,
     "/faculty/": "/publications/",
     "/students/": "/research/",
     "/analytics/": "/research/",

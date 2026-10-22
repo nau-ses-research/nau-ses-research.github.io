@@ -20,7 +20,10 @@ import PageHero from "../components/PageHero.astro";
   <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
       if (typeof PagefindUI !== "undefined") {
-        new PagefindUI({ element: "#search", showSubResults: true, autofocus: true });
+        const ui = new PagefindUI({ element: "#search", showSubResults: true, autofocus: true });
+        // /search/?q=... runs that search; old Hugo tag pages redirect here.
+        const q = new URLSearchParams(window.location.search).get("q");
+        if (q) ui.triggerSearch(q);
       } else {
         document.getElementById("search").innerHTML =
           "<p style='color:#64748b'>Search index not available in the dev server; run a production build.</p>";
