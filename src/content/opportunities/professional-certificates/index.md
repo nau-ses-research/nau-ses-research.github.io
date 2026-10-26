@@ -4,7 +4,7 @@ summary: >-
   Non-credit professional certificate in GHG Accounting designed for working
   professionals. Four online courses covering carbon accounting, emissions
   tracking, and climate action strategies.
-weight: 30
+weight: 100
 image_caption: GHG Accounting Professional Certificate Program
 ---
 

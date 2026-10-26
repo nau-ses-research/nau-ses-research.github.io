@@ -32,21 +32,21 @@ const handbooks = [
   },
   {
     program: "MS Geosciences",
-    handbook: "https://drive.google.com/open?id=1bcrt-cZuEDg3pO_HASZkekHPi0MjSQ0J",
-    posLabel: "Program of Study",
-    pos: "https://drive.google.com/open?id=1F4QirwkBLXcfmpX-c5NSzdhEj0MLB7zX",
+    handbook: "", // old Drive file is gone (404, 2026-10); awaiting the current PDF
+    posLabel: "Program of Study (2026-27)",
+    pos: "https://in.nau.edu/wp-content/uploads/sites/153/2026/07/Geology-MS-26-27.docx",
   },
   {
     program: "MS Environmental Sciences & Policy",
-    handbook: "https://drive.google.com/open?id=1bcrt-cZuEDg3pO_HASZkekHPi0MjSQ0J",
-    posLabel: "Program of Study",
-    pos: "https://drive.google.com/open?id=1RYNTrs51nDbeAPblU9GqwPb8tQ-oijVU",
+    handbook: "", // old Drive file is gone (404, 2026-10); awaiting the current PDF
+    posLabel: "Program of Study (2026-27)",
+    pos: "https://in.nau.edu/wp-content/uploads/sites/153/2026/07/Environmental-Sciences-and-Policy-MS-26-27.docx",
   },
   {
     program: "PhD Earth Sciences & Environmental Sustainability",
-    handbook: "https://drive.google.com/open?id=1mRQ1JmJh_WEJsyguFpnZxi95Px6U0IaK",
-    posLabel: "Program of Study",
-    pos: "https://drive.google.com/open?id=1styNKv-qqQR9jnSCFJO0JxJbc4V8tPsZ",
+    handbook: "", // old Drive file is gone (404, 2026-10); awaiting the current PDF
+    posLabel: "Program of Study (2026-27)",
+    pos: "https://in.nau.edu/wp-content/uploads/sites/153/2026/07/Earth-Science-and-Environmental-Sustainability-PhD-26-27.docx",
   },
 ];
 
@@ -121,9 +121,19 @@ const contacts = [
               <tr class="border-b border-slate-200 align-top">
                 <td class="px-3 py-2.5 font-medium text-slate-800">{h.program}</td>
                 <td class="px-3 py-2.5">
-                  <a href={h.handbook} class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800">
-                    Handbook (PDF)
-                  </a>
+                  {h.handbook ? (
+                    <a href={h.handbook} class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800">
+                      Handbook (PDF)
+                    </a>
+                  ) : (
+                    <span class="text-slate-600">
+                      Being updated; email{" "}
+                      <a href={`mailto:Tracy.Tiedemann@nau.edu?subject=${encodeURIComponent(h.program + " handbook")}`} class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800">
+                        Tracy Tiedemann
+                      </a>{" "}
+                      for the current copy
+                    </span>
+                  )}
                 </td>
                 <td class="px-3 py-2.5">
                   <a href={h.pos} class="text-pine-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-pine-800">
