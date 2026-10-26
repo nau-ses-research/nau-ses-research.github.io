@@ -1,9 +1,10 @@
 ---
-title: Graduate Certificates
+title: Graduate Certificate in Greenhouse Gas Accounting
+nav_title: GHG Accounting Graduate Certificate
 summary: >-
   Skills-based online certificate program designed to build expertise in carbon
   accounting.
-weight: 40
+weight: 100
 image_caption: Students working in the mineralogy lab
 ---
 
